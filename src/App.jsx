@@ -8,14 +8,15 @@ import Layout from "./layout/Layout";
 import { Basket } from "./component/header/Basket";
 import Haqqimizda from "./component/pages/Haqqimizda";
 import Elaqe from "./component/pages/Elaqe";
-import Login from "./component/Login";
-import Admin from "./component/Admin";
+import Login from "./admin/Login";
+import Admin from "./admin/Admin";
+import { Toaster } from "react-hot-toast";
 
 function App() {
-    
+
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState();
-    
+
     const { pathname } = useLocation();
 
     function updateCount(id, increment) {
@@ -25,21 +26,25 @@ function App() {
             }
             return item;
         });
-    
+
         setProduct(updatedProducts);
     }
-    
+
     useEffect(() => {
         window.scroll(0, 0);
     }, [pathname]);
 
     return (
         <>
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <Routes>
                 <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
                     <Route path='/' element={<Main />} />
                     <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} product={product} setProduct={setProduct} />} />
-                    <Route path='/product/:id' element={<CardInfo updateCount={updateCount} product={product}/>} />
+                    <Route path='/product/:id' element={<CardInfo updateCount={updateCount} product={product} />} />
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/haqqimizda" element={<Haqqimizda />} />
                     <Route path="/elaqe" element={<Elaqe />} />

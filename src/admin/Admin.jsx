@@ -1,41 +1,21 @@
 import { Fragment, useState } from 'react'
+import neptunlogin from '../assets/neptunlogin.png';
+import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import {
-    Bars3BottomLeftIcon,
-    BellIcon,
-    CalendarIcon,
-    ChartBarIcon,
-    FolderIcon,
-    HomeIcon,
-    InboxIcon,
-    UsersIcon,
-    XMarkIcon,
-} from '@heroicons/react/24/outline'
+import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Link } from 'react-router-dom';
 
 const navigation = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Team', href: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-    { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-    { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-]
-const userNavigation = [
-    { name: 'Your Profile', href: '#' },
-    { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Ana səhifə', href: '#', icon: HomeIcon, current: true },
+    { name: 'Məhsullar', href: '#', icon: UsersIcon, current: false },
+    { name: 'Kateqoriyalar', href: '#', icon: FolderIcon, current: false },
+    { name: 'Subkataqoriya', href: '#', icon: CalendarIcon, current: false },
 ]
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
 }
-const people = [
-    { name: 'Xəzər əmi', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-    { name: 'Ləman zayı', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-    { name: 'Elvin səyi', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-    { name: 'Aysu', title: 'Front-end Developer', email: 'lindsay.walton@example.com', role: 'Member' },
-]
 
 function Admin() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -91,32 +71,30 @@ function Admin() {
                                     <div className="flex flex-shrink-0 items-center px-4">
                                         <img
                                             className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                            alt="Your Company"
+                                            src={neptunlogin}
+                                            alt="neptun"
                                         />
                                     </div>
                                     <div className="mt-5 h-0 flex-1 overflow-y-auto">
                                         <nav className="space-y-1 px-2">
                                             {navigation.map((item) => (
-                                                <a
+                                                <Link
                                                     key={item.name}
-                                                    href={item.href}
+                                                    to={item.href}
                                                     className={classNames(
-                                                        item.current
-                                                            ? 'bg-gray-100 text-gray-900'
-                                                            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                                        'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+                                                        item.current ? 'bg-gray-100 text-[#FF8300]' : 'text-gray-800 hover:bg-gray-50 hover:text-[#FF8300]',
+                                                        'group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
                                                     )}
                                                 >
                                                     <item.icon
                                                         className={classNames(
-                                                            item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
-                                                            'mr-4 flex-shrink-0 h-6 w-6'
+                                                            item.current ? 'text-[#FF8300]' : 'text-gray-900 group-hover:text-[#FF8300]',
+                                                            'mr-3 flex-shrink-0 h-6 w-6'
                                                         )}
                                                         aria-hidden="true"
                                                     />
                                                     {item.name}
-                                                </a>
+                                                </Link>
                                             ))}
                                         </nav>
                                     </div>
@@ -131,31 +109,31 @@ function Admin() {
                     <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                         <div className="flex flex-shrink-0 items-center px-4">
                             <img
-                                className="h-8 w-auto"
-                                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                alt="Your Company"
+                                className="h-14 w-auto mb-3"
+                                src={neptunlogin}
+                                alt="neptun"
                             />
                         </div>
                         <div className="mt-5 flex flex-grow flex-col">
                             <nav className="flex-1 space-y-1 px-2 pb-4">
                                 {navigation.map((item) => (
-                                    <a
+                                    <Link
                                         key={item.name}
-                                        href={item.href}
+                                        to={item.href}
                                         className={classNames(
-                                            item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-                                            'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
+                                            item.current ? 'bg-gray-100 text-[#FF8300]' : 'text-gray-800 hover:bg-gray-50 hover:text-[#FF8300]',
+                                            'group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
                                         )}
                                     >
                                         <item.icon
                                             className={classNames(
-                                                item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                                item.current ? 'text-[#FF8300]' : 'text-gray-900 group-hover:text-[#FF8300]',
                                                 'mr-3 flex-shrink-0 h-6 w-6'
                                             )}
                                             aria-hidden="true"
                                         />
                                         {item.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </nav>
                         </div>
@@ -220,21 +198,8 @@ function Admin() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            {userNavigation.map((item) => (
-                                                <Menu.Item key={item.name}>
-                                                    {({ active }) => (
-                                                        <a
-                                                            href={item.href}
-                                                            className={classNames(
-                                                                active ? 'bg-gray-100' : '',
-                                                                'block px-4 py-2 text-sm text-gray-700'
-                                                            )}
-                                                        >
-                                                            {item.name}
-                                                        </a>
-                                                    )}
-                                                </Menu.Item>
-                                            ))}
+                                            <Link  to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
+                                            <IoExitOutline className='text-[red]'/>Çıxış</Link>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>
@@ -242,77 +207,22 @@ function Admin() {
                         </div>
                     </div>
                     <main className="flex-1">
-                        <div className="py-6">
-                            <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-8">
-                                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-                            </div>
-                            <div className="py-4">
-                                <div className="px-4 sm:px-6 lg:px-8">
-                                    <div className="sm:flex sm:items-center">
-                                        <div className="sm:flex-auto">
-                                            <h1 className="text-xl font-semibold text-gray-900">Users</h1>
-                                            <p className="mt-2 text-sm text-gray-700">
-                                                A list of all the users in your account including their name, title, email and role.
-                                            </p>
-                                        </div>
-                                        <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                                            <button
-                                                type="button"
-                                                className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
-                                            >
-                                                Add user
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div className="mt-8 flex flex-col">
-                                        <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-                                                <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-                                                    <table className="min-w-full divide-y divide-gray-300">
-                                                        <thead className="bg-gray-50">
-                                                            <tr>
-                                                                <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
-                                                                    Name
-                                                                </th>
-                                                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Title
-                                                                </th>
-                                                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Email
-                                                                </th>
-                                                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
-                                                                    Role
-                                                                </th>
-                                                                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
-                                                                    <span className="sr-only">Edit</span>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody className="bg-white">
-                                                            {people.map((person, personIdx) => (
-                                                                <tr key={person.email} className={personIdx % 2 === 0 ? undefined : 'bg-gray-50'}>
-                                                                    <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                                                                        {person.name}
-                                                                    </td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.title}</td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.email}</td>
-                                                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{person.role}</td>
-                                                                    <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                                                                            Edit<span className="sr-only">, {person.name}</span>
-                                                                        </a>
-                                                                    </td>
-                                                                </tr>
-                                                            ))}
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <section>
+                            <div className="container mx-auto flex flex-col items-center py-10 text-center md:py-20 xl:max-w-3xl">
+                                <h1 className="text-4xl font-bold leading-none sm:text-5xl">Salammm!!!</h1>
+                                <p className="mt-8 mb-12 text-xl">Xoş gəldin Admin, <br />
+                                    Zəhmət olmasa, aşağıdakı məqamları yadda saxlayın:  <br />
+                                    Şifrənizi heç kimlə paylaşmayın. <br />
+                                    İşinizi bitirdikdən sonra admin paneldən çıxış edin. <br />
+                                    Əks halda, sayta uyğunsuz məzmunlar yüklənə bilər və təhlükəsizlik riski yaranar. <br />
+                                    Sizin təhlükəsizliyiniz və saytın bütövlüyü üçün bu qaydalara riayət etməyiniz vacibdir. <br />
+                                    Anlayışınız üçün təşəkkür edirik.</p>
+                                <div className="flex flex-wrap justify-center">
+                                    <button className="px-8 py-3 m-2 text-md font-semibold rounded text-white bg-[#FF8300]">Məhsul əlavə et</button>
+                                    <button className="px-6 py-3 m-2 text-md bg-slate-800 text-white rounded">Kataqoriya əlavə et</button>
                                 </div>
                             </div>
-                        </div>
+                        </section>
                     </main>
                 </div>
             </div>
