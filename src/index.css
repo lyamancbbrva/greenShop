@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.shadow {box-shadow: 0 10px 0 10px 20px #2f2e2e;}
+.range-input {
+    appearance: none;
+    width: 80%;
+    background: #fff;
+    border-radius: 5px;
+    outline: none;
+}
+.range-input::-webkit-slider-runnable-track {
+    width: 80%;
+    height: 2px;
+    cursor: pointer;
+    background: var(--swiper-theme-color);
+    border-radius: 5px;
+}
+.range-input::-webkit-slider-thumb {
+    margin: -4px 0;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    background: var(--swiper-theme-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+.aksia:hover .aksia-open {height: 100px;}
+.about:hover .about-open {height: 100px;}
+.supermarket:hover .supermarket-open{height: 200px;}
+.dropdown:hover .dropdown-open {display: initial;}
+.karyera:hover .karyera-open {height: 100px;}
+.hover:hover .hover-menu{
+    overflow: initial;
+    z-index: 999;
+    padding: 10px;
+}
+.card:hover .endirim {
+    background: var(--swiper-theme-color);
+    color: #fff;
+    transition: .4s;
+}
+#scrollbar::-webkit-scrollbar {
+    width: 3px;
+    height: 10px;
+}
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgb(181, 179, 179);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+    background: #FF8300;
+    border-radius: 10px;
+}
+.hesab:hover .hesab-open {  height: 180px;}
+#category-button {position: relative;}
+#category-button::before {
+    content: '';
+    display: block;
+    height: 6px;
+    background: #FF8300;
+    position: absolute;
+    top: -5px;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    left: 0;
+}
+.swiper-pagination-bullet-active {
+    background-color: #FF8300 !important;
+    width: 20px !important;
+    border-radius: 5px !important;
+    transition: .8s;
+}
+:root {
+    --swiper-theme-color: #FF8300 !important;
+    --swiper-navigation-size: 20px !important;
+}
+#amiroff-img {   filter: brightness(0) invert(1)}
+.swiper-button-prev,
+.swiper-button-next,
+.swiper-button-disabled {
+    background-color: #8080801a;
+    border-radius: 50%;
+    padding: 20px;
+}
+:root {
+    --swiper-theme-color: #FF8300 !important;
+    --swiper-navigation-size: 20px !important;
+}
+@media only screen and (min-width: 768px) {
+    .wrapper-md {
+        width: 80%;
+        margin: auto;
+    }
+}
+@media only screen and (min-width: 500px) {
+    .wrapper {
+        width: 80%;
+        margin: auto;
+    }
+    #footer-logo {   transition: .5s;}
+    footer:hover #footer-logo {left: 81%;}
+    .footer-list ul {list-style: ">"}
+    .footer-list ul li {padding: 0 5px;}
+}
