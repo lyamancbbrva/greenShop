@@ -4,13 +4,13 @@ import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { Link } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 
 const navigation = [
-    { name: 'Ana səhifə', href: '#', icon: HomeIcon, current: true },
-    { name: 'Məhsullar', href: '#', icon: UsersIcon, current: false },
-    { name: 'Kateqoriyalar', href: '#', icon: FolderIcon, current: false },
-    { name: 'Subkataqoriya', href: '#', icon: CalendarIcon, current: false },
+    { name: 'Ana səhifə', href: '/admin', icon: HomeIcon, current: true },
+    { name: 'Məhsullar', href: 'products', icon: UsersIcon, current: false },
+    { name: 'Kateqoriyalar', href: 'category', icon: FolderIcon, current: false },
+    { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon, current: false },
 ]
 
 function classNames(...classes) {
@@ -207,22 +207,7 @@ function Admin() {
                         </div>
                     </div>
                     <main className="flex-1">
-                        <section>
-                            <div className="container mx-auto flex flex-col items-center py-10 text-center md:py-20 xl:max-w-3xl">
-                                <h1 className="text-4xl font-bold leading-none sm:text-5xl">Salammm!!!</h1>
-                                <p className="mt-8 mb-12 text-xl">Xoş gəldin Admin, <br />
-                                    Zəhmət olmasa, aşağıdakı məqamları yadda saxlayın:  <br />
-                                    Şifrənizi heç kimlə paylaşmayın. <br />
-                                    İşinizi bitirdikdən sonra admin paneldən çıxış edin. <br />
-                                    Əks halda, sayta uyğunsuz məzmunlar yüklənə bilər və təhlükəsizlik riski yaranar. <br />
-                                    Sizin təhlükəsizliyiniz və saytın bütövlüyü üçün bu qaydalara riayət etməyiniz vacibdir. <br />
-                                    Anlayışınız üçün təşəkkür edirik.</p>
-                                <div className="flex flex-wrap justify-center">
-                                    <button className="px-8 py-3 m-2 text-md font-semibold rounded text-white bg-[#FF8300]">Məhsul əlavə et</button>
-                                    <button className="px-6 py-3 m-2 text-md bg-slate-800 text-white rounded">Kataqoriya əlavə et</button>
-                                </div>
-                            </div>
-                        </section>
+                        <Outlet />
                     </main>
                 </div>
             </div>
