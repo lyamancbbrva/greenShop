@@ -2,20 +2,17 @@ import { Fragment, useState } from 'react'
 import neptunlogin from '../assets/neptunlogin.png';
 import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon} from '@heroicons/react/24/outline'
+import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, Outlet } from 'react-router-dom';
+import { IoChevronDown } from "react-icons/io5";
 
 const navigation = [
-    { name: 'Ana səhifə', href: '/admin', icon: HomeIcon, current: true },
-    { name: 'Məhsullar', href: 'products', icon: UsersIcon, current: false },
-    { name: 'Kateqoriyalar', href: 'category', icon: FolderIcon, current: false },
-    { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon, current: false },
+    { name: 'Ana səhifə', href: '/admin', icon: HomeIcon },
+    { name: 'Məhsullar', href: 'products', icon: UsersIcon },
+    { name: 'Kateqoriyalar', href: 'category', icon: FolderIcon },
+    { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
 ]
-
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
 function Admin() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -81,16 +78,10 @@ function Admin() {
                                                 <Link
                                                     key={item.name}
                                                     to={item.href}
-                                                    className={classNames(
-                                                        item.current ? 'bg-gray-100 text-[#FF8300]' : 'text-gray-800 hover:bg-gray-50 hover:text-[#FF8300]',
-                                                        'group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
-                                                    )}
+                                                    className='text-gray-800 hover:bg-gray-50 focus:bg-gray-100 group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
                                                 >
                                                     <item.icon
-                                                        className={classNames(
-                                                            item.current ? 'text-[#FF8300]' : 'text-gray-900 group-hover:text-[#FF8300]',
-                                                            'mr-3 flex-shrink-0 h-6 w-6'
-                                                        )}
+                                                        className='text-gray-900 mr-3 flex-shrink-0 h-6 w-6'
                                                         aria-hidden="true"
                                                     />
                                                     {item.name}
@@ -120,22 +111,18 @@ function Admin() {
                                     <Link
                                         key={item.name}
                                         to={item.href}
-                                        className={classNames(
-                                            item.current ? 'bg-gray-100 text-[#FF8300]' : 'text-gray-800 hover:bg-gray-50 hover:text-[#FF8300]',
-                                            'group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
-                                        )}
+                                        className='text-gray-800 hover:bg-gray-50 focus:bg-gray-100 group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
                                     >
                                         <item.icon
-                                            className={classNames(
-                                                item.current ? 'text-[#FF8300]' : 'text-gray-900 group-hover:text-[#FF8300]',
-                                                'mr-3 flex-shrink-0 h-6 w-6'
-                                            )}
+                                            className='text-gray-900 mr-3 flex-shrink-0 h-6 w-6'
                                             aria-hidden="true"
                                         />
                                         {item.name}
                                     </Link>
                                 ))}
                             </nav>
+                            <Link to={'/login'} className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
+                                <IoExitOutline />Çıxış edin</Link>
                         </div>
                     </div>
                 </div>
@@ -183,9 +170,11 @@ function Admin() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                                src="https://pbs.twimg.com/profile_images/1251758940100198400/XVPPCQce_400x400.jpg"
                                                 alt=""
                                             />
+                                            <span className='font-semibold mx-2.5'>Zaylar</span>
+                                            <IoChevronDown className='text-gray-400 mt-1' />
                                         </Menu.Button>
                                     </div>
                                     <Transition
@@ -198,8 +187,8 @@ function Admin() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Link  to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
-                                            <IoExitOutline className='text-[red]'/>Çıxış</Link>
+                                            <Link to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
+                                                <IoExitOutline className='text-[red]' />Çıxış</Link>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>

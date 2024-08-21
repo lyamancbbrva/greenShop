@@ -35,7 +35,7 @@ function Products() {
                             <table className="min-w-full divide-y divide-gray-300">
                                 <thead className="bg-slate-700 text-white">
                                     <tr>
-                                        <th colspan="4" scope="col" className="px-6 py-2 text-center text-[1.3em]">Məhsullar siyahısı!</th>
+                                        <th colSpan="4" scope="col" className="px-6 py-2 text-center text-[1.3em]">Məhsullar siyahısı!</th>
                                     </tr>
                                     <tr>
                                         <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">

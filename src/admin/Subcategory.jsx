@@ -7,8 +7,8 @@ function Subcategory() {
             <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">Subkateqoriyalarin əlavə olunmasi formu:</h1>
             <h6 className="font-semibold p-2">Kateqoriya seçin</h6>
             <div className="flex gap-2 items-center">
-                <select class="bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2">
-                    <option selected>Kataqoriya seçin</option>
+                <select className="bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2">
+                    <option defaultValue>Kataqoriya seçin</option>
                     <option value="">blabla</option>
                     <option value="">blabla</option>
                 </select>
@@ -21,7 +21,7 @@ function Subcategory() {
                             <table className="min-w-full divide-y divide-gray-300">
                                 <thead className="bg-slate-700 text-white">
                                     <tr>
-                                        <th colspan="4" scope="col" className="px-6 py-2 text-center text-[1.3em]">Subkateqoriyalar siyahısı!</th>
+                                        <th colSpan="4" scope="col" className="px-6 py-2 text-center text-[1.3em]">Subkateqoriyalar siyahısı!</th>
                                     </tr>
                                     <tr>
                                         <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold sm:pl-6">Ad</th>
