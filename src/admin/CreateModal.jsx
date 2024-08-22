@@ -2,12 +2,10 @@ import { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 
-export default function CreateModal() {
-    const [open, setOpen] = useState(true)
-
+export default function CreateModal({ modal, setModal }) {
     return (
-        <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" onClose={setOpen}>
+        <Transition.Root show={modal} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={setModal}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -31,22 +29,22 @@ export default function CreateModal() {
                             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
-                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-lg sm:p-6">
+                            <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-xl sm:p-11">
                                 <div className="flex justify-between pb-4 border-b border-gray-500">
                                     <p className='font-bold text-xl'>Yeni Məhsul əlavə et</p>
-                                    <XMarkIcon onClick={() => setOpen(false)} className='text-gray-400 w-6' />
+                                    <XMarkIcon onClick={() => setModal(!modal)} className='text-gray-400 w-6 cursor-pointer hover:text-red-600' />
                                 </div>
                                 <div className='my-3'>
                                     <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">məhsulun adı</label>
                                     <input
                                         type="text"
-                                        className="block w-full rounded-md border-gray-400 bg-gray-100 p-2 border outline-indigo-600 shadow-sm"
+                                        className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                         placeholder="Məhsulun adı"
                                     />
                                 </div>
                                 <div className='my-3'>
                                     <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Kateqoriya seçin:</label>
-                                    <select className="block w-full rounded-md border-gray-400 bg-gray-100 p-2 border outline-indigo-600 shadow-sm">
+                                    <select className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                         <option>Kateqoriya seçin:</option>
                                         <option>Kartof</option>
                                         <option>Sogan</option>
@@ -54,7 +52,7 @@ export default function CreateModal() {
                                 </div>
                                 <div className='my-3'>
                                     <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Subkateqoriya:</label>
-                                    <select className="block w-full rounded-md border-gray-400 bg-gray-100 p-2 border outline-indigo-600 shadow-sm">
+                                    <select className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                         <option>Subkateqoriya seçin</option>
                                     </select>
                                 </div>
@@ -63,7 +61,7 @@ export default function CreateModal() {
                                     <input
                                         type="number"
                                         placeholder='0'
-                                        className="block w-full rounded-md border-gray-400 bg-gray-100 p-2 border outline-indigo-600 shadow-sm"
+                                        className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                     />
                                 </div>
                                 <div className='my-3'>
@@ -71,7 +69,7 @@ export default function CreateModal() {
                                     <input
                                         type="number"
                                         placeholder='123'
-                                        className="block w-full rounded-md border-gray-400 bg-gray-100 p-2 border outline-indigo-600 shadow-sm"
+                                        className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                     />
                                 </div>
                                 <div className='my-3'>

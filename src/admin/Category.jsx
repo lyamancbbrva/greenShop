@@ -1,11 +1,15 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import CategoryModal from "./CategoryModal";
 
-function Category() {
+function Category({ modal, setModal }) {
     return (
         <section className="px-6">
+            {modal ? <CategoryModal modal={modal} setModal={setModal} /> : null}
             <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">Kataqoriyaların idarə olunmasi formu:</h1>
-            <button className="bg-green-700 text-white p-3 rounded-md font-semibold">+ Kataqoriya əlavə et</button>
+            <button
+                onClick={() => { setModal(!modal) }}
+                className="bg-green-700 text-white p-3 rounded-md font-semibold">+ Kataqoriya əlavə et</button>
             <div className="flex flex-col py-4">
                 <div className="-mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">

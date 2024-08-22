@@ -14,7 +14,7 @@ const navigation = [
     { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
 ]
 
-function Admin() {
+function LayoutAdmin() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
 
     return (
@@ -204,4 +204,4 @@ function Admin() {
     )
 }
 
-export default Admin
+export default LayoutAdmin

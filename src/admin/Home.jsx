@@ -1,12 +1,8 @@
 import { Link } from "react-router-dom"
-import DeleteModal from "./DeleteModal"
-import CreateModal from "./CreateModal"
 
 function Home() {
     return (
         <section>
-            <DeleteModal />
-            <CreateModal />
             <div className="container mx-auto flex flex-col items-center py-10 text-center md:py-20 xl:max-w-3xl">
                 <h1 className="text-4xl font-bold leading-none sm:text-5xl">Salammm!!!</h1>
                 <p className="mt-8 mb-12 text-xl">Xoş gəldin Admin, <br />

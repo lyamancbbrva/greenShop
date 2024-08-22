@@ -1,5 +1,3 @@
-import { FaTrashAlt } from "react-icons/fa";
-import { FiEdit } from "react-icons/fi";
 
 function Subcategory() {
     return (

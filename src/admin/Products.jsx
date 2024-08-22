@@ -1,5 +1,6 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
+import CreateModal from "./CreateModal";
 const people = [
     {
         name: 'Kartof',
@@ -11,11 +12,14 @@ const people = [
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8oNHxTGIrLf8NOW5i4E2RZOgTVfA4AXHOVA&s',
     },
 ]
-function Products() {
+function Products({ modal, setModal }) {
     return (
         <section className="px-6">
+            {modal ? <CreateModal modal={modal} setModal={setModal}/> : null}
             <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">Məhsulların idarə olunmasi formu:</h1>
-            <button className="bg-green-700 float-end text-white p-3 rounded-md font-semibold">+ Məhsul əlavə et</button>
+            <button
+                onClick={() => { setModal(!modal) }}
+                className="bg-green-700 float-end text-white p-3 rounded-md font-semibold">+ Məhsul əlavə et</button>
             <fieldset className="w-full space-y-1 py-5">
                 <div className="relative">
                     <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -78,7 +82,7 @@ function Products() {
                                                 <div className="flex gap-2">
                                                     <FiEdit className="text-[1.1em] text-[blue] cursor-pointer" />
                                                     <FaTrashAlt
-                                                        onClick={() => setOpenDelete(true)}
+                                                        
                                                         className="text-[1.1em] text-[red] cursor-pointer" />
                                                 </div>
                                             </td>

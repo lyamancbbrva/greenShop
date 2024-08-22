@@ -9,15 +9,15 @@ import { Basket } from "./component/header/Basket";
 import Haqqimizda from "./component/pages/Haqqimizda";
 import Elaqe from "./component/pages/Elaqe";
 import Login from "./admin/Login";
-import Admin from "./admin/Admin";
 import { Toaster } from "react-hot-toast";
 import Products from "./admin/Products";
 import Category from "./admin/Category";
 import Subcategory from "./admin/Subcategory";
 import Home from "./admin/Home";
+import LayoutAdmin from "./layout/LayoutAdmin";
 
 function App() {
-
+    const [modal, setModal] = useState(false)
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState();
 
@@ -54,11 +54,11 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
-                <Route path="/admin" element={<Admin />} >
+                <Route path="/admin" element={<LayoutAdmin />} >
                     <Route path="/admin" element={<Home />}/>
-                    <Route path="products" element={<Products />}/>
-                    <Route path="category" element={<Category />}/>
-                    <Route path="subcategory" element={<Subcategory />}/>
+                    <Route path="products" element={<Products  modal={modal} setModal={setModal}/>}/>
+                    <Route path="category" element={<Category  modal={modal} setModal={setModal}/>}/>
+                    <Route path="subcategory" element={<Subcategory  modal={modal} setModal={setModal}/>}/>
                 </Route>
                 <Route path='*' element={<Error404 />} />
             </Routes>
