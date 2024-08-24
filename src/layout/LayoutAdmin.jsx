@@ -66,11 +66,13 @@ function LayoutAdmin() {
                                         </div>
                                     </Transition.Child>
                                     <div className="flex flex-shrink-0 items-center px-4">
-                                        <img
-                                            className="h-8 w-auto"
-                                            src={neptunlogin}
-                                            alt="neptun"
-                                        />
+                                        <Link to={'/'}>
+                                            <img
+                                                className="h-8 w-auto"
+                                                src={neptunlogin}
+                                                alt="neptun"
+                                            />
+                                        </Link>
                                     </div>
                                     <div className="mt-5 h-0 flex-1 overflow-y-auto">
                                         <nav className="space-y-1 px-2">
@@ -99,11 +101,13 @@ function LayoutAdmin() {
                 <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
                     <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                         <div className="flex flex-shrink-0 items-center px-4">
-                            <img
-                                className="h-14 w-auto mb-3"
-                                src={neptunlogin}
-                                alt="neptun"
-                            />
+                            <Link to={'/'}>
+                                <img
+                                    className="h-14 w-auto mb-3"
+                                    src={neptunlogin}
+                                    alt="neptun"
+                                />
+                            </Link>
                         </div>
                         <div className="mt-5 flex flex-grow flex-col">
                             <nav className="flex-1 space-y-1 px-2 pb-4">
