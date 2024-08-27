@@ -105,7 +105,7 @@ function Endirim() {
                         );
                     })
                 ) : (
-                    <Spiral size='40' speed='0.9' color='#FF8300' />
+                    <spiral size='40' speed='0.9' color='#FF8300' />
                 )}
             </Swiper>
         </div>

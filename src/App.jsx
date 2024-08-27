@@ -15,11 +15,15 @@ import Category from "./admin/Category";
 import Subcategory from "./admin/Subcategory";
 import Home from "./admin/Home";
 import LayoutAdmin from "./layout/LayoutAdmin";
+import { Cookies } from "react-cookie";
+import { verifyToken } from "./api/api";
+const cook = new Cookies()
 
 function App() {
     const [modal, setModal] = useState(false)
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState();
+    const [auth, setAuth] = useState(false)
 
     const { pathname } = useLocation();
 
@@ -36,6 +40,14 @@ function App() {
 
     useEffect(() => {
         window.scroll(0, 0);
+
+        if(pathname == '/admin'){
+            const yoxla = verifyToken()
+            yoxla.then( res => {
+                setAuth(res.status)
+                cook.set("user", res.user_login)
+            })
+        }
     }, [pathname]);
 
     return (

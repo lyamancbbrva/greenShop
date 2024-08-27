@@ -1,17 +1,33 @@
 import { useState } from 'react';
 import neptunlogin from '../assets/neptunlogin.png';
 import toast from 'react-hot-toast';
+import { Cookies } from 'react-cookie';
+import { postLogin } from '../api/api';
+
+const cook = new Cookies();
 
 function Login() {
-    const [pass, setPass] = useState('');
-    const [login, setLogin] = useState('');
+    const [pass, setPass] = useState("");
+    const [login, setLogin] = useState("");
 
-    function handleSubmit(e) {
-        e.preventDefault()
+    async function handleSubmit(e) {
+        e.preventDefault();
         if (!pass || pass.length < 8) {
             toast.error("Şifrəni düz yaz ə!!!");
-        }else{
-            toast.success('Davay qırıla bilərsən!')
+            return;
+        }
+    
+        const obj = { login, password: pass };
+        const user = await postLogin(obj);
+    
+        if (user.status == true) {
+            cook.set("token", user.token);
+            cook.set("refresh", user.refresh);
+            window.location.href = "/admin";
+        } else if (user.status == 401) {
+            toast.error("Belə bir istifadəçi yoxdu, ay zay!");
+        } else {
+            toast.error("sen ne zay adamsan ə");
         }
     }
 
@@ -28,20 +44,20 @@ function Login() {
                         </h1>
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Email Adress</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900">İstifadəçi adı</label>
                                 <input
-                                    type="email"
-                                    onInput={(e) => setLogin(e.target.value)}
+                                    type="text"
+                                    onChange={(e) => setLogin(e.target.value)}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    placeholder="name@company.com"
+                                    placeholder="user@blabla.com"
                                     required
                                 />
                             </div>
                             <div>
-                                <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900">Password</label>
+                                <label className="block mb-2 text-sm font-medium text-gray-900">Şifrə</label>
                                 <input
                                     type="password"
-                                    onInput={(e) => setPass(e.target.value)}
+                                    onChange={(e) => setPass(e.target.value)}
                                     className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
                                     placeholder="••••••••"
                                     required
