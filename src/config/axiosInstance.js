@@ -3,10 +3,12 @@ import configObj from "./config";
 import { Cookies } from "react-cookie";
 const cook = new Cookies()
 
+const cook = new Cookies()
+const token = cook.get('token')
 const axiosInstance = axios.create({
     baseURL: `https://${configObj.base}`,
     headers: {
-        "Content-Type" : "application/json",
+        "Content-Type" : "application/json"
     }
 })
 
@@ -50,4 +52,4 @@ axiosInstance.interceptors.response.use(
 );
 
 
-export { axiosInstance }
+export { axiosInstance}

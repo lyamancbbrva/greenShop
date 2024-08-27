@@ -236,7 +236,7 @@ async function verifyToken() {
     }
 }
 
-export default getAllProducts;
+export default getAllProductss
 
 export {
     verifyToken,
@@ -263,5 +263,5 @@ export {
     deleteCategory,
     createSubcategory,
     updateSubcategory,
-    deleteSubcategory
+    deleteSubcategory,
 };

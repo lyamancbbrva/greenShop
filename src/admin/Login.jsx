@@ -32,17 +32,24 @@ function Login() {
     }
 
     return (
-        <section className="bg-gray-50">
-            <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
-                <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0">
-                    <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <div className="flex justify-center">
-                            <img src={neptunlogin} alt="neptun" className="w-[210px]" />
+        <section className='bg-gray-50'>
+            <div className='flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0'>
+                <div className='w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0'>
+                    <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
+                        <div className='flex justify-center'>
+                            <img
+                                src={neptunlogin}
+                                alt='neptun'
+                                className='w-[210px]'
+                            />
                         </div>
-                        <h1 className="text-xl font-semibold text-center leading-tight text-gray-900">
+                        <h1 className='text-xl font-semibold text-center leading-tight text-gray-900'>
                             Xoş gəldin!
                         </h1>
-                        <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
+                        <form
+                            className='space-y-4 md:space-y-6'
+                            onSubmit={handleSubmit}
+                        >
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900">İstifadəçi adı</label>
                                 <input
@@ -63,20 +70,46 @@ function Login() {
                                     required
                                 />
                             </div>
-                            <div className="flex items-center justify-between">
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300" />
+                            <div className='flex items-center justify-between'>
+                                <div className='flex items-start'>
+                                    <div className='flex items-center h-5'>
+                                        <input
+                                            id='remember'
+                                            aria-describedby='remember'
+                                            type='checkbox'
+                                            className='w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300'
+                                        />
                                     </div>
-                                    <div className="ml-3 text-sm">
-                                        <label htmlFor="remember" className="text-gray-500">Məni xatırla</label>
+                                    <div className='ml-3 text-sm'>
+                                        <label
+                                            htmlFor='remember'
+                                            className='text-gray-500'
+                                        >
+                                            Məni xatırla
+                                        </label>
                                     </div>
                                 </div>
-                                <a href="#" className="text-sm font-medium text-slate-800 hover:underline">Şifrəmi unutmuşam👉👈</a>
+                                <a
+                                    href='#'
+                                    className='text-sm font-medium text-slate-800 hover:underline'
+                                >
+                                    Şifrəmi unutmuşam👉👈
+                                </a>
                             </div>
-                            <button type="submit" className="w-full text-white bg-slate-800 hover:bg-slate-700 font-medium rounded-lg text-sm px-5 py-3 text-center">Giriş et</button>
-                            <p className="text-sm font-light text-gray-500">
-                                Hesabınız yoxdur? <a href="#" className="font-medium hover:underline">Qeydiyyatdan keçin</a>
+                            <button
+                                type='submit'
+                                className='w-full text-white bg-slate-800 hover:bg-slate-700 font-medium rounded-lg text-sm px-5 py-3 text-center'
+                            >
+                                Giriş et
+                            </button>
+                            <p className='text-sm font-light text-gray-500'>
+                                Hesabınız yoxdur?{" "}
+                                <a
+                                    href='#'
+                                    className='font-medium hover:underline'
+                                >
+                                    Qeydiyyatdan keçin
+                                </a>
                             </p>
                         </form>
                     </div>
