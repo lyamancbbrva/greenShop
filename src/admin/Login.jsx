@@ -19,13 +19,15 @@ function Login() {
     
         const obj = { login, password: pass };
         const user = await postLogin(obj);
+        console.log(user);
+        
     
         if (user.status == true) {
             cook.set("token", user.token);
             cook.set("refresh", user.refresh);
             window.location.href = "/admin";
-        } else if (user.status == 401) {
-            toast.error("Belə bir istifadəçi yoxdu, ay zay!");
+        } else if (user.status === 401) {
+            toast.error("Sən Zəzər əmi döylüsən!😔");
         } else {
             toast.error("sen ne zay adamsan ə");
         }
