@@ -47,7 +47,7 @@ function App() {
                 setAuth(res.status)
                 cook.set("user", res.user_login)
             })
-        }
+        }else setAuth(false)
     }, [pathname]);
 
     return (
@@ -66,12 +66,16 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+               {
+                auth ? 
                 <Route path="/admin" element={<LayoutAdmin />} >
                     <Route path="/admin" element={<Home />}/>
                     <Route path="products" element={<Products  modal={modal} setModal={setModal}/>}/>
                     <Route path="category" element={<Category  modal={modal} setModal={setModal}/>}/>
                     <Route path="subcategory" element={<Subcategory  modal={modal} setModal={setModal}/>}/>
                 </Route>
+            : ''
+               }
                 <Route path='*' element={<Error404 />} />
             </Routes>
         </>
