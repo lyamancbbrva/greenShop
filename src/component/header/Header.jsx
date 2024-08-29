@@ -349,9 +349,9 @@ c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H554.7z'
                     <div className='flex items-center gap-[4vw] lg:gap-[1vw]'>
                         <div className='border-r-[1px] border-r-[#fff] px-[2vw] flex items-center '>
                             <FaLock className='inline text-[.8em] mx-[5px]' />
-                            <span className='text-[.8em] hover:text-[#ccc] cursor-pointer'>
+                            <Link to='login' className='text-[.8em] hover:text-[#ccc] cursor-pointer'>
                                 Giriş
-                            </span>
+                            </Link>
                         </div>
                         <ul className="flex">
                             <li className='flex items-center text-[.9em] hesab hover w-full relative'>

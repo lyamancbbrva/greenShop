@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Cookies } from 'react-cookie';
 import { postLogin } from '../api/api';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
+import { Link } from 'react-router-dom';
 
 const cook = new Cookies();
 
@@ -101,12 +102,11 @@ function Login() {
                                         </label>
                                     </div>
                                 </div>
-                                <a
-                                    href='#'
+                                <Link
                                     className='text-sm font-medium text-slate-800 hover:underline'
                                 >
                                     Şifrəmi unutmuşam👉👈
-                                </a>
+                                </Link>
                             </div>
                             <button
                                 type='submit'
@@ -116,12 +116,12 @@ function Login() {
                             </button>
                             <p className='text-sm font-light text-gray-500'>
                                 Hesabınız yoxdur?{" "}
-                                <a
-                                    href='#'
+                                <Link
+                                    to={'/register'}
                                     className='font-medium hover:underline'
                                 >
                                     Qeydiyyatdan keçin
-                                </a>
+                                </Link>
                             </p>
                         </form>
                     </div>

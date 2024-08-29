@@ -1,8 +1,9 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { createSubcategory } from "../api/api";
 
 function Subcategory() {
     const [product, setProduct] = useState(null)
@@ -13,6 +14,9 @@ function Subcategory() {
         setProduct({ id, name })
         setOpen(!open)
     }
+    useEffect(() => {
+        createSubcategory().then(res => console.log(res))
+    }, [])
 
     return (
         <section className="px-6">

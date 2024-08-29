@@ -17,6 +17,7 @@ import Home from "./admin/Home";
 import LayoutAdmin from "./admin/LayoutAdmin";
 import { Cookies } from "react-cookie";
 import { verifyToken } from "./api/api";
+import Register from "./admin/Register";
 const cook = new Cookies()
 
 function App() {
@@ -78,6 +79,7 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+                <Route path="register" element={<Register/>} />
                 {
                     auth ?
                         <Route path="/admin" element={<LayoutAdmin />} >
