@@ -2,7 +2,7 @@ import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from "@headlessui/react";
-import {ExclamationTriangleIcon, XMarkIcon,} from "@heroicons/react/24/outline";
+import { ExclamationTriangleIcon, XMarkIcon, } from "@heroicons/react/24/outline";
 import { createCategory, deleteCategory, getCategories } from "../api/api";
 import toast from "react-hot-toast";
 
@@ -14,26 +14,28 @@ function Category() {
     const [categoryName, setCategoryName] = useState('')
     const [id, setId] = useState(false)
 
-    const obj = {categoryName}
+    const obj = { categoryName }
 
-    // async function handleCategory(id, name) {
-    //     setProduct({ id, name });
-    //     setOpen(!open);
-    // }
+    async function handleCategory(id, categoryName) {
+        setProduct({ id, categoryName })
+        setCategoryName(categoryName)
+        setOpen(!open)
+    }
+
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
     }, []);
-       
-   function createNewCategory() {   
-      createCategory(obj).then(resp => setData([...data,resp]))   
+
+    function createNewCategory() {
+        createCategory(obj).then(resp => setData([...data, resp]))
     }
 
     function delCategory(id) {
         deleteCategory(id)
+        setCategoryName(elem => elem.filter(item => item.id !== id))
+        setDelOpen(!open);
         toast.success('Silindi getdi')
-       
     }
-    
 
     return (
         <section className='px-6'>
@@ -84,20 +86,11 @@ function Category() {
                                                 <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                                                     <div className='flex gap-2'>
                                                         <FiEdit
-                                                            onClick={() => {
-                                                               
-                                                            }}
+                                                            onClick={() => { handleCategory(item.id, item.categoryName) }}
                                                             className='text-[1.2em] text-blue-500 cursor-pointer'
                                                         />
                                                         <FaTrashAlt
-                                                            onClick={() =>
-                                                                {
-                                                                    setDelOpen( !delOpen)
-                                                                   setId(item.id)
-
-                                                                }
-                                                                
-                                                            }
+                                                            onClick={() => setId(item.id)}
                                                             className='text-[1.2em] text-[red] cursor-pointer'
                                                         />
                                                     </div>
@@ -189,12 +182,12 @@ function Category() {
                                             />
                                         </div>
                                     )}
-                                    <button 
-                                    onClick={() => {
-                                        createNewCategory()
-                                        setOpen(false)
-                                    }}
-                                    className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
+                                    <button
+                                        onClick={() => {
+                                            createNewCategory()
+                                            setOpen(false)
+                                        }}
+                                        className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
 
                                         {product ? "Düzəliş et" : "Əlavə et"}
                                     </button>
@@ -249,10 +242,10 @@ function Category() {
                                         <button
                                             type='button'
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
-                                            onClick={() => 
-                                                {
+                                            onClick={() => {
                                                 delCategory(id)
-                                                setDelOpen(!delOpen)}
+                                                setDelOpen(!delOpen)
+                                            }
                                             }
                                         >
                                             Bəli

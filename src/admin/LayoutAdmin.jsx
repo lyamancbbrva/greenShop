@@ -203,7 +203,7 @@ function LayoutAdmin() {
                                                 src="https://pbs.twimg.com/profile_images/551416883191087104/gxoNeGX8_400x400.jpeg"
                                                 alt=""
                                             />
-                                            <span className='font-semibold mx-2.5'>{cook.get('user')}</span>
+                                            <span className='font-semibold mx-2.5 capitalize'>{cook.get('user')}</span>
                                             <IoChevronDown className='text-gray-400 mt-1' />
                                         </Menu.Button>
                                     </div>
@@ -217,11 +217,17 @@ function LayoutAdmin() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Link 
+                                            <Link
                                                 onClick={handleLogOut}
-                                                to={'/login'} 
+                                                to={'/login'}
                                                 className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700' >
                                                 <IoExitOutline className='text-[red]' />Çıxış
+                                            </Link>
+                                            <Link
+                                                to={'/register'}
+                                                className='flex items-center text-sm gap-2 hover:bg-gray-100 px-4 py-2 text-gray-700'
+                                            >
+                                                <FaAddressBook />Admin əlavə et
                                             </Link>
                                         </Menu.Items>
                                     </Transition>
