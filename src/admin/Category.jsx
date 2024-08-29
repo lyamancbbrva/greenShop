@@ -2,10 +2,7 @@ import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from "@headlessui/react";
-import {
-    ExclamationTriangleIcon,
-    XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { ExclamationTriangleIcon,XMarkIcon,} from "@heroicons/react/24/outline";
 import { createCategory, getCategories } from "../api/api";
 
 function Category() {
