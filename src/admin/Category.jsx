@@ -6,13 +6,16 @@ import {
     ExclamationTriangleIcon,
     XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { getCategories } from "../api/api";
+import { createCategory, getCategories } from "../api/api";
 
 function Category() {
     const [product, setProduct] = useState(null);
     const [open, setOpen] = useState(false);
     const [delOpen, setDelOpen] = useState(false);
     const [data, setData] = useState([]);
+    const [categoryName, setCategoryName] = useState('')
+
+    const obj = {categoryName}
 
     async function handleCategory(id, name) {
         setProduct({ id, name });
@@ -21,6 +24,10 @@ function Category() {
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
     }, []);
+        
+   function createNewCategory() {   
+      createCategory(obj).then(resp => setData([...data,resp]))   
+    }
 
     return (
         <section className='px-6'>
@@ -64,7 +71,7 @@ function Category() {
                                                     {item.categoryName}
                                                     <ul>
                                                         {
-                                                            item?.subcategory?.map(elem => <li>{elem.categoryName}</li>)
+                                                            item?.subcategory?.map((elem, i) => <li key={i}>{elem.categoryName}</li>)
                                                         }
                                                     </ul>
                                                 </td>
@@ -72,10 +79,7 @@ function Category() {
                                                     <div className='flex gap-2'>
                                                         <FiEdit
                                                             onClick={() => {
-                                                                handleCategory(
-                                                                    "1",
-                                                                    "kartof"
-                                                                );
+                                                               
                                                             }}
                                                             className='text-[1.2em] text-blue-500 cursor-pointer'
                                                         />
@@ -151,6 +155,7 @@ function Category() {
                                             kateqoriyanın adı
                                         </label>
                                         <input
+                                            onInput={(e) => setCategoryName(e.target.value)}
                                             type='text'
                                             className='block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'
                                             placeholder='Kateqoriyanın adı'
@@ -175,7 +180,13 @@ function Category() {
                                             />
                                         </div>
                                     )}
-                                    <button className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
+                                    <button 
+                                    onClick={() => {
+                                        createNewCategory()
+                                        setOpen(false)
+                                    }}
+                                    className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
+
                                         {product ? "Düzəliş et" : "Əlavə et"}
                                     </button>
                                 </Dialog.Panel>
@@ -229,7 +240,10 @@ function Category() {
                                         <button
                                             type='button'
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
-                                            onClick={() => setDelOpen(!delOpen)}
+                                            onClick={() => 
+                                                {
+                                                setDelOpen(!delOpen)}
+                                            }
                                         >
                                             Bəli
                                         </button>

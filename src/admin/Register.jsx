@@ -1,10 +1,27 @@
 import React, { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { postLogin, registerUser } from "../api/api";
+import { Cookies } from "react-cookie";
+
+const cook = new Cookies()
 
 function Register() {
+
+    const [login, setLogin] = useState('')
+    const [password, setPassword] = useState('')
     
     const [type, setType] = useState("password");
+
+async function signUp() {
+
+        const obj = {login, password}
+        const user = await registerUser(obj)
+        console.log(user);
+        
+
+        
+    }
 
     return (
         <div className='flex flex-col max-w-md mx-auto mt-[70px] p-6 rounded-md sm:p-10 dark:bg-gray-50 dark:text-gray-800'>
@@ -19,6 +36,7 @@ function Register() {
                             Adun nədir?
                         </label>
                         <input
+                            onInput={(e) => setLogin(e.target.value)}
                             type='email'
                             name='text'
                             id='email'
@@ -35,7 +53,7 @@ function Register() {
                        <div className="relative">
                        <input
                             type={type}
-                            // onChange={(e) => setPass(e.target.value)}
+                            onChange={(e) => setPassword(e.target.value)}
                             className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5'
                             placeholder='••••••••'
                             required
@@ -60,6 +78,7 @@ function Register() {
                 <div className='space-y-2'>
                     <div>
                         <button
+                            onClick={signUp}
                             type='button'
                             className='w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50'
                         >

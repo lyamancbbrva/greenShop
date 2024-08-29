@@ -23,10 +23,9 @@ function Login() {
         }
 
         const obj = { login, password: pass };
-        const user = await postLogin(obj);     
-  
+        const user = await postLogin(obj); 
+
         if (user.status == true) {
-            
             cook.set("token", user.token);
             cook.set("refresh", user.refresh);
             toast.success("Giriş olundu")

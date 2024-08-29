@@ -38,7 +38,7 @@ function App() {
         setProduct(updatedProducts);
     }
 
-
+    
     useEffect(() => {
         window.scroll(0, 0);
 
@@ -68,7 +68,7 @@ function App() {
                     <Route path="categories" element={<Category   />}/>
                     <Route path="subcategory" element={<Subcategory   />}/>
                 </Route>
-            : ''
+             : <Route path="/admin" element={<Login />} />
                }
                 <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
                     <Route path='/' element={<Main />} />
@@ -80,17 +80,7 @@ function App() {
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="register" element={<Register/>} />
-                {
-                    auth ?
-                        <Route path="/admin" element={<LayoutAdmin />} >
-                            <Route path="/admin" element={<Home />} />
-                            <Route path="products" element={<Products />} />
-                            <Route path="category" element={<Category />} />
-                            <Route path="subcategory" element={<Subcategory />} />
-                        </Route>
-                        : ''
-                }
-                <Route path='*' element={<Error404 />} />
+                {/* <Route path='*' element={<Error404 />} /> */}
             </Routes>
         </>
     );

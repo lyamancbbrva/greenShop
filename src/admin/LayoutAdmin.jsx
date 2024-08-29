@@ -213,16 +213,9 @@ function LayoutAdmin() {
                                             <Link 
                                                 onClick={handleLogOut}
                                                 to={'/login'} 
-                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'
-                                            >
+                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700' >
                                                 <IoExitOutline className='text-[red]' />Çıxış
                                             </Link>
-                                            <div
-                                                onClick={handleLogOut}
-                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 cursor-pointer text-sm text-gray-700'
-                                            >
-                                                <IoExitOutline className='text-[red]' />Çıxış
-                                            </div>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>
