@@ -3,6 +3,7 @@ import neptunlogin from '../assets/neptunlogin.png';
 import toast from 'react-hot-toast';
 import { Cookies } from 'react-cookie';
 import { postLogin } from '../api/api';
+import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
 const cook = new Cookies();
 
@@ -10,6 +11,7 @@ function Login() {
 
     const [pass, setPass] = useState("");
     const [login, setLogin] = useState("");
+    const [type, setType] = useState('password');
 
     async function handleSubmit(e) {
 
@@ -18,11 +20,16 @@ function Login() {
             toast.error("Şifrəni düz yaz ə!!!");
             return;
         }
-    
+
         const obj = { login, password: pass };
+<<<<<<< HEAD
         const user = await postLogin(obj);     
              
              
+=======
+        const user = await postLogin(obj);
+
+>>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
         if (user.status == true) {
             
             cook.set("token", user.token);
@@ -66,13 +73,20 @@ function Login() {
                             </div>
                             <div>
                                 <label className="block mb-2 text-sm font-medium text-gray-900">Şifrə</label>
-                                <input
-                                    type="password"
-                                    onChange={(e) => setPass(e.target.value)}
-                                    className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                                    placeholder="••••••••"
-                                    required
-                                />
+                                <div className='relative'>
+                                    <input
+                                        type={type}
+                                        onChange={(e) => setPass(e.target.value)}
+                                        className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+                                        placeholder="••••••••"
+                                        required
+                                    />
+                                    <span
+                                        className="flex justify-around absolute top-3 right-3 items-center"
+                                        onClick={() => setType(type == 'password' ? 'text' : 'password')}>
+                                        {type === 'password' ? <IoEyeOffOutline size={21} /> : <IoEyeOutline size={21} />}
+                                    </span>
+                                </div>
                             </div>
                             <div className='flex items-center justify-between'>
                                 <div className='flex items-start'>

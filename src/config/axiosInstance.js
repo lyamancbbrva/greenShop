@@ -33,7 +33,11 @@ axiosInstance.interceptors.response.use(
 
             try {
                 const refresh = cook.get('refresh');
+<<<<<<< HEAD
                 const { data } = await axios.post(`http://${configObj.base}/auth/refresh-token`, { refreshToken: refresh });
+=======
+                const { data } = await axios.post(`https://${configObj.base}/auth/refresh-token`, { refreshToken: refresh });
+>>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
                 
                 cook.set('token', data.token);
                 cook.set('refresh', data.refresh);
@@ -43,7 +47,10 @@ axiosInstance.interceptors.response.use(
             } catch (err) {
                 cook.remove('token');
                 cook.remove('refresh');
+<<<<<<< HEAD
                 cook.remove('user');
+=======
+>>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
                 return Promise.reject(err);
             }
         }

@@ -14,14 +14,17 @@ import Products from "./admin/Products";
 import Category from "./admin/Category";
 import Subcategory from "./admin/Subcategory";
 import Home from "./admin/Home";
-import LayoutAdmin from "./layout/LayoutAdmin";
+import LayoutAdmin from "./admin/LayoutAdmin";
 import { Cookies } from "react-cookie";
 import { verifyToken } from "./api/api";
 const cook = new Cookies()
 
 function App() {
+<<<<<<< HEAD
 
     const [modal, setModal] = useState(false)
+=======
+>>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState();
     const [auth, setAuth] = useState(false)
@@ -45,15 +48,19 @@ function App() {
     useEffect(() => {
         window.scroll(0, 0);
 
+<<<<<<< HEAD
         if(pathname.split('/')[1] === 'admin'){
             console.log('salam');
             
+=======
+        if (pathname.startsWith('/admin')) {
+>>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
             const yoxla = verifyToken()
-            yoxla.then( res => {
+            yoxla.then(res => {
                 setAuth(res.status)
                 cook.set("user", res.user_login)
             })
-        }else setAuth(false)
+        } else setAuth(false)
     }, [pathname]);
 
     return (
@@ -82,7 +89,20 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
+<<<<<<< HEAD
               
+=======
+                {
+                    auth ?
+                        <Route path="/admin" element={<LayoutAdmin />} >
+                            <Route path="/admin" element={<Home />} />
+                            <Route path="products" element={<Products />} />
+                            <Route path="category" element={<Category />} />
+                            <Route path="subcategory" element={<Subcategory />} />
+                        </Route>
+                        : ''
+                }
+>>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
                 <Route path='*' element={<Error404 />} />
             </Routes>
         </>
