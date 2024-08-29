@@ -8,6 +8,7 @@ import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from "react-icons/io5";
 import { Cookies } from 'react-cookie';
 import toast from 'react-hot-toast';
+import { FaAddressBook } from "react-icons/fa";
 
 
 const cook = new Cookies()
@@ -144,6 +145,12 @@ function LayoutAdmin() {
                                 className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
                             >
                                 <IoExitOutline />Çıxış edin
+                            </Link>
+                            <Link
+                                to={'/register'}
+                                className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
+                            >
+                                <FaAddressBook />Admin əlavə et
                             </Link>
                         </div>
                     </div>

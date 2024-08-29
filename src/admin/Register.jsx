@@ -17,10 +17,7 @@ async function signUp() {
 
         const obj = {login, password}
         const user = await registerUser(obj)
-        console.log(user);
-        
-
-        
+                
     }
 
     return (

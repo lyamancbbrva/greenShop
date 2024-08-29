@@ -2,8 +2,9 @@ import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationTriangleIcon,XMarkIcon,} from "@heroicons/react/24/outline";
-import { createCategory, getCategories } from "../api/api";
+import {ExclamationTriangleIcon, XMarkIcon,} from "@heroicons/react/24/outline";
+import { createCategory, deleteCategory, getCategories } from "../api/api";
+import toast from "react-hot-toast";
 
 function Category() {
     const [product, setProduct] = useState(null);
@@ -11,20 +12,28 @@ function Category() {
     const [delOpen, setDelOpen] = useState(false);
     const [data, setData] = useState([]);
     const [categoryName, setCategoryName] = useState('')
+    const [id, setId] = useState(false)
 
     const obj = {categoryName}
 
-    async function handleCategory(id, name) {
-        setProduct({ id, name });
-        setOpen(!open);
-    }
+    // async function handleCategory(id, name) {
+    //     setProduct({ id, name });
+    //     setOpen(!open);
+    // }
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
     }, []);
-        
+       
    function createNewCategory() {   
       createCategory(obj).then(resp => setData([...data,resp]))   
     }
+
+    function delCategory(id) {
+        deleteCategory(id)
+        toast.success('Silindi getdi')
+       
+    }
+    
 
     return (
         <section className='px-6'>
@@ -63,7 +72,7 @@ function Category() {
                                 <tbody className='divide-y divide-gray-200 bg-slate-800 text-white'>
                                     {data &&
                                         data?.map((item, i) => (
-                                            <tr className='hover:bg-slate-700'>
+                                            <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
                                                     {item.categoryName}
                                                     <ul>
@@ -82,9 +91,12 @@ function Category() {
                                                         />
                                                         <FaTrashAlt
                                                             onClick={() =>
-                                                                setDelOpen(
-                                                                    !delOpen
-                                                                )
+                                                                {
+                                                                    setDelOpen( !delOpen)
+                                                                   setId(item.id)
+
+                                                                }
+                                                                
                                                             }
                                                             className='text-[1.2em] text-[red] cursor-pointer'
                                                         />
@@ -239,6 +251,7 @@ function Category() {
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
                                             onClick={() => 
                                                 {
+                                                delCategory(id)
                                                 setDelOpen(!delOpen)}
                                             }
                                         >

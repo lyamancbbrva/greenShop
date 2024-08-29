@@ -115,12 +115,11 @@ function Login() {
                             </button>
                             <p className='text-sm font-light text-gray-500'>
                                 Hesabınız yoxdur?{" "}
-                                <Link
-                                    to={'/register'}
+                                <span
                                     className='font-medium hover:underline'
                                 >
                                     Qeydiyyatdan keçin
-                                </Link>
+                                </span>
                             </p>
                         </form>
                     </div>
