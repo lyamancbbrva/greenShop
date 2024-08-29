@@ -30,8 +30,8 @@ function Category() {
         createCategory(obj).then(resp => setData([...data, resp]))
     }
 
-    function delCategory(id) {
-        deleteCategory(id)
+    async function delCategory(id) {
+        await deleteCategory(id)
         setCategoryName(elem => elem.filter(item => item.id !== id))
         setDelOpen(!open);
         toast.success('Silindi getdi')
