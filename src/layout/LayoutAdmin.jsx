@@ -6,16 +6,29 @@ import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, User
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, Outlet } from 'react-router-dom';
 import { IoChevronDown } from "react-icons/io5";
+import { Cookies } from 'react-cookie';
+import toast from 'react-hot-toast';
 
 const navigation = [
     { name: 'Ana səhifə', href: '/admin', icon: HomeIcon },
     { name: 'Məhsullar', href: 'products', icon: UsersIcon },
-    { name: 'Kateqoriyalar', href: 'category', icon: FolderIcon },
+    { name: 'Kateqoriyalar', href: 'categories', icon: FolderIcon },
     { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
 ]
 
+const cook = new Cookies()
+
 function LayoutAdmin() {
+
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    function handleLogOut(e) {
+
+        cook.remove('token')
+        cook.remove('refresh')
+        cook.remove('user')
+        toast.success('Yolun qırağı ilə otlaya-otlaya👋')
+        
+    }
 
     return (
         <>
@@ -125,7 +138,9 @@ function LayoutAdmin() {
                                     </Link>
                                 ))}
                             </nav>
-                            <Link to={'/login'} className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
+                            <Link
+                            onClick={handleLogOut}
+                             to={'/login'} className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
                                 <IoExitOutline />Çıxış edin</Link>
                         </div>
                     </div>
@@ -174,10 +189,10 @@ function LayoutAdmin() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://pbs.twimg.com/profile_images/1251758940100198400/XVPPCQce_400x400.jpg"
+                                                src="https://pbs.twimg.com/profile_images/551416883191087104/gxoNeGX8_400x400.jpeg"
                                                 alt=""
                                             />
-                                            <span className='font-semibold mx-2.5'>Zaylar</span>
+                                            <span className='font-semibold mx-2.5'>{cook.get('user')}</span>
                                             <IoChevronDown className='text-gray-400 mt-1' />
                                         </Menu.Button>
                                     </div>
@@ -191,7 +206,9 @@ function LayoutAdmin() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Link to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
+                                            <Link 
+                                            onClick={handleLogOut}
+                                            to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
                                                 <IoExitOutline className='text-[red]' />Çıxış</Link>
                                         </Menu.Items>
                                     </Transition>

@@ -1,34 +1,28 @@
-import { useState, Fragment, useCallback } from "react";
+import { useState, Fragment, useCallback, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import { useRef } from 'react';
-import { Editor } from '@tinymce/tinymce-react';
-import configObj from '../config/config';
-import { useDropzone } from 'react-dropzone';
 import CreateModal from "./CreateModal";
+import getAllProducts from "../api/api";
 
 const people = [
-    {
-        name: 'Kartof',
-        title: 'Front-end Developer',
-        department: 'Optimization',
-        email: 'Terevez',
-        role: 'Member',
-        image:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8oNHxTGIrLf8NOW5i4E2RZOgTVfA4AXHOVA&s',
-    },
+
 ]
 function Products() {
     const [product, setProduct] = useState(null)
     const [open, setOpen] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
+    const [data, setData] = useState([])
 
     async function handleCategory(id, name) {
         setProduct({ id, name })
         setOpen(!open)
     }
+    useEffect(() => {
+        getAllProducts().then(resp => setData(resp)
+        )
+    }, [])
 
     return (
         <section className="px-6">
@@ -74,25 +68,25 @@ function Products() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {people.map((person) => (
-                                        <tr key={person.email} className="hover:bg-gray-200">
+                                    {data.map((item, i) => (
+                                        <tr key={i} className="hover:bg-gray-200">
                                             <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                 <div className="flex items-center">
                                                     <div className="h-10 w-10 flex-shrink-0">
-                                                        <img className="h-10 w-10 rounded-full" src={person.image} alt="" />
+                                                        <img className="h-10 w-10 rounded-full" src={item.img[0]} alt="" />
                                                     </div>
                                                     <div className="ml-4">
-                                                        <div className="font-medium text-gray-900">{person.name}</div>
-                                                        <div className="text-gray-500">{person.email}</div>
+                                                        <div className="font-medium text-gray-900">{item.name}</div>
+                                                        <div className="text-gray-500">{item.category.categoryName}</div>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm">
-                                                <div className="text-red-600 font-semibold">2 %</div>
+                                                <div className="text-red-600 font-semibold">{item.discount} %</div>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                 <span className="inline-flex px-2">
-                                                    515 azn
+                                                    {item.price} azn
                                                 </span>
                                             </td>
                                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">

@@ -20,6 +20,7 @@ import { verifyToken } from "./api/api";
 const cook = new Cookies()
 
 function App() {
+
     const [modal, setModal] = useState(false)
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState();
@@ -38,10 +39,15 @@ function App() {
         setProduct(updatedProducts);
     }
 
+    
+    
+
     useEffect(() => {
         window.scroll(0, 0);
 
-        if(pathname == '/admin'){
+        if(pathname.split('/')[1] === 'admin'){
+            console.log('salam');
+            
             const yoxla = verifyToken()
             yoxla.then( res => {
                 setAuth(res.status)
@@ -57,6 +63,16 @@ function App() {
                 reverseOrder={false}
             />
             <Routes>
+            {
+                auth ? 
+                <Route path="/admin" element={<LayoutAdmin />} >
+                    <Route path="/admin" element={<Home />}/>
+                    <Route path="products" element={<Products  modal={modal} setModal={setModal}/>}/>
+                    <Route path="categories" element={<Category  modal={modal} setModal={setModal}/>}/>
+                    <Route path="subcategory" element={<Subcategory  modal={modal} setModal={setModal}/>}/>
+                </Route>
+            : ''
+               }
                 <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
                     <Route path='/' element={<Main />} />
                     <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} product={product} setProduct={setProduct} />} />
@@ -66,16 +82,7 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
-               {
-                auth ? 
-                <Route path="/admin" element={<LayoutAdmin />} >
-                    <Route path="/admin" element={<Home />}/>
-                    <Route path="products" element={<Products  modal={modal} setModal={setModal}/>}/>
-                    <Route path="category" element={<Category  modal={modal} setModal={setModal}/>}/>
-                    <Route path="subcategory" element={<Subcategory  modal={modal} setModal={setModal}/>}/>
-                </Route>
-            : ''
-               }
+              
                 <Route path='*' element={<Error404 />} />
             </Routes>
         </>

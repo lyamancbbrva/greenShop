@@ -14,7 +14,7 @@ function Home() {
                     Anlayışınız üçün təşəkkür edirik.</p>
                 <div className="flex flex-wrap justify-center">
                     <Link to='products' className="px-8 py-3 m-2 text-md font-semibold rounded text-white bg-[#FF8300]">Məhsul əlavə et</Link>
-                    <Link to='category' className="px-6 py-3 m-2 text-md bg-slate-800 text-white rounded">Kataqoriya əlavə et</Link>
+                    <Link to='categories' className="px-6 py-3 m-2 text-md bg-slate-800 text-white rounded">Kataqoriya əlavə et</Link>
                 </div>
             </div>
         </section>

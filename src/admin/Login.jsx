@@ -7,10 +7,12 @@ import { postLogin } from '../api/api';
 const cook = new Cookies();
 
 function Login() {
+
     const [pass, setPass] = useState("");
     const [login, setLogin] = useState("");
 
     async function handleSubmit(e) {
+
         e.preventDefault();
         if (!pass || pass.length < 8) {
             toast.error("Şifrəni düz yaz ə!!!");
@@ -18,19 +20,19 @@ function Login() {
         }
     
         const obj = { login, password: pass };
-        const user = await postLogin(obj);
-        console.log(user);
-        
-    
+        const user = await postLogin(obj);     
+             
+             
         if (user.status == true) {
+            
             cook.set("token", user.token);
             cook.set("refresh", user.refresh);
+            toast.success("Giriş olundu")
             window.location.href = "/admin";
-        } else if (user.status === 401) {
-            toast.error("Sən Zəzər əmi döylüsən!😔");
-        } else {
-            toast.error("sen ne zay adamsan ə");
-        }
+         
+                  
+        } else  toast.error("Sən Zəzər əmi döylüsən!😔");
+        
     }
 
     return (
