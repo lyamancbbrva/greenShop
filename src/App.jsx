@@ -14,7 +14,7 @@ import Products from "./admin/Products";
 import Category from "./admin/Category";
 import Subcategory from "./admin/Subcategory";
 import Home from "./admin/Home";
-import LayoutAdmin from "./layout/LayoutAdmin";
+import LayoutAdmin from "./admin/LayoutAdmin";
 import { Cookies } from "react-cookie";
 import { verifyToken } from "./api/api";
 const cook = new Cookies()

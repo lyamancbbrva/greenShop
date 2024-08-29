@@ -4,8 +4,10 @@ import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from "react-icons/io5";
+import { Cookies } from 'react-cookie';
+const cook = new Cookies()
 
 const navigation = [
     { name: 'Ana səhifə', href: '/admin', icon: HomeIcon },
@@ -16,6 +18,15 @@ const navigation = [
 
 function LayoutAdmin() {
     const [sidebarOpen, setSidebarOpen] = useState(false)
+    const navigate = useNavigate()
+
+    function logOut() {
+        cook.remove("token")
+        cook.remove("refresh")
+        cook.remove("user")
+        console.log("salam");
+        navigate("/")
+    }
 
     return (
         <>
@@ -125,8 +136,10 @@ function LayoutAdmin() {
                                     </Link>
                                 ))}
                             </nav>
-                            <Link to={'/login'} className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
-                                <IoExitOutline />Çıxış edin</Link>
+                            <div
+                                onClick={logOut}
+                                className='flex items-center font-semibold cursor-pointer gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
+                                <IoExitOutline />Çıxış edin</div>
                         </div>
                     </div>
                 </div>
@@ -191,8 +204,10 @@ function LayoutAdmin() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                                            <Link to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
-                                                <IoExitOutline className='text-[red]' />Çıxış</Link>
+                                            <div
+                                                onClick={logOut}
+                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 cursor-pointer text-sm text-gray-700'>
+                                                <IoExitOutline className='text-[red]' />Çıxış</div>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>

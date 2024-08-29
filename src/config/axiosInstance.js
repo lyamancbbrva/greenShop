@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
 
             try {
                 const refresh = cook.get('refresh');
-                const { data } = await axios.post('http://localhost:3215/auth/refresh-token', { refreshToken: refresh });
+                const { data } = await axios.post(`https://${configObj.base}/auth/refresh-token`, { refreshToken: refresh });
                 
                 cook.set('token', data.token);
                 cook.set('refresh', data.refresh);
@@ -43,7 +43,6 @@ axiosInstance.interceptors.response.use(
             } catch (err) {
                 cook.remove('token');
                 cook.remove('refresh');
-                window.location.href = '/login';
                 return Promise.reject(err);
             }
         }
