@@ -10,14 +10,14 @@ function Register() {
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
-    
+
     const [type, setType] = useState("password");
 
-async function signUp() {
+    async function signUp() {
 
-        const obj = {login, password}
+        const obj = { login, password }
         const user = await registerUser(obj)
-        
+
     }
 
     return (
@@ -47,29 +47,29 @@ async function signUp() {
                                 Şifrə qoy
                             </label>
                         </div>
-                       <div className="relative">
-                       <input
-                            type={type}
-                            onChange={(e) => setPassword(e.target.value)}
-                            className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5'
-                            placeholder='••••••••'
-                            required
-                        />
-                        <span
-                            className='flex justify-around absolute top-3 right-3 items-center'
-                            onClick={() =>
-                                setType(
-                                    type == "password" ? "text" : "password"
-                                )
-                            }
-                        >
-                            {type == "password" ? (
-                                <IoEyeOffOutline size={21} />
-                            ) : (
-                                <IoEyeOutline size={21} />
-                            )}
-                        </span>
-                       </div>
+                        <div className="relative">
+                            <input
+                                type={type}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className='bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5'
+                                placeholder='••••••••'
+                                required
+                            />
+                            <span
+                                className='flex justify-around absolute top-3 right-3 items-center'
+                                onClick={() =>
+                                    setType(
+                                        type == "password" ? "text" : "password"
+                                    )
+                                }
+                            >
+                                {type == "password" ? (
+                                    <IoEyeOffOutline size={21} />
+                                ) : (
+                                    <IoEyeOutline size={21} />
+                                )}
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div className='space-y-2'>
