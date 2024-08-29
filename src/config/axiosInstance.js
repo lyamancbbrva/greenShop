@@ -3,10 +3,10 @@ import configObj from "./config";
 import { Cookies } from "react-cookie";
 
 const cook = new Cookies()
+const url = `http://${configObj.base}`
 
-const token = cook.get('token')
 const axiosInstance = axios.create({
-    baseURL: `https://${configObj.base}`,
+    baseURL: url,
     headers: {
         "Content-Type" : "application/json"
     }
@@ -33,7 +33,7 @@ axiosInstance.interceptors.response.use(
 
             try {
                 const refresh = cook.get('refresh');
-                const { data } = await axios.post(`https://${configObj.base}/auth/refresh-token`, { refreshToken: refresh });
+                const { data } = await axios.post(`${url}/auth/refresh-token`, { refreshToken: refresh });
                 cook.set('token', data.token);
                 cook.set('refresh', data.refresh);
 
