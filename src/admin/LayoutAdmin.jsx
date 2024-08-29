@@ -7,42 +7,27 @@ import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from "react-icons/io5";
 import { Cookies } from 'react-cookie';
-<<<<<<< HEAD:src/layout/LayoutAdmin.jsx
 import toast from 'react-hot-toast';
-=======
-const cook = new Cookies()
->>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de:src/admin/LayoutAdmin.jsx
 
-const navigation = [
-    { name: 'Ana səhifə', href: '/admin', icon: HomeIcon },
-    { name: 'Məhsullar', href: 'products', icon: UsersIcon },
-    { name: 'Kateqoriyalar', href: 'categories', icon: FolderIcon },
-    { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
-]
 
 const cook = new Cookies()
 
 function LayoutAdmin() {
+    const navigation = [
+        { name: 'Ana səhifə', href: '/admin', icon: HomeIcon },
+        { name: 'Məhsullar', href: 'products', icon: UsersIcon },
+        { name: 'Kateqoriyalar', href: 'categories', icon: FolderIcon },
+        { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
+    ]
+    const [sidebarOpen, setSidebarOpen] = useState(false);
+    const navigate = useNavigate();
 
-    const [sidebarOpen, setSidebarOpen] = useState(false)
-<<<<<<< HEAD:src/layout/LayoutAdmin.jsx
     function handleLogOut(e) {
-
-        cook.remove('token')
-        cook.remove('refresh')
-        cook.remove('user')
-        toast.success('Yolun qırağı ilə otlaya-otlaya👋')
-        
-=======
-    const navigate = useNavigate()
-
-    function logOut() {
-        cook.remove("token")
-        cook.remove("refresh")
-        cook.remove("user")
-        console.log("salam");
-        navigate("/")
->>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de:src/admin/LayoutAdmin.jsx
+        cook.remove('token');
+        cook.remove('refresh');
+        cook.remove('user');
+        toast.success('Yolun qırağı ilə otlaya-otlaya👋');
+        navigate('/login');
     }
 
     return (
@@ -121,11 +106,11 @@ function LayoutAdmin() {
                                     </div>
                                 </Dialog.Panel>
                             </Transition.Child>
-                            <div className="w-14 flex-shrink-0" aria-hidden="true">
-                            </div>
+                            <div className="w-14 flex-shrink-0" aria-hidden="true"></div>
                         </div>
                     </Dialog>
                 </Transition.Root>
+
                 <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
                     <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                         <div className="flex flex-shrink-0 items-center px-4">
@@ -153,20 +138,17 @@ function LayoutAdmin() {
                                     </Link>
                                 ))}
                             </nav>
-<<<<<<< HEAD:src/layout/LayoutAdmin.jsx
                             <Link
-                            onClick={handleLogOut}
-                             to={'/login'} className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
-                                <IoExitOutline />Çıxış edin</Link>
-=======
-                            <div
-                                onClick={logOut}
-                                className='flex items-center font-semibold cursor-pointer gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'>
-                                <IoExitOutline />Çıxış edin</div>
->>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de:src/admin/LayoutAdmin.jsx
+                                onClick={handleLogOut}
+                                to={'/login'}
+                                className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
+                            >
+                                <IoExitOutline />Çıxış edin
+                            </Link>
                         </div>
                     </div>
                 </div>
+
                 <div className="flex flex-1 flex-col md:pl-64">
                     <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
                         <button
@@ -214,13 +196,7 @@ function LayoutAdmin() {
                                                 src="https://pbs.twimg.com/profile_images/551416883191087104/gxoNeGX8_400x400.jpeg"
                                                 alt=""
                                             />
-<<<<<<< HEAD:src/layout/LayoutAdmin.jsx
                                             <span className='font-semibold mx-2.5'>{cook.get('user')}</span>
-=======
-                                            <span className='font-semibold mx-2.5 capitalize'>
-                                                {cook.get("user")}
-                                            </span>
->>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de:src/admin/LayoutAdmin.jsx
                                             <IoChevronDown className='text-gray-400 mt-1' />
                                         </Menu.Button>
                                     </div>
@@ -234,17 +210,19 @@ function LayoutAdmin() {
                                         leaveTo="transform opacity-0 scale-95"
                                     >
                                         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-<<<<<<< HEAD:src/layout/LayoutAdmin.jsx
                                             <Link 
-                                            onClick={handleLogOut}
-                                            to={'/login'} className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'>
-                                                <IoExitOutline className='text-[red]' />Çıxış</Link>
-=======
+                                                onClick={handleLogOut}
+                                                to={'/login'} 
+                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 text-sm text-gray-700'
+                                            >
+                                                <IoExitOutline className='text-[red]' />Çıxış
+                                            </Link>
                                             <div
-                                                onClick={logOut}
-                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 cursor-pointer text-sm text-gray-700'>
-                                                <IoExitOutline className='text-[red]' />Çıxış</div>
->>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de:src/admin/LayoutAdmin.jsx
+                                                onClick={handleLogOut}
+                                                className='flex items-center gap-2 hover:bg-gray-100 px-4 py-2 cursor-pointer text-sm text-gray-700'
+                                            >
+                                                <IoExitOutline className='text-[red]' />Çıxış
+                                            </div>
                                         </Menu.Items>
                                     </Transition>
                                 </Menu>
@@ -257,7 +235,8 @@ function LayoutAdmin() {
                 </div>
             </div>
         </>
-    )
+    );
 }
+
 
 export default LayoutAdmin

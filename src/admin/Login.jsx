@@ -22,14 +22,8 @@ function Login() {
         }
 
         const obj = { login, password: pass };
-<<<<<<< HEAD
         const user = await postLogin(obj);     
-             
-             
-=======
-        const user = await postLogin(obj);
-
->>>>>>> 8bd8fa2e6ef51d2480036136f3cf84227e6407de
+  
         if (user.status == true) {
             
             cook.set("token", user.token);
