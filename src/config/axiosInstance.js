@@ -3,7 +3,7 @@ import configObj from "./config";
 import { Cookies } from "react-cookie";
 
 const cook = new Cookies()
-const url = `http://${configObj.base}`
+const url = `https://${configObj.base}`
 
 const axiosInstance = axios.create({
     baseURL: url,
