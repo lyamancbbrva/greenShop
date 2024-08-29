@@ -190,7 +190,9 @@ function LayoutAdmin() {
                                                 src="https://pbs.twimg.com/profile_images/1251758940100198400/XVPPCQce_400x400.jpg"
                                                 alt=""
                                             />
-                                            <span className='font-semibold mx-2.5'>Zaylar</span>
+                                            <span className='font-semibold mx-2.5 capitalize'>
+                                                {cook.get("user")}
+                                            </span>
                                             <IoChevronDown className='text-gray-400 mt-1' />
                                         </Menu.Button>
                                     </div>

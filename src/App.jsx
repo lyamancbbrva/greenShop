@@ -20,7 +20,6 @@ import { verifyToken } from "./api/api";
 const cook = new Cookies()
 
 function App() {
-    const [modal, setModal] = useState(false)
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState();
     const [auth, setAuth] = useState(false)
@@ -41,13 +40,13 @@ function App() {
     useEffect(() => {
         window.scroll(0, 0);
 
-        if(pathname == '/admin'){
+        if (pathname.startsWith('/admin')) {
             const yoxla = verifyToken()
-            yoxla.then( res => {
+            yoxla.then(res => {
                 setAuth(res.status)
                 cook.set("user", res.user_login)
             })
-        }else setAuth(false)
+        } else setAuth(false)
     }, [pathname]);
 
     return (
@@ -66,16 +65,16 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
-               {
-                auth ? 
-                <Route path="/admin" element={<LayoutAdmin />} >
-                    <Route path="/admin" element={<Home />}/>
-                    <Route path="products" element={<Products  modal={modal} setModal={setModal}/>}/>
-                    <Route path="category" element={<Category  modal={modal} setModal={setModal}/>}/>
-                    <Route path="subcategory" element={<Subcategory  modal={modal} setModal={setModal}/>}/>
-                </Route>
-            : ''
-               }
+                {
+                    auth ?
+                        <Route path="/admin" element={<LayoutAdmin />} >
+                            <Route path="/admin" element={<Home />} />
+                            <Route path="products" element={<Products />} />
+                            <Route path="category" element={<Category />} />
+                            <Route path="subcategory" element={<Subcategory />} />
+                        </Route>
+                        : ''
+                }
                 <Route path='*' element={<Error404 />} />
             </Routes>
         </>
