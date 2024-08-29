@@ -97,7 +97,7 @@ function Login() {
                                             htmlFor='remember'
                                             className='text-gray-500'
                                         >
-                                            Məni xatırla
+                                            Məni xatırla mahnılarım silinməsin qoy yaddaşından
                                         </label>
                                     </div>
                                 </div>

@@ -2,10 +2,7 @@ import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from "@headlessui/react";
-import {
-    ExclamationTriangleIcon,
-    XMarkIcon,
-} from "@heroicons/react/24/outline";
+import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { createSubcategory, getCategories } from "../api/api";
 
 function Subcategory() {
@@ -14,20 +11,25 @@ function Subcategory() {
     const [delOpen, setDelOpen] = useState(false);
     const [cats, setCats] = useState([]);
     const [subCat, setSubCat] = useState('')
-
+    const [select, setSelect] = useState('')
     async function handleCategory(id, name) {
         setProduct({ id, name });
         setOpen(!open);
     }
+    
     useEffect(() => {
         getCategories().then((res) => setCats(res));
     }, []);
     
     function createNewSubCat() {
-        const obj = {subCat}
-        createSubcategory(obj).then((res) => console.log(res));
-        
+        const obj = { subCat, categoryName: select };
+        createSubcategory(obj)
+            .then((res) => console.log(res))
+            .catch((error) => {
+                console.error('Error:', error.response ? error.response.data : error.message);
+            });
     }
+    
 
     return (
         <section className='px-6'>
@@ -36,10 +38,13 @@ function Subcategory() {
             </h1>
             <h6 className='font-semibold p-2'>Kateqoriya seçin</h6>
             <div className='flex gap-2 items-center'>
-                <select className='bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2'>
-                    <option defaultValue>Kataqoriya seçin</option>
+                <select
+                onChange={(e) => setSelect(e.target.value)}
+                className='bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2'>
+                    <option defaultValue disabled>Kataqoriya seçin</option>
                     {cats?.map((item) => (
-                        <option key={item.categoryName}>{item.categoryName}</option>
+                        <option 
+                        key={item.categoryName}>{item.categoryName}</option>
                     ))}
                 </select>
                 <button
@@ -179,8 +184,10 @@ function Subcategory() {
                                         >
                                             Kateqoriya seçin:
                                         </label>
-                                        <select className='block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'>
-                                            <option>Kateqoriya seçin:</option>
+                                        <select 
+                                        onChange={(e) => setSelect(e.target.value)}
+                                        className='block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'>
+                                            <option defaultValue disabled>Kateqoriya seçin:</option>
                                             {cats?.map((item, i) => (
                                                 <option key={i}>
                                                     {item.categoryName}
