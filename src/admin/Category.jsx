@@ -96,7 +96,7 @@ function Category() {
                                                         <FaTrashAlt
                                                             onClick={() =>{
                                                                 setDelOpen(true)
-                                                                 setId(item.id)}}
+                                                                setId(item.id)}}
                                                             className='text-[1.2em] text-[red] cursor-pointer'
                                                         />
                                                     </div>

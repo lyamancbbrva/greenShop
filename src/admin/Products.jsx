@@ -1,19 +1,18 @@
-import { useState, Fragment, useCallback, useEffect } from "react";
+import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import CreateModal from "./CreateModal";
-import getAllProducts from "../api/api";
+import getAllProducts, { deleteProduct } from "../api/api";
+import toast from "react-hot-toast";
 
-const people = [
-
-]
 function Products() {
     const [product, setProduct] = useState(null)
     const [open, setOpen] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
     const [data, setData] = useState([])
+    const [id, setId] = useState(false)
 
     async function handleCategory(id, name) {
         setProduct({ id, name })
@@ -23,6 +22,15 @@ function Products() {
         getAllProducts().then(resp => setData(resp)
         )
     }, [])
+
+    async function delProduct(id) {
+        await deleteProduct(id);
+        setData(() => {
+            const updatedData = data.filter(item => item.id !== id);
+            return updatedData;
+        });
+        toast.success('Məhsul gorbagor oldu!');
+    }
 
     return (
         <section className="px-6">
@@ -95,7 +103,7 @@ function Products() {
                                                         onClick={() => handleCategory("1", "kartof")}
                                                         className="text-[1.1em] text-[blue] cursor-pointer" />
                                                     <FaTrashAlt
-                                                        onClick={() => setDelOpen(!open)}
+                                                        onClick={() => {setDelOpen(!open); setId(item.id)}}
                                                         className="text-[1.1em] text-[red] cursor-pointer" />
                                                 </div>
                                             </td>
@@ -139,11 +147,14 @@ function Products() {
                                         <ExclamationTriangleIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
                                     </div>
                                     <p className='text-center py-2 text-lg font-bold'>Məhsulu <span className='text-red-700'>silmək</span> istədiyinizə əminsiz?</p>
-                                    <div className="mt-5 flex gap-2 text-center justify-center">
+                                    <div className="mt-5 flex gap-2 text-center justify-center flex-row-reverse">
                                         <button
                                             type="button"
                                             className="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
-                                            onClick={() => setDelOpen(!delOpen)}
+                                            onClick={() => {
+                                                delProduct(id)
+                                                setDelOpen(!delOpen)
+                                            }}
                                         >
                                             Bəli
                                         </button>
