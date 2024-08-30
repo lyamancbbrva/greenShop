@@ -24,17 +24,21 @@ function Category() {
 
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
-    }, []);
+    }, [data]);
 
     function createNewCategory() {
         createCategory(obj).then(resp => setData([...data, resp]))
     }
 
-    async function delCategory(id) {
-        await deleteCategory(id)
-        setCategoryName(elem => elem.filter(item => item.id !== id))
-        setDelOpen(!open);
-        toast.success('Silindi getdi')
+    function delCategory(id) {
+        deleteCategory(id);
+    
+        setCategoryName(() => {
+            const updatedData = data.filter(item => item.id !== id);
+            return updatedData;
+        });
+        
+        toast.success('Silindi getdi');
     }
 
     return (
@@ -44,7 +48,7 @@ function Category() {
             </h1>
             <button
                 onClick={() => {
-                    setOpen(!open);
+                    setOpen(true);
                 }}
                 className='bg-green-700 text-white p-3 rounded-md font-semibold'
             >
@@ -90,7 +94,9 @@ function Category() {
                                                             className='text-[1.2em] text-blue-500 cursor-pointer'
                                                         />
                                                         <FaTrashAlt
-                                                            onClick={() => setId(item.id)}
+                                                            onClick={() =>{
+                                                                setDelOpen(true)
+                                                                 setId(item.id)}}
                                                             className='text-[1.2em] text-[red] cursor-pointer'
                                                         />
                                                     </div>
@@ -200,7 +206,7 @@ function Category() {
 
             {/*    D E L E T E   C O M P O N E N T     */}
             <Transition.Root show={delOpen} as={Fragment}>
-                <Dialog as='div' className='relative z-10' onClose={setDelOpen}>
+                <Dialog as='div' className='relative z-10' onClose={() => setDelOpen(true)}>
                     <Transition.Child
                         as={Fragment}
                         enter='ease-out duration-300'
@@ -244,7 +250,7 @@ function Category() {
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
                                             onClick={() => {
                                                 delCategory(id)
-                                                setDelOpen(!delOpen)
+                                                setDelOpen(false)
                                             }
                                             }
                                         >
@@ -253,7 +259,7 @@ function Category() {
                                         <button
                                             type='button'
                                             className='inline-flex justify-center rounded-md border border-gray-300 bg-blue-600  px-6 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:mt-0 sm:w-auto sm:text-sm'
-                                            onClick={() => setDelOpen(!delOpen)}
+                                            onClick={() => setDelOpen(false)}
                                         >
                                             Xeyr
                                         </button>

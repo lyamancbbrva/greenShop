@@ -148,8 +148,6 @@ async function postLogin(obj) {
 
 async function registerUser(obj) {
     try {
-        console.log(obj);
-        
         const res = await axiosInstance.post('/auth/register', obj);
         return res.data;
     } catch (error) {

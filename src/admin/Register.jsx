@@ -3,6 +3,7 @@ import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import { postLogin, registerUser } from "../api/api";
 import { Cookies } from "react-cookie";
+import toast from "react-hot-toast";
 
 const cook = new Cookies()
 
@@ -17,6 +18,9 @@ function Register() {
 
         const obj = { login, password }
         const user = await registerUser(obj)
+        toast.success('DAY SƏN DƏ ADMİNSƏN!')
+        window.location.href = '/admin'
+        
 
     }
 

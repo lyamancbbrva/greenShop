@@ -18,16 +18,17 @@ function Subcategory() {
     }
     
     useEffect(() => {
+
         getCategories().then((res) => setCats(res));
-    }, []);
+
+    }, [cats]);
     
     function createNewSubCat() {
-        const obj = { subCat, categoryName: select };
+
+        const obj = { categoryName: select };     
         createSubcategory(obj)
             .then((res) => console.log(res))
-            .catch((error) => {
-                console.error('Error:', error.response ? error.response.data : error.message);
-            });
+            
     }
     
 
