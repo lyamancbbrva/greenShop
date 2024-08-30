@@ -6,12 +6,15 @@ import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/react/24/outline"
 import { createSubcategory, getCategories } from "../api/api";
 
 function Subcategory() {
+
     const [product, setProduct] = useState(null);
     const [open, setOpen] = useState(false);
     const [delOpen, setDelOpen] = useState(false);
     const [cats, setCats] = useState([]);
     const [subCat, setSubCat] = useState('')
-    const [select, setSelect] = useState('')
+    const [catId, setCatId] = useState('')
+    const [data, setData] = useState([])
+
     async function handleCategory(id, name) {
         setProduct({ id, name });
         setOpen(!open);
@@ -21,15 +24,23 @@ function Subcategory() {
 
         getCategories().then((res) => setCats(res));
 
-    }, [cats]);
+    }, []);
     
     function createNewSubCat() {
-
-        const obj = { categoryName: select };     
-        createSubcategory(obj)
-            .then((res) => console.log(res))
+        const obj = { categoryName: subCat, categoryId: catId };
+       createSubcategory(obj).then(resp =>
+       {
+        //    setData([...data, resp])
+            // console.log(data);
+            console.log(resp);
             
+       }
+
+         )
+       
     }
+    
+    
     
 
     return (
@@ -40,13 +51,12 @@ function Subcategory() {
             <h6 className='font-semibold p-2'>Kateqoriya seçin</h6>
             <div className='flex gap-2 items-center'>
                 <select
-                onChange={(e) => setSelect(e.target.value)}
+                onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
                 className='bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2'>
                     <option defaultValue disabled>Kataqoriya seçin</option>
-                    {cats?.map((item) => (
-                        <option 
-                        key={item.categoryName}>{item.categoryName}</option>
-                    ))}
+                    {cats?.map((item) => 
+                      <option  key={item.categoryName}>{item.categoryName}</option>
+                     )}
                 </select>
                 <button
                     onClick={() => {
@@ -88,7 +98,33 @@ function Subcategory() {
                                     </tr>
                                 </thead>
                                 <tbody className='divide-y divide-gray-200 bg-white'>
-                                    <tr className='hover:bg-gray-200'>
+                                        {
+                                            data ? data.map((item, i) =>
+                                                <tr key={i} className='hover:bg-gray-200'>
+                                            <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
+                                                {item.categoryName}
+                                            </td>
+                                            <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
+                                                <div className='flex gap-2'>
+                                                    <FiEdit
+                                                        onClick={() =>
+                                                            handleCategory(
+                                                                "2",
+                                                                "sogan"
+                                                            )
+                                                        }
+                                                        className='text-[1.1em] text-[blue] cursor-pointer'
+                                                    />
+                                                    <FaTrashAlt
+                                                        onClick={() =>
+                                                            setDelOpen(!delOpen)
+                                                        }
+                                                        className='text-[1.1em] text-[red] cursor-pointer'
+                                                    />
+                                                </div>
+                                            </td>
+                                        </tr>)
+                                        : <tr className='hover:bg-gray-200'>
                                         <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
                                             Subkateqoriya mövcud deyil
                                         </td>
@@ -112,6 +148,9 @@ function Subcategory() {
                                             </div>
                                         </td>
                                     </tr>
+                                        }
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -186,7 +225,7 @@ function Subcategory() {
                                             Kateqoriya seçin:
                                         </label>
                                         <select 
-                                        onChange={(e) => setSelect(e.target.value)}
+                                        onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
                                         className='block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'>
                                             <option defaultValue disabled>Kateqoriya seçin:</option>
                                             {cats?.map((item, i) => (
