@@ -3,7 +3,8 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { createSubcategory, getCategories } from "../api/api";
+import { createSubcategory, deleteSubcategory, getCategories } from "../api/api";
+import toast from "react-hot-toast";
 
 function Subcategory() {
 
@@ -19,29 +20,25 @@ function Subcategory() {
         setProduct({ id, name });
         setOpen(!open);
     }
-    
+
     useEffect(() => {
-
         getCategories().then((res) => setCats(res));
-
     }, []);
-    
+
     function createNewSubCat() {
         const obj = { categoryName: subCat, categoryId: catId };
-       createSubcategory(obj).then(resp =>
-       {
-        //    setData([...data, resp])
-            // console.log(data);
+        createSubcategory(obj).then(resp => {
             console.log(resp);
-            
-       }
-
-         )
-       
+            setData([...data, obj])
+        })
     }
-    
-    
-    
+
+    async function delSubcat(id) {
+        await deleteSubcategory(id);
+        setData(data.filter(item => item.id !== id));
+        toast.success('Subkateqoriya gorbagor oldu!');
+    }
+
 
     return (
         <section className='px-6'>
@@ -51,12 +48,12 @@ function Subcategory() {
             <h6 className='font-semibold p-2'>Kateqoriya seçin</h6>
             <div className='flex gap-2 items-center'>
                 <select
-                onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
-                className='bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2'>
+                    onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
+                    className='bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2'>
                     <option defaultValue disabled>Kataqoriya seçin</option>
-                    {cats?.map((item) => 
-                      <option  key={item.categoryName}>{item.categoryName}</option>
-                     )}
+                    {cats?.map((item) =>
+                        <option key={item.categoryName}>{item.categoryName}</option>
+                    )}
                 </select>
                 <button
                     onClick={() => {
@@ -98,57 +95,60 @@ function Subcategory() {
                                     </tr>
                                 </thead>
                                 <tbody className='divide-y divide-gray-200 bg-white'>
-                                        {
-                                            data ? data.map((item, i) =>
-                                                <tr key={i} className='hover:bg-gray-200'>
-                                            <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
-                                                {item.categoryName}
-                                            </td>
-                                            <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
-                                                <div className='flex gap-2'>
-                                                    <FiEdit
-                                                        onClick={() =>
-                                                            handleCategory(
-                                                                "2",
-                                                                "sogan"
-                                                            )
-                                                        }
-                                                        className='text-[1.1em] text-[blue] cursor-pointer'
-                                                    />
-                                                    <FaTrashAlt
-                                                        onClick={() =>
-                                                            setDelOpen(!delOpen)
-                                                        }
-                                                        className='text-[1.1em] text-[red] cursor-pointer'
-                                                    />
-                                                </div>
-                                            </td>
-                                        </tr>)
-                                        : <tr className='hover:bg-gray-200'>
-                                        <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
-                                            Subkateqoriya mövcud deyil
-                                        </td>
-                                        <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
-                                            <div className='flex gap-2'>
-                                                <FiEdit
-                                                    onClick={() =>
-                                                        handleCategory(
-                                                            "2",
-                                                            "sogan"
-                                                        )
-                                                    }
-                                                    className='text-[1.1em] text-[blue] cursor-pointer'
-                                                />
-                                                <FaTrashAlt
-                                                    onClick={() =>
-                                                        setDelOpen(!delOpen)
-                                                    }
-                                                    className='text-[1.1em] text-[red] cursor-pointer'
-                                                />
-                                            </div>
-                                        </td>
-                                    </tr>
-                                        }
+                                    {
+                                        data ? data.map((item, i) =>
+                                            <tr key={i} className='hover:bg-gray-200'>
+                                                <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
+                                                    {item.categoryName}
+                                                </td>
+                                                <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
+                                                    <div className='flex gap-2'>
+                                                        <FiEdit
+                                                            onClick={() =>
+                                                                handleCategory(
+                                                                    "2",
+                                                                    "sogan"
+                                                                )
+                                                            }
+                                                            className='text-[1.1em] text-[blue] cursor-pointer'
+                                                        />
+                                                        <FaTrashAlt
+                                                            onClick={() => {
+                                                                setCatId(item.id)
+                                                                setDelOpen(!delOpen)
+                                                            }
+                                                            }
+                                                            className='text-[1.1em] text-[red] cursor-pointer'
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>)
+                                            : <tr className='hover:bg-gray-200'>
+                                                <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
+                                                    Subkateqoriya mövcud deyil
+                                                </td>
+                                                <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
+                                                    <div className='flex gap-2'>
+                                                        <FiEdit
+                                                            onClick={() =>
+                                                                handleCategory(
+                                                                    "2",
+                                                                    "sogan"
+                                                                )
+                                                            }
+                                                            className='text-[1.1em] text-[blue] cursor-pointer'
+                                                        />
+                                                        <FaTrashAlt
+                                                            onClick={() => {
+                                                                setCatId(item.id)
+                                                                setDelOpen(!delOpen)
+                                                            }}
+                                                            className='text-[1.1em] text-[red] cursor-pointer'
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                    }
 
 
                                 </tbody>
@@ -224,9 +224,9 @@ function Subcategory() {
                                         >
                                             Kateqoriya seçin:
                                         </label>
-                                        <select 
-                                        onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
-                                        className='block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'>
+                                        <select
+                                            onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
+                                            className='block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'>
                                             <option defaultValue disabled>Kateqoriya seçin:</option>
                                             {cats?.map((item, i) => (
                                                 <option key={i}>
@@ -235,12 +235,12 @@ function Subcategory() {
                                             ))}
                                         </select>
                                     </div>
-                                    <button 
-                                    onClick={() => {
-                                        setOpen(false)
-                                        createNewSubCat()
-                                    }}
-                                    className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
+                                    <button
+                                        onClick={() => {
+                                            setOpen(false)
+                                            createNewSubCat()
+                                        }}
+                                        className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
                                         {product ? "Düzəliş et" : "Əlavə et"}
                                     </button>
                                 </Dialog.Panel>
@@ -290,11 +290,11 @@ function Subcategory() {
                                         </span>{" "}
                                         istədiyinizə əminsiz?
                                     </p>
-                                    <div className='mt-5 flex gap-2 text-center justify-center'>
+                                    <div className='mt-5 flex gap-2 text-center justify-center flex-row-reverse'>
                                         <button
                                             type='button'
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
-                                            onClick={() => setDelOpen(!delOpen)}
+                                            onClick={() => { setDelOpen(!delOpen); delSubcat(catId) }}
                                         >
                                             Bəli
                                         </button>
