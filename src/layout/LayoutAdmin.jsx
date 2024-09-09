@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import neptunlogin from '../assets/neptunlogin.png';
 import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon, VideoCamera } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, Outlet } from 'react-router-dom';
 import { IoChevronDown } from "react-icons/io5";
@@ -14,6 +14,7 @@ const navigation = [
     { name: 'Məhsullar', href: 'products', icon: UsersIcon },
     { name: 'Kateqoriyalar', href: 'categories', icon: FolderIcon },
     { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
+    { name: 'Slider', href: 'slider', icon: VideoCamera },
 ]
 
 const cook = new Cookies()
@@ -89,7 +90,8 @@ function LayoutAdmin() {
                                     </div>
                                     <div className="mt-5 h-0 flex-1 overflow-y-auto">
                                         <nav className="space-y-1 px-2">
-                                            {navigation.map((item) => (
+                                            {navigation.map((item) =>
+                                             (
                                                 <Link
                                                     key={item.name}
                                                     to={item.href}

@@ -80,7 +80,7 @@ function App() {
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="register" element={<Register/>} />
-                {/* <Route path='*' element={<Error404 />} /> */}
+                <Route path='*' element={<Error404 />} />
             </Routes>
         </>
     );
