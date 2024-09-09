@@ -15,11 +15,9 @@ function Subcategory() {
     const [subCat, setSubCat] = useState('')
     const [catId, setCatId] = useState('')
     const [data, setData] = useState([])
+    const [subcategory, setSubcategory] = useState([])
 
-    async function handleCategory(id, name) {
-        setProduct({ id, name });
-        setOpen(!open);
-    }
+
 
     useEffect(() => {
         getCategories().then((res) => setCats(res));
@@ -38,6 +36,14 @@ function Subcategory() {
         setData(data.filter(item => item.id !== id));
         toast.success('Subkateqoriya gorbagor oldu!');
     }
+    function handleCategory(e) {
+        const id = e.target.value
+        setCatId(id)
+        
+        setSubcategory(cats.find(item =>item.id == id).subcategory)
+
+        
+    }
 
 
     return (
@@ -48,11 +54,11 @@ function Subcategory() {
             <h6 className='font-semibold p-2'>Kateqoriya seçin</h6>
             <div className='flex gap-2 items-center'>
                 <select
-                    onChange={(e) => setCatId(cats.find(item => item.categoryName == e.target.value).id)}
+                    onChange={handleCategory}
                     className='bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2'>
                     <option defaultValue disabled>Kataqoriya seçin</option>
                     {cats?.map((item) =>
-                        <option key={item.categoryName}>{item.categoryName}</option>
+                        <option value={item.id} key={item.categoryName}>{item.categoryName}</option>
                     )}
                 </select>
                 <button
@@ -96,7 +102,7 @@ function Subcategory() {
                                 </thead>
                                 <tbody className='divide-y divide-gray-200 bg-white'>
                                     {
-                                        data ? data.map((item, i) =>
+                                        subcategory ? subcategory.map((item, i) =>
                                             <tr key={i} className='hover:bg-gray-200'>
                                                 <td className='whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6'>
                                                     {item.categoryName}

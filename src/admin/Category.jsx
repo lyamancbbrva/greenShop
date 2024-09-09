@@ -81,7 +81,7 @@ function Category() {
                                             <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
                                                     {item.categoryName}
-                                                    <ul>
+                                                    <ul className="list-disc px-[25px] ">
                                                         {
                                                             item?.subcategory?.map((elem, i) => <li key={i}>{elem.categoryName}</li>)
                                                         }
