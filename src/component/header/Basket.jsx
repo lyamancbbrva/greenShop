@@ -58,13 +58,13 @@ export const Basket = () => {
                                 <td className="px-3 py-4 w-fit text-sm text-gray-500 sm:table-cell">
                                     <button
                                         onClick={() => HandleDecrement(item.id)}
-                                        className='font-bold text-[1.2em] text-[#FF8300] active:text-[#000]'>
+                                        className='font-bold text-[1.2em] text-[#43766C] active:text-[#000]'>
                                         ‒
                                     </button>
                                     <span className='px-2'>{item.count}</span>
                                     <button
                                         onClick={() => HandleIncrement(item.id)}
-                                        className='font-bold text-[1.2em] text-[#FF8300] active:text-[#000]'>
+                                        className='font-bold text-[1.2em] text-[#43766C] active:text-[#000]'>
                                         ＋
                                     </button>
                                 </td>
@@ -95,8 +95,8 @@ export const Basket = () => {
                 </table>
             </div>
             <div className="py-4 mt-4 flex justify-between">
-                <Link to='/' className="rounded-3xl text-[.85em] bg-[#FF8300] text-white px-4 py-2 font-semibold mb-3">Alış-verişə davam </Link>
-                <button className="rounded-3xl text-[.85em] bg-[#FF8300] text-white px-4 py-2 font-semibold mb-3">Sifarişi rəsmiləşdir</button>
+                <Link to='/' className="rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3">Alış-verişə davam </Link>
+                <button className="rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3">Sifarişi rəsmiləşdir</button>
             </div>
         </section>
     )

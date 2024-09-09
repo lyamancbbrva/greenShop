@@ -81,10 +81,10 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                     </div>
                                     <div className='py-[10px] border-b flex justify-between px-[10px] items-center '>
                                         <div>
-                                            <span className='inline-block w-[12px] h-[12px] bg-[#FF8300] mx-[4px] '></span>
+                                            <span className='inline-block w-[12px] h-[12px] bg-[#43766C] mx-[4px] '></span>
                                             NEPTUN-MEYVETEREVEZ
                                         </div>
-                                        <span className='text-[#FF8300] inline-block text-end'>
+                                        <span className='text-[#43766C] inline-block text-end'>
                                             13
                                         </span>
                                     </div>
@@ -106,7 +106,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                     </div>
                                 </div>
                                 <div className='py-[20px] text-center'>
-                                    <button className='rounded-3xl  text-[.85em] bg-[#FF8300] text-white px-4 py-2 font-semibold mb-3'>
+                                    <button className='rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'>
                                         Hamısını sıfırla
                                     </button>
                                 </div>
@@ -126,9 +126,9 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                                 to={`/product/${id}`}
                                                 className='text-center rounded-md p-3 bg-white relative inline-block m-[.5vw] '
                                             >
-                                                <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#FF8300]' />
+                                                <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
                                                 <img src={img} alt={title} />
-                                                <h5 className='py-4 hover:text-[#FF8300] h-16 text-[.7em] font-semibold'>
+                                                <h5 className='py-4 hover:text-[#43766C] h-16 text-[.7em] font-semibold'>
                                                     {title}
                                                 </h5>
                                                 <p className='font-bold text-[1.3em]'>
@@ -140,7 +140,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                                             e.preventDefault();
                                                             updateCount(id, -1);
                                                         }}
-                                                        className='font-bold text-[1.2em] text-[#FF8300]'
+                                                        className='font-bold text-[1.2em] text-[#43766C]'
                                                     >
                                                         ‒
                                                     </button>
@@ -152,7 +152,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                                             e.preventDefault();
                                                             updateCount(id, 1);
                                                         }}
-                                                        className='font-bold text-[1.2em] text-[#FF8300]'
+                                                        className='font-bold text-[1.2em] text-[#43766C]'
                                                     >
                                                         ＋
                                                     </button>
@@ -165,7 +165,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                                             sebetSay + 1
                                                         );
                                                     }}
-                                                    className='rounded-3xl  text-[.85em] bg-[#FF8300] text-white px-4 py-2 font-semibold mb-3'
+                                                    className='rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'
                                                 >
                                                     Səbətə at
                                                 </button>

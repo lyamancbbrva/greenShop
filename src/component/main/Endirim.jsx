@@ -56,13 +56,13 @@ function Endirim() {
                                     to={`/product/${id}`}
                                     className='text-center border rounded-md p-3 bg-white relative inline-block card'
                                 >
-                                    <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#FF8300]' />
+                                    <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
                                     <img src={img} alt={title} />
-                                    <h5 className='py-4 hover:text-[#FF8300] h-16 text-[.7em] font-semibold'>
+                                    <h5 className='py-4 hover:text-[#43766C] h-16 text-[.7em] font-semibold'>
                                         {title}
                                     </h5>
                                     <div className='flex items-center justify-center gap-2'>
-                                        <span className='bg-[#ff840040] endirim rounded-[50%] w-[40px] h-[40px] flex justify-center items-center text-[.8em] font-semibold'>
+                                        <span className='bg-[#43766c34] endirim rounded-[50%] w-[40px] h-[40px] flex justify-center items-center text-[.8em] font-semibold'>
                                             -{rand(10, 40)}%
                                         </span>
                                         <div>
@@ -79,7 +79,7 @@ function Endirim() {
                                             onClick={(e) => {
                                                 e.preventDefault();
                                             }}
-                                            className='font-bold text-[1.2em] text-[#FF8300]'>
+                                            className='font-bold text-[1.2em] text-[#43766C]'>
                                             ‒
                                         </button>
                                         <span className='px-2'> ədəd</span>
@@ -87,7 +87,7 @@ function Endirim() {
                                             onClick={(e) => {
                                                 e.preventDefault();
                                             }}
-                                            className='font-bold text-[1.2em] text-[#FF8300]'>
+                                            className='font-bold text-[1.2em] text-[#43766C]'>
                                             ＋
                                         </button>
                                     </div>
@@ -97,7 +97,7 @@ function Endirim() {
                                             setSebetSay(sebetSay + 1)
                                             addToBasket(item)
                                         }}
-                                        className='rounded-3xl bg-[#FF8300] text-[.85em] text-white px-4 py-2 font-semibold mb-3'>
+                                        className='rounded-3xl bg-[#43766C] text-[.85em] text-white px-4 py-2 font-semibold mb-3'>
                                         Səbətə at
                                     </button>
                                 </Link>
@@ -105,7 +105,7 @@ function Endirim() {
                         );
                     })
                 ) : (
-                    <spiral size='40' speed='0.9' color='#FF8300' />
+                    <spiral size='40' speed='0.9' color='#43766C' />
                 )}
             </Swiper>
         </div>
