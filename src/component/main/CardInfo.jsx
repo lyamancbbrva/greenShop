@@ -10,7 +10,6 @@ function CardInfo({ product, updateCount}) {
     const { setSebetSay, sebetSay } = useContext(Cntx)
     const { id } = useParams()
     const item = product && product.find(item => item.id == id)
-      
     
     return (
         <section className='wrapper'>
@@ -28,7 +27,7 @@ function CardInfo({ product, updateCount}) {
                     <h5 className='mb-2 text-xl font-bold tracking-tight text-gray-900'>
                         {item?.title}
                     </h5>
-                    <div className='flex gap-1 text-[#FF8300] text-[1.4em] py-2'>
+                    <div className='flex gap-1 text-[#43766C] text-[1.4em] py-2'>
                         <FaRegStar /> <FaRegStar /> <FaRegStar /> <FaRegStar />{" "}
                         <FaRegStar />
                     </div>
@@ -38,7 +37,7 @@ function CardInfo({ product, updateCount}) {
                     <p className='mb-3 text-[.9em] text-gray-700'>
                         Mövcudluq: 🗹 Anbarda
                     </p>
-                    <p className='mb-3 text-[2em] font-bold text-[#FF8300]'>
+                    <p className='mb-3 text-[2em] font-bold text-[#43766C]'>
                         {(item?.price)} ₼
                     </p>
                     <div className='py-3'>
@@ -47,7 +46,7 @@ function CardInfo({ product, updateCount}) {
                                 e.preventDefault();
                                 updateCount(id, -1)
                             }}
-                            className='font-bold text-[1.2em] text-[#FF8300]'>
+                            className='font-bold text-[1.2em] text-[#43766C]'>
                             ‒
                         </button>
                         <span className='px-4'>{item?.count} ədəd</span>
@@ -56,7 +55,7 @@ function CardInfo({ product, updateCount}) {
                                 e.preventDefault();
                                 updateCount(id, 1)
                             }}
-                            className='font-bold text-[1.2em] text-[#FF8300]'>
+                            className='font-bold text-[1.2em] text-[#43766C]'>
                             ＋
                         </button>
                     </div>
@@ -67,11 +66,11 @@ function CardInfo({ product, updateCount}) {
                                 addToBasket(item.id, item.title, item.price, item.img)
                                 setSebetSay(sebetSay + 1)
                             }}
-                            className='rounded-3xl bg-[#FF8300] text-white px-5 py-2  mb-3'>
+                            className='rounded-3xl bg-[#43766C] text-white px-5 py-2  mb-3'>
                             Səbətə at
                         </button>
-                        <FaRegHeart className='text-[1.3em] cursor-pointer text-[#FF8300]' />
-                        <LuRefreshCcw className='text-[1.3em] text-[#FF8300] hover:rotate-[270deg] transition cursor-pointer' />
+                        <FaRegHeart className='text-[1.3em] cursor-pointer text-[#43766C]' />
+                        <LuRefreshCcw className='text-[1.3em] text-[#43766C] hover:rotate-[270deg] transition cursor-pointer' />
                     </div>
                 </div>
             </div>

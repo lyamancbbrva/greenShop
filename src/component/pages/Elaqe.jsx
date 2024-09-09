@@ -22,22 +22,22 @@ function Elaqe() {
                 ></iframe>
                 <div>
                     <div className="flex items-center gap-3 text-md mb-7">
-                        <FaMapMarkedAlt className="text-[2em] text-[#FF8300]" />
-                        <a href="" className="hover:text-[#FF8300] font-semibold">Bakı ş., Nəsimi r-nu, Tbilisi pr.1058</a>
+                        <FaMapMarkedAlt className="text-[2em] text-[#43766C]" />
+                        <a href="" className="hover:text-[#43766C] font-semibold">US, California</a>
                     </div>
                     <div className="flex items-center gap-3 text-md mb-7">
-                        <FiPhoneCall className="text-[2em] text-[#FF8300]" />
-                        <a href="tel:/" className="hover:text-[#FF8300] font-semibold">162 | +994 12 530 82 63</a>
+                        <FiPhoneCall className="text-[2em] text-[#43766C]" />
+                        <a href="tel:/" className="hover:text-[#43766C] font-semibold">162 | +9900 555 447 55</a>
                     </div>
                     <div className="flex items-center gap-3 text-md mb-7">
-                        <FaRegEnvelope className="text-[2em] text-[#FF8300]" />
-                        <a href="email" className="hover:text-[#FF8300] font-semibold">info@neptun.az</a>
+                        <FaRegEnvelope className="text-[2em] text-[#43766C]" />
+                        <a href="email" className="hover:text-[#43766C] font-semibold">info@blabla.com</a>
                     </div>
                     <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="Adınız*"/>
                     <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="E-mail ünvanınız*"/>
                     <textarea className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" placeholder="Sual və ya ismarıcınız*"/>
                     <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="Aşağıdakı kodu daxil edin*"/>
-                    <button className="rounded-3xl  text-[.85em] bg-[#FF8300] text-white px-4 py-2 my-3">Təsdiqlə</button>
+                    <button className="rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 my-3">Təsdiqlə</button>
                 </div>
             </div>
         </section>
