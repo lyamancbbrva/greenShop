@@ -8,6 +8,7 @@ import getAllProducts, { deleteProduct } from "../api/api";
 import toast from "react-hot-toast";
 
 function Products() {
+
     const [product, setProduct] = useState(null)
     const [open, setOpen] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
@@ -19,8 +20,7 @@ function Products() {
         setOpen(!open)
     }
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp)
-        )
+        getAllProducts().then(resp => setData(resp))
     }, [])
 
     async function delProduct(id) {
@@ -31,6 +31,8 @@ function Products() {
         });
         toast.success('Məhsul gorbagor oldu!');
     }
+    
+    
 
     return (
         <section className="px-6">

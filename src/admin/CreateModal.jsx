@@ -1,14 +1,23 @@
-import { useState, Fragment, useCallback } from "react";
+import { useState, Fragment, useCallback, useEffect } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import configObj from '../config/config';
 import { useDropzone } from 'react-dropzone';
+import { getCategories } from "../api/api";
 
 function CreateModal({open, setOpen, product, setProduct}) {
     const apiKey = configObj.editorKey
+    const [category, setCategory] = useState([])
+    const [id, setId] = useState()
     const editorRef = useRef(null)
+    
+    console.log(category.filter(item => item.id == id).map(item => item.subcategory[0]).map(item => item.categoryName));
+    
+    useEffect(() => {
+        getCategories().then(resp => setCategory(resp))
+    }, [])
 
     const onDrop = useCallback(acceptedFiles => { }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
@@ -60,16 +69,23 @@ function CreateModal({open, setOpen, product, setProduct}) {
                                 </div>
                                 <div className='my-3'>
                                     <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Kateqoriya seçin:</label>
-                                    <select className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
+                                    <select
+                                    onChange={(e) => setId(e.target.value)}
+                                     className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                         <option>Kateqoriya seçin:</option>
-                                        <option>Kartof</option>
-                                        <option>Sogan</option>
+                                        {
+                                            category && category.map(item => <option key={item.id} value={item.id}>{item.categoryName}</option> ) 
+                                        }
                                     </select>
                                 </div>
                                 <div className='my-3'>
                                     <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Subkateqoriya:</label>
                                     <select className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                         <option>Subkateqoriya seçin</option>
+                                        {
+                                            category && category?.filter(item => item.id == id).map(item => item?.subcategory[0]).map((elem, i) => <option key={i}>{elem?.categoryName}</option>)
+                                            
+                                        }
                                     </select>
                                 </div>
                                 <div className='my-3'>
