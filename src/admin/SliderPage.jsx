@@ -1,6 +1,6 @@
 import { useEffect, Fragment, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
-import { createImg, deleteSlider, getCategories, getSliders } from "../api/api";
+import { createImg, createSlider, deleteSlider, getCategories, getSliders } from "../api/api";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon, XMarkIcon, } from "@heroicons/react/24/outline";
 import toast from "react-hot-toast";
@@ -30,11 +30,9 @@ function SliderPage() {
         toast.success('Şəkil silindi');
     }
     const onDrop = async (acceptedFiles) => {
-
         formdata.append('img', acceptedFiles[0])
         const newImg = await createImg(formdata)
         setImg([...img, newImg.img_url])
-
     };
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -173,7 +171,9 @@ function SliderPage() {
                                             {img?.map(item => <img onClick={() => { setImgSrc(item); setDelOpen(true) }} className="w-[100px] object-cover" src={item} />)}
                                         </div>
                                     </div>
-                                    <button className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
+                                    <button 
+                                    onClick={()=> {createSlider(); setOpen(!open); setImgSrc(null)}}
+                                    className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
                                         Əlavə et
                                     </button>
                                 </Dialog.Panel>

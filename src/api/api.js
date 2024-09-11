@@ -1,15 +1,4 @@
-import axios from "axios";
-import configObj from "../config/config";
 import { axiosInstance } from "../config/axiosInstance";
-
-// async function getAllProducts(cat, subCat, page) {
-//     try {
-//         let salam = await axios.get(`${configObj.base}/products?subcategory=${subCat}&category=${cat}&per_page=13&page=${page}`);
-//         return salam.data;
-//     } catch (error) {
-//         return error;
-//     }
-// }
 
 async function getAllProducts() {
     try {

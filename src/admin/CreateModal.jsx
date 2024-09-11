@@ -30,11 +30,9 @@ function CreateModal({ open, setOpen, product, setProduct }) {
     }
 
     const onDrop = async (acceptedFiles) => {
-
         formdata.append('img', acceptedFiles[0])
         const newImg = await createImg(formdata)
         setImg([...img, newImg.img_url])
-
     };
 
     const { getRootProps, getInputProps } = useDropzone({
