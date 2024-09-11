@@ -121,7 +121,7 @@ async function deleteSlider(id) {
 
 async function createImg(formData) {
     try {
-        const res = await axiosInstance.post(`/img`, formData);
+        const res = await axiosInstance.post(`/img`, formData ,{headers: {"Content-Type" :'multipart/formdata'}});
         return res.data;
     } catch (error) {
         return error;

@@ -16,7 +16,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
 
     useEffect(() => {
         getAllProducts(category, subCategory, pageCount).then((res) => {
-            setProduct(res.data.map((item) => ({ ...item, count: 1 })));
+            setProduct(res?.data?.map((item) => ({ ...item, count: 1 })));
             setPage(res.meta);
         });
     }, [pageCount, category, subCategory]);
