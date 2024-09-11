@@ -7,6 +7,7 @@ function SliderPage() {
             <button className='bg-green-700 text-white p-3 rounded-md font-semibold'>
                 + Slider əlavə et
             </button>
+            <div>leman zaydir.</div>
         </section>
     )
 }
