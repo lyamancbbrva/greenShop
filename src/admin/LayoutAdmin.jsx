@@ -2,7 +2,7 @@ import { Fragment, useState } from 'react'
 import logo from '../assets/greenLogo.png';
 import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
-import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon, FolderOpenIcon } from '@heroicons/react/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
 import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { IoChevronDown } from "react-icons/io5";
@@ -19,6 +19,7 @@ function LayoutAdmin() {
         { name: 'Məhsullar', href: 'products', icon: UsersIcon },
         { name: 'Kateqoriyalar', href: 'categories', icon: FolderIcon },
         { name: 'Subkataqoriya', href: 'subcategory', icon: CalendarIcon },
+        { name: 'Slider', href: 'slider', icon: FolderOpenIcon },
     ]
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const navigate = useNavigate();

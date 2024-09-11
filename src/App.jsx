@@ -18,6 +18,7 @@ import LayoutAdmin from "./admin/LayoutAdmin";
 import { Cookies } from "react-cookie";
 import { verifyToken } from "./api/api";
 import Register from "./admin/Register";
+import SliderPage from "./admin/SliderPage";
 const cook = new Cookies()
 
 function App() {
@@ -38,19 +39,20 @@ function App() {
         setProduct(updatedProducts);
     }
 
-    
+
     useEffect(() => {
         window.scroll(0, 0);
 
-        if(pathname.split('/')[1] === 'admin'){
-            
-        if (pathname.startsWith('/admin')) {
-            const yoxla = verifyToken()
-            yoxla.then(res => {
-                setAuth(res.status)
-                cook.set("user", res.user_login)
-            })
-        } else setAuth(false);}
+        if (pathname.split('/')[1] === 'admin') {
+
+            if (pathname.startsWith('/admin')) {
+                const yoxla = verifyToken()
+                yoxla.then(res => {
+                    setAuth(res.status)
+                    cook.set("user", res.user_login)
+                })
+            } else setAuth(false);
+        }
     }, [pathname]);
 
     return (
@@ -60,16 +62,17 @@ function App() {
                 reverseOrder={false}
             />
             <Routes>
-            {
-                auth ? 
-                <Route path="/admin" element={<LayoutAdmin />} >
-                    <Route path="/admin" element={<Home />}/>
-                    <Route path="products" element={<Products   />}/>
-                    <Route path="categories" element={<Category   />}/>
-                    <Route path="subcategory" element={<Subcategory   />}/>
-                </Route>
-             : <Route path="/admin" element={<Login />} />
-               }
+                {
+                    auth ?
+                        <Route path="/admin" element={<LayoutAdmin />} >
+                            <Route path="/admin" element={<Home />} />
+                            <Route path="products" element={<Products />} />
+                            <Route path="categories" element={<Category />} />
+                            <Route path="subcategory" element={<Subcategory />} />
+                            <Route path="slider" element={<SliderPage />} />
+                        </Route>
+                        : <Route path="/admin" element={<Login />} />
+                }
                 <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
                     <Route path='/' element={<Main />} />
                     <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} product={product} setProduct={setProduct} />} />
@@ -79,7 +82,7 @@ function App() {
                     <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
-                <Route path="register" element={<Register/>} />
+                <Route path="register" element={<Register />} />
                 <Route path='*' element={<Error404 />} />
             </Routes>
         </>
