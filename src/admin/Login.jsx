@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import neptunlogin from '../assets/neptunlogin.png';
+import logo from '../assets/greenLogo.png';
 import toast from 'react-hot-toast';
 import { Cookies } from 'react-cookie';
 import { postLogin } from '../api/api';
@@ -30,8 +30,6 @@ function Login() {
             cook.set("refresh", user.refresh);
             toast.success("Giriş olundu")
             window.location.href = "/admin";
-         
-                  
         } else  toast.error("Sən Zəzər əmi döylüsən!😔");
         
     }
@@ -43,8 +41,8 @@ function Login() {
                     <div className='p-6 space-y-4 md:space-y-6 sm:p-8'>
                         <div className='flex justify-center'>
                             <img
-                                src={neptunlogin}
-                                alt='neptun'
+                                src={logo}
+                                alt='logo'
                                 className='w-[210px]'
                             />
                         </div>

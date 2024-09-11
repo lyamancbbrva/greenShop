@@ -1,5 +1,5 @@
 import { Fragment, useState } from 'react'
-import neptunlogin from '../assets/neptunlogin.png';
+import logo from '../assets/greenLogo.png';
 import { IoExitOutline } from "react-icons/io5";
 import { Dialog, Menu, Transition } from '@headlessui/react'
 import { Bars3BottomLeftIcon, BellIcon, CalendarIcon, FolderIcon, HomeIcon, UsersIcon, XMarkIcon } from '@heroicons/react/24/outline'
@@ -83,8 +83,8 @@ function LayoutAdmin() {
                                         <Link to={'/'}>
                                             <img
                                                 className="h-8 w-auto"
-                                                src={neptunlogin}
-                                                alt="neptun"
+                                                src={logo}
+                                                alt="logo"
                                             />
                                         </Link>
                                     </div>
@@ -118,8 +118,8 @@ function LayoutAdmin() {
                             <Link to={'/'}>
                                 <img
                                     className="h-14 w-auto mb-3"
-                                    src={neptunlogin}
-                                    alt="neptun"
+                                    src={logo}
+                                    alt="logo"
                                 />
                             </Link>
                         </div>
@@ -142,13 +142,13 @@ function LayoutAdmin() {
                             <Link
                                 onClick={handleLogOut}
                                 to={'/login'}
-                                className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
+                                className='flex items-center font-semibold gap-2 hover:text-[#43766C] hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
                             >
                                 <IoExitOutline />Çıxış edin
                             </Link>
                             <Link
                                 to={'/register'}
-                                className='flex items-center font-semibold gap-2 hover:text-orange-600 hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
+                                className='flex items-center font-semibold gap-2 hover:text-[#43766C] hover:bg-gray-100 px-4 py-2 text-md text-gray-700'
                             >
                                 <FaAddressBook />Admin əlavə et
                             </Link>

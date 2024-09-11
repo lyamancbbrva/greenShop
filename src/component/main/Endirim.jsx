@@ -98,7 +98,7 @@ function Endirim() {
                                             addToBasket(item)
                                         }}
                                         className='rounded-3xl bg-[#43766C] text-[.85em] text-white px-4 py-2 font-semibold mb-3'>
-                                        Səbətə at
+                                        Add to basket
                                     </button>
                                 </Link>
                             </SwiperSlide>

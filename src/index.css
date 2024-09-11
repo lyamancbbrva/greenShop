@@ -25,13 +25,16 @@
     border-radius: 50%;
     cursor: pointer;
 }
-.aksia:hover .aksia-open {height: 100px;}
-.about:hover .about-open {height: 100px;}
-.supermarket:hover .supermarket-open{height: 200px;}
 .dropdown:hover .dropdown-open {display: initial;}
-.karyera:hover .karyera-open {height: 100px;}
+
+.karyera:hover .karyera-open,
+.supermarket:hover .supermarket-open, 
+.about:hover .about-open, 
+.aksia:hover .aksia-open {
+    height: auto;
+}
+
 .hover:hover .hover-menu{
-    overflow: initial;
     z-index: 999;
     padding: 10px;
 }
@@ -52,7 +55,7 @@
     background: #43766C;
     border-radius: 10px;
 }
-.hesab:hover .hesab-open {  height: 180px;}
+.hesab:hover .hesab-open {  height: auto;}
 #category-button {position: relative;}
 #category-button::before {
     content: '';

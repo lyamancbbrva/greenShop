@@ -4,7 +4,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Navigation } from "swiper/modules";
 import { GoHeart } from "react-icons/go";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
@@ -80,7 +80,7 @@ function CardsSlider() {
                                                 setSebetSay(sebetSay + 1)
                                                 addToBasket(item)
                                             }} className='rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'>
-                                        Səbətə at
+                                        Add to basket
                                     </button>
                                 </Link>
                             </SwiperSlide>

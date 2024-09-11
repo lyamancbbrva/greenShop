@@ -7,8 +7,8 @@ function Elaqe() {
     return (
         <section className="wrapper px-3">
             <div className='text-gray-600 font-semibold text-sm py-6 mb-9'>
-                <Link to='/'>Ana səhifə /</Link>
-                <span className='capitalize'> Əlaqə</span>
+                <Link to='/'>Home /</Link>
+                <span className='capitalize'> Contact</span>
             </div>
             <div className="flex flex-col lg:flex-row gap-6 my-6">
                 <iframe
@@ -33,11 +33,11 @@ function Elaqe() {
                         <FaRegEnvelope className="text-[2em] text-[#43766C]" />
                         <a href="email" className="hover:text-[#43766C] font-semibold">info@blabla.com</a>
                     </div>
-                    <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="Adınız*"/>
-                    <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="E-mail ünvanınız*"/>
-                    <textarea className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" placeholder="Sual və ya ismarıcınız*"/>
-                    <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="Aşağıdakı kodu daxil edin*"/>
-                    <button className="rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 my-3">Təsdiqlə</button>
+                    <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="your name*"/>
+                    <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="your email address*"/>
+                    <textarea className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" placeholder="your comments*"/>
+                    <input className="block text-xs border rounded-2xl p-2 my-3 bg-slate-50 w-[350px]" type="text" placeholder="password*"/>
+                    <button className="rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 my-3">Submit</button>
                 </div>
             </div>
         </section>

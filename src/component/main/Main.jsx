@@ -72,15 +72,15 @@ function Main() {
                 </div>
                 <section className="mb-8 px-2">
                     <div className='flex justify-between items-center py-2'>
-                        <h3 className='font-bold'>Endirimli məshullar</h3>
-                        <a href='#' className='text-[#43766C]'>Hamısına bax</a>
+                        <h3 className='font-bold'>Discount products</h3>
+                        <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
                     <Endirim />
                 </section>
                 <section className="px-2">
                     <div className='flex justify-between items-center py-2'>
-                        <h3 className='font-bold'>Ən çox satılanlar</h3>
-                        <a href='#' className='text-[#43766C]'>Hamısına bax</a>
+                        <h3 className='font-bold'>Best sellers</h3>
+                        <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
                     <CardsSlider />
                 </section>

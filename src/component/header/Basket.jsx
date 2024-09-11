@@ -7,7 +7,7 @@ export const Basket = () => {
     const { basket, setBasket, setSebetSay } = useContext(Cntx)
 
     function HandleDelete(id) {
-        const elem = basket.filter(item => item.id != id)
+        const elem = basket.filter(item => item.id !== id)
         setBasket(elem)
         setSebetSay(elem.length)
     }
@@ -27,20 +27,20 @@ export const Basket = () => {
         setBasket(newBasket)
     }
 
-    const umumiMebleg = basket.reduce((acc, item) => acc + item.price * item.count, 0).toFixed(2)
+    const totalAmount = basket.reduce((acc, item) => acc + item.price * item.count, 0).toFixed(2)
 
     return (
         <section className='wrapper py-5 px-3'>
-            <h1 className="text-[1.7em]">Səbət</h1>
+            <h1 className="text-[1.7em]">Basket</h1>
             <div className=" mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-sm">
                 <table className="min-w-full divide-y divide-gray-300">
                     <thead className="bg-gray-50">
                         <tr>
-                            <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Şəkil</th>
-                            <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Məhsulun adı</th>
-                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Say</th>
-                            <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Qiymət</th>
-                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Məbləğ</th>
+                            <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Image</th>
+                            <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 lg:table-cell">Product Name</th>
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Quantity</th>
+                            <th scope="col" className="hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell">Price</th>
+                            <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
                             <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
                         </tr>
                     </thead>
@@ -84,19 +84,19 @@ export const Basket = () => {
                 <table className="border">
                     <tbody>
                         <tr className="text-left text-sm font-semibold border">
-                            <th className="p-2">Məbləğ:</th>
-                            <td className="p-2">{umumiMebleg} ₼</td>
+                            <th className="p-2">Amount:</th>
+                            <td className="p-2">{totalAmount} ₼</td>
                         </tr>
                         <tr className="text-left text-sm font-semibold border">
-                            <th className="p-2">Ümumi məbləğ:</th>
-                            <td className="p-2">{umumiMebleg} ₼</td>
+                            <th className="p-2">Total Amount:</th>
+                            <td className="p-2">{totalAmount} ₼</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div className="py-4 mt-4 flex justify-between">
-                <Link to='/' className="rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3">Alış-verişə davam </Link>
-                <button className="rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3">Sifarişi rəsmiləşdir</button>
+                <Link to='/' className="rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3">Continue Shopping </Link>
+                <button className="rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3">Checkout</button>
             </div>
         </section>
     )

@@ -10,7 +10,7 @@ import { HiMiniBars4 } from "react-icons/hi2";
 import Sidebar from "./Sidebar";
 import { Link } from "react-router-dom";
 import { Cntx } from "../../context/DataContext";
-// import azneptun from '../../assets/az-neptun.png';
+import logo from '../../assets/greenLogo.png';
 
 function Header({ catSt, setCatSt }) {
 
@@ -32,189 +32,10 @@ function Header({ catSt, setCatSt }) {
             <Sidebar sideSt={sideSt} setSideSt={setSideSt} />
             <div className='wrapper'>
                 <div className='flex justify-between items-center gap-[3vw] px-[10px] py-[20px]'>
-                    <Link to='/' className='w-[40vw] md:w-[20vw] '>
-                        <svg
-                            version='1.1'
-                            id='neptun_logo_svg'
-                            xmlns='http://www.w3.org/2000/svg'
-                            xmlnsXlink='http://www.w3.org/1999/xlink'
-                            x='0px'
-                            y='0px'
-                            viewBox='270 250 330 90'
-                            style={{ enableBackground: "new 270 250 330 90" }}
-                            xmlSpace='preserve'
-                            fill='#FF8300'
-                            width='100%'
-                        >
-                            <g>
-                                <g>
-                                    <g>
-                                        <g>
-                                            <g>
-                                                <path
-                                                    fill='#FF8300'
-                                                    className='st0'
-                                                    d='M352.1,270.4c-10,0-17.7,6.3-20.8,13.8c-2.4,5.8-2.5,12.7,0.3,18.4c3.5,7.3,11.5,13.1,21.7,13.1
-c4.5,0,8.8-1.2,12.7-3.4c2.8-1.7,3.8-5.4,2.1-8.3c-1.7-2.8-5.4-3.9-8.2-2.1c-5.7,3.1-13,2.2-16.9-3.7h23.5c5,0,8.6-2.7,8.1-8
-C373.1,278.9,363.5,270.4,352.1,270.4z M343,288.1c0.8-3.4,4.6-6.5,9-6.5c4.5,0,8.2,3.2,9,6.5H343z'
-                                                ></path>
-                                                <path
-                                                    className='st0'
-                                                    d='M404.3,270.1c-4,0-7.8,1.1-11.1,2.8c-1.2-1.3-2.9-2.1-5-2.1c-3.6,0-6.6,3-6.6,6.6v44.8
-c0,3.6,2.9,6.5,6.5,6.7h0.6c3.9,0,7-3.2,7-7v-8.2c2.7,1.1,5.6,1.7,8.6,1.7c12.5,0,22.7-10.2,22.7-22.7
-C427,280.3,416.8,270.1,404.3,270.1z M404.3,301.3c-4.8,0-8.6-3.8-8.6-8.6c0-4.8,3.8-8.6,8.6-8.6c4.8,0,8.6,3.8,8.6,8.6
-C412.9,297.5,409.1,301.3,404.3,301.3z'
-                                                ></path>
-                                                <path
-                                                    className='st0'
-                                                    d='M455.3,283.1c3.5,0,6.2-2.7,6.2-6.1c0-3.5-2.7-6.2-6.2-6.2h-6.5v-7c0-3.9-3.2-7.1-7.1-7.1
-s-7.1,3.2-7.1,7.1v32.7c0,10.3,7.4,18.5,17.9,18.5h1.3c3.9,0,7.1-3.2,7.1-7.1s-3.2-7.1-7.1-7.1h-1.3c-2.6,0-3.7-2.1-3.7-4.3
-v-13.5H455.3z'
-                                                ></path>
-                                                <path
-                                                    className='st0'
-                                                    d='M501.2,270.8c-3.9,0-7,3.2-7,7v18.4c0,3-2.5,5.5-5.5,5.5c-3,0-5.5-2.5-5.5-5.5v-18.4c0-3.8-3.1-7-7-7
-c-4,0-7.1,3.2-7.1,7v18.4c0,10.8,8.8,19.6,19.6,19.6c10.8,0,19.6-8.8,19.6-19.6v-18.4C508.2,274,505.1,270.8,501.2,270.8z'
-                                                ></path>
-                                                <path
-                                                    className='st0'
-                                                    d='M536.7,270.8c-10.8,0-19.6,8.8-19.6,19.6v18.4c0,3.8,3.1,7,7.1,7c3.9,0,7-3.2,7-7v-18.4
-c0-3,2.5-5.5,5.5-5.5c3,0,5.5,2.5,5.5,5.5v18.4c0,3.8,3.1,7,7,7c4,0,7.1-3.2,7.1-7v-18.4C556.3,279.5,547.5,270.8,536.7,270.8z
-'
-                                                ></path>
-                                                <path
-                                                    className='st0'
-                                                    d='M303.4,270.8c-4.4,0-8.5,1.5-11.8,4c-3-2.6-6.9-4.1-11.4-4.1h-1.3c-3.8,0-7,3.1-7,7c0,3.8,3.1,7,7,7h1.3
-c2.5,0,3.7,2.1,3.7,4.3v1.1c0,0.1,0,0.3,0,0.4v18.4c0,3.8,3.1,7,7.1,7c3.9,0,7-3.2,7-7v-18.4c0-3,2.5-5.5,5.5-5.5
-c3,0,5.5,2.5,5.5,5.5v18.4c0,3.8,3.1,7,7,7c4,0,7.1-3.2,7.1-7v-18.4C323,279.5,314.2,270.8,303.4,270.8z'
-                                                ></path>
-                                                <circle
-                                                    className='st0'
-                                                    cx='290.9'
-                                                    cy='328.9'
-                                                    r='7'
-                                                ></circle>
-                                                <circle
-                                                    className='st0'
-                                                    cx='315.9'
-                                                    cy='328.9'
-                                                    r='7'
-                                                ></circle>
-                                            </g>
-                                        </g>
-                                    </g>
-                                </g>
-                                <g>
-                                    <g>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M437.2,330.1c0.9,0,1.7,0.4,2.2,1.1c0.6,0.7,0.8,1.6,0.6,2.5c-0.1,0.7-0.5,1.2-1,1.7
-c-0.5,0.4-1.2,0.6-1.9,0.6h0c-0.6,0-1.2-0.2-1.7-0.6c-0.5-0.4-0.8-0.9-1-1.5c-0.1-0.2,0-0.4,0.1-0.6s0.3-0.3,0.5-0.3
-c0.3,0,0.5,0.2,0.6,0.5c0.1,0.3,0.3,0.6,0.6,0.8c0.3,0.2,0.6,0.3,1,0.3h0c0.4,0,0.7-0.1,1-0.3c0.3-0.2,0.5-0.5,0.6-0.9
-c0.1-0.5,0-1-0.3-1.4c-0.3-0.4-0.7-0.6-1.2-0.6c-0.7,0-1.4-0.3-1.9-0.8c-0.5-0.5-0.8-1.1-0.8-1.9v-0.2c0-0.7,0.3-1.4,0.8-1.9
-c0.5-0.5,1.1-0.8,1.9-0.8h0c0.6,0,1.1,0.2,1.5,0.5c0.5,0.3,0.8,0.8,0.9,1.3c0.1,0.2,0,0.4-0.1,0.6c-0.1,0.2-0.3,0.3-0.5,0.3h0
-c-0.3,0-0.5-0.1-0.6-0.4c-0.1-0.3-0.2-0.5-0.5-0.7c-0.2-0.2-0.5-0.3-0.8-0.3h0c-0.4,0-0.7,0.1-0.9,0.4c-0.3,0.3-0.4,0.6-0.4,0.9
-v0.2c0,0.4,0.1,0.7,0.4,0.9C436.5,330,436.8,330.1,437.2,330.1z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M446.7,335c-0.5-0.6-0.8-1.3-0.8-2v-6.4c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2
-c0.2,0,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.3,0.2,0.5v6.5c0,0.4,0.1,0.8,0.4,1.1c0.3,0.3,0.6,0.5,1,0.6c0.5,0.1,0.9-0.1,1.3-0.4
-c0.4-0.3,0.5-0.7,0.5-1.2v-6.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2s0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5v6.5
-c0,0.8-0.3,1.5-0.9,2.1c-0.6,0.6-1.3,0.8-2.1,0.8C447.9,335.9,447.2,335.6,446.7,335z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M460.5,326c0.7,0,1.3,0.3,1.8,0.8c0.5,0.5,0.8,1.1,0.8,1.8v0c0,0.7-0.3,1.3-0.8,1.8
-c-0.5,0.5-1.1,0.8-1.8,0.8H459v4.1c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.4,0.2c-0.2,0-0.3-0.1-0.5-0.2
-c-0.1-0.1-0.2-0.3-0.2-0.5v-8.7c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H460.5z M461.8,328.6c0-0.4-0.1-0.7-0.4-0.9
-c-0.3-0.3-0.6-0.4-0.9-0.4H459v2.7h1.5c0.4,0,0.7-0.1,0.9-0.4C461.7,329.3,461.8,329,461.8,328.6L461.8,328.6z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M473.1,334.7c0.2,0,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.4,0.2h-3.4c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.5c0-0.2,0.1-0.3,0.2-0.5
-c0.1-0.1,0.3-0.2,0.5-0.2h3.4c0.2,0,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.4,0.2
-h-2.7v2.6h2.3c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2h-2.3v3.3H473.1z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M485.1,328.6c0,0.8-0.3,1.4-0.9,1.9c0.6,0.5,0.9,1.2,0.9,1.9v2.8c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.5,0.2s-0.3-0.1-0.4-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-2.8c0-0.4-0.1-0.7-0.4-0.9c-0.3-0.3-0.6-0.4-0.9-0.4h-1.5
-v4.1c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.7
-c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2h2.1c0.7,0,1.3,0.3,1.8,0.8S485.1,327.9,485.1,328.6L485.1,328.6z M481.1,330h1.5
-c0.4,0,0.7-0.1,0.9-0.4c0.3-0.3,0.4-0.6,0.4-0.9v0c0-0.4-0.1-0.7-0.4-0.9c-0.3-0.3-0.6-0.4-0.9-0.4h-1.5V330z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M498,325.9c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5v8.7c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-6.1l-1.9,3.7c0,0,0,0.1-0.1,0.1
-c-0.1,0.1-0.1,0.1-0.2,0.2c-0.2,0.1-0.3,0.1-0.5,0c-0.2,0-0.3-0.2-0.4-0.3l-1.9-3.6v6.1c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.4,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.7c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2
-c0.2,0,0.4,0.1,0.6,0.3c0,0,0,0,0,0l0,0l2.5,4.9l2.5-4.9c0,0,0,0,0,0c0,0,0,0,0,0c0,0,0,0,0-0.1c0.1-0.2,0.2-0.2,0.2-0.2
-S497.8,325.9,498,325.9z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M510,327.7c0.1,0.3,0.1,0.5,0.1,0.8v6.8c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2s-0.3-0.1-0.5-0.2
-c-0.1-0.1-0.2-0.3-0.2-0.5v-4.1h-2.7v4.1c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.4,0.2c-0.2,0-0.3-0.1-0.5-0.2
-c-0.1-0.1-0.2-0.3-0.2-0.5v-6.8c0-0.3,0-0.5,0.1-0.8c0,0,0-0.1,0,0c0.3-0.8,0.8-1.4,1.7-1.6c0,0,0,0,0,0c0.1,0,0.1,0,0.2-0.1h0
-c0,0,0,0,0,0c0.1,0,0.1,0,0.2,0l0,0c0.1,0,0.2,0,0.2,0h0c0.1,0,0.2,0,0.2,0l0.1,0c0.1,0,0.1,0,0.2,0c0,0,0,0,0,0h0
-c0.1,0,0.1,0,0.2,0.1c0,0,0,0,0,0C509.1,326.3,509.7,326.8,510,327.7C510,327.7,510,327.7,510,327.7L510,327.7z M508.8,330v-1.5
-c0-0.2,0-0.3-0.1-0.5l0,0c-0.1-0.1-0.1-0.2-0.2-0.3c0,0,0,0,0,0c0,0-0.1-0.1-0.1-0.1c0,0,0,0,0,0c0,0-0.1,0-0.1-0.1
-s-0.1,0-0.1-0.1c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0c0,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.1,0-0.2,0h-0.1
-c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.1,0-0.2,0l-0.1,0c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0c0,0-0.1,0-0.1,0.1
-c0,0-0.1,0-0.1,0.1c0,0,0,0,0,0c0,0-0.1,0.1-0.1,0.1c0,0,0,0,0,0c0,0,0,0,0,0c-0.1,0.1-0.1,0.2-0.2,0.3c0,0,0,0,0,0
-c-0.1,0.2-0.1,0.3-0.1,0.5v1.5H508.8z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M521.7,328.6c0,0.8-0.3,1.4-0.9,1.9c0.6,0.5,0.9,1.2,0.9,1.9v2.8c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.5,0.2s-0.3-0.1-0.4-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-2.8c0-0.4-0.1-0.7-0.4-0.9c-0.3-0.3-0.6-0.4-0.9-0.4h-1.5
-v4.1c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.7
-c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2h2.1c0.7,0,1.3,0.3,1.8,0.8S521.7,327.9,521.7,328.6L521.7,328.6z M517.6,330h1.5
-c0.4,0,0.7-0.1,0.9-0.4c0.3-0.3,0.4-0.6,0.4-0.9v0c0-0.4-0.1-0.7-0.4-0.9c-0.3-0.3-0.6-0.4-0.9-0.4h-1.5V330z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M533,335c0.1,0.1,0.1,0.3,0.1,0.5c0,0.2-0.1,0.3-0.2,0.4c-0.1,0.1-0.3,0.1-0.5,0.1c-0.2,0-0.3-0.1-0.4-0.3
-l-3-4v3.6c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.4,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.8
-c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2c0.2,0,0.3,0.1,0.4,0.2c0.1,0.1,0.2,0.3,0.2,0.5v3.1l3-3.6
-c0.1-0.1,0.3-0.2,0.4-0.2c0.2,0,0.3,0,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.4s0,0.3-0.1,0.5l-3.1,3.7L533,335z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M543.2,334.7c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.5,0.2h-3.4c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.5c0-0.2,0.1-0.3,0.2-0.5
-c0.1-0.1,0.3-0.2,0.5-0.2h3.4c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2
-h-2.7v2.6h2.3c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2h-2.3v3.3H543.2z'
-                                        ></path>
-                                        <path
-                                            fill='#FF8300'
-                                            className='st0'
-                                            d='M554.7,326c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2
-H553v8.1c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.1H550
-c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H554.7z M554.7,326
-c0.2,0,0.3,0.1,0.5,0.2c0.1,0.1,0.2,0.3,0.2,0.5c0,0.2-0.1,0.3-0.2,0.5c-0.1,0.1-0.3,0.2-0.5,0.2H553v8.1c0,0.2-0.1,0.3-0.2,0.5
-c-0.1,0.1-0.3,0.2-0.5,0.2c-0.2,0-0.3-0.1-0.5-0.2c-0.1-0.1-0.2-0.3-0.2-0.5v-8.1H550c-0.2,0-0.3-0.1-0.5-0.2
-c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H554.7z'
-                                        ></path>
-                                    </g>
-                                </g>
-                            </g>
-                        </svg>
+                    <Link to='/' className='w-[40vw] md:w-[15vw] '>
+                        <img src={logo} alt="logo" />
                     </Link>
-                    <div className='relative w-[40vw] lg:w-[30vw]'>
+                    <div className='relative w-[45vw] lg:w-[30vw]'>
                         <span className='absolute inset-y-0 left-0 flex items-center pl-2'>
                             <button
                                 type='button'
@@ -237,19 +58,12 @@ c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H554.7z'
                             className='py-[4px] sm:py-[10px] w-[100%] pl-10 text-sm bg-white rounded-[30px] text-[.7rem] focus:outline-none border-[1px] border-[#43766C]'
                         />
                         <button className='text-white text-[.9em] bg-[#43766C] rounded-[30px] py-[4px] sm:py-[10px] px-[15px]  absolute right-0 '>
-                        Search
+                            Search
                         </button>
                     </div>
                     <button onClick={toggleSideBar} className='hidden md:block lg:hidden p-[10px] bg-[#FF8300] text-white rounded-[5px] text-[1.4em] '>
                         <FaBars />
                     </button>
-                    {/* <div className='hidden lg:flex justify-end w-[40vw]'>
-                        <img
-                            src={azneptun}
-                            alt='az-neptun'
-                            className='object-cover'
-                        />
-                    </div> */}
                 </div>
             </div>
             <nav className='bg-[#43766C] text-white py-[10px] flex justify-between items-center lg:p-[0] px-[1.5vw]'>
@@ -264,119 +78,119 @@ c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H554.7z'
                             className='hidden lg:inline cursor-pointer py-[12px] px-[10px] text-[#43766C] bg-white w-[250px] xl:w-[360px]'
                         >
                             <HiMiniBars4 className='text-[1.4em] inline mr-[2vw] ' />
-                            <span className='text-[.8em] font-bold '>
-                                Kateqoriyalar
+                            <span className='text-[.9em] tracking-wider font-bold '>
+                                Categories
                             </span>
                         </div>
 
                         <ul className='xl:flex gap-[15px] w-[100%] hidden '>
                             <li className='text-[.8em] font-medium py-3'>
-                                <Link to='/'>Ana Səhifə</Link>
+                                <Link to='/'>Home</Link>
                             </li>
                             <li className='text-[.8em] font-medium relative hover about py-3 block'>
-                                <Link to='/haqqimizda'>Haqqımızda</Link>
+                                <Link to='/haqqimizda'>About</Link>
                                 <TiArrowSortedDown className='inline' />
-                                <ul className='bg-[#fff] z-10 hover-menu h-0 hover:py-[15px] px-[10px] transition-[1s] overflow-hidden border-t-[2px] about-open border-t-[#43766C]  rounded-b-[10px] shadow text-black text-[1em] absolute left-0 top-[calc(100%+0px)] w-[12vw]'>
+                                <ul className='bg-[#fff] z-10 hover-menu h-0 hover:py-[15px] border-t-2 border-[#43766C] px-[10px] transition-[1s] overflow-hidden about-open rounded-b-[10px] shadow text-black text-[1em] absolute left-0 top-[calc(100%+1px)] w-[12vw]'>
                                     <li className="py-[3px]">
                                         <Link to='siyasetimiz'>
-                                            Siyasətimiz
+                                            Our Policy
                                         </Link>
                                     </li>
                                     <li className="py-[3px]">
-                                        <Link to=''>Yeniliklər</Link>
+                                        <Link to=''>News</Link>
                                     </li>
                                 </ul>
                             </li>
                             <li className='text-[.8em] font-medium hover aksia py-3 relative'>
-                                <a href=''>Aksiyalar</a>
+                                <a href=''>Promotions</a>
                                 <TiArrowSortedDown className='inline' />
-                                <ul className='bg-[#fff] z-10 h-0 hover-menu overflow-hidden transition-all border-t-[2px] aksia-open border-t-[#43766C] px-[15px] hover:py-[15px] rounded-b-[10px] shadow text-black  text-[1em] absolute left-0 top-[calc(100%+0px)] w-[12vw]'>
+                                <ul className='bg-[#fff] z-10 h-0 hover-menu overflow-hidden transition-all aksia-open px-[15px] border-t-2 border-[#43766C] hover:py-[15px] rounded-b-[10px] shadow text-black  text-[1em] absolute left-0 top-[calc(100%+1px)] w-[12vw]'>
                                     <li className="py-[3px]">
-                                        <a href=''>Kampaniyalar</a>
+                                        <a href=''>Campaigns</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Neptun Bonus Kart</a>
+                                        <a href=''>Bonus Card</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Elektron Kataloq</a>
+                                        <a href=''>Electronic Catalog</a>
                                     </li>
                                 </ul>
                             </li>
                             <li className='text-[.8em] font-medium relative hover supermarket py-3'>
-                                <a href=''>Supermarketlər</a>
+                                <a href=''>Supermarkets</a>
                                 <TiArrowSortedDown className='inline' />
-                                <ul className='bg-[#fff] z-10 h-0 hover-menu overflow-hidden hover:py-[15px] supermarket-open border-t-[2px]  transition-all border-t-[#43766C] px-[15px] rounded-b-[10px] shadow text-black  text-[1em] absolute left-0 top-[calc(100%+0px)] w-[12vw]'>
+                                <ul className='bg-[#fff] z-10 h-0 hover-menu overflow-hidden hover:py-[15px] supermarket-open transition-all border-t-2 border-[#43766C] px-[15px] rounded-b-[10px] shadow text-black  text-[1em] absolute left-0 top-[calc(100%+1px)] w-[12vw]'>
                                     <li className="py-[3px]">
-                                        <a href=''>Mağazalarımız</a>
+                                        <a href=''>Our Stores</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>İrad və təkliflər</a>
+                                        <a href=''>Feedback and Suggestions</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Alıcıların Nəzərinə</a>
+                                        <a href=''>For Buyers</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Partnyorluq</a>
+                                        <a href=''>Partnership</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Tərəfdaşlar</a>
+                                        <a href=''>Partners</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Marketdə Reklam</a>
+                                        <a href=''>Advertising in Market</a>
                                     </li>
                                 </ul>
                             </li>
                             <li className='text-[.8em] font-medium relative hover karyera py-3'>
-                                <a href=''>Kariyera</a>
+                                <a href=''>Career</a>
                                 <TiArrowSortedDown className='inline' />
-                                <ul className='bg-[#fff] z-10 h-0 overflow-hidden hover-menu transition-all karyera-open border-t-[2px]  border-t-[#43766C] hover:py-[10px] px-[15px] rounded-b-[10px] shadow text-black  text-[1em] absolute left-0 top-[calc(100%+0px)] w-[12vw]'>
+                                <ul className='bg-[#fff] z-10 h-0 overflow-hidden hover-menu transition-all karyera-open hover:py-[10px] px-[15px] border-t-2 border-[#43766C] rounded-b-[10px] shadow text-black  text-[1em] absolute left-0 top-[calc(100%+1px)] w-[12vw]'>
                                     <li className="py-[3px]">
-                                        <a href=''>İşə qəbul proseduru</a>
+                                        <a href=''>Recruitment Procedure</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>Vakansiyalar</a>
+                                        <a href=''>Vacancies</a>
                                     </li>
                                     <li className="py-[3px]">
-                                        <a href=''>CV yerləşdirin</a>
+                                        <a href=''>Submit CV</a>
                                     </li>
                                 </ul>
                             </li>
                             <li className='text-[.8em] font-medium py-3'>
-                                <Link to='/elaqe'>Əlaqə</Link>
+                                <Link to='/elaqe'>Contact</Link>
                             </li>
                         </ul>
                     </div>
                     <div className='flex items-center gap-[4vw] lg:gap-[1vw]'>
-                        <div className='border-r-[1px] border-r-[#fff] px-[2vw] flex items-center '>
+                        <div className='border-r-[1px] border-r-[#fff] px-[2vw] hover:text-[#ccc] flex items-center '>
                             <FaLock className='inline text-[.8em] mx-[5px]' />
-                            <Link to='login' className='text-[.8em] hover:text-[#ccc] cursor-pointer'>
-                                Giriş
+                            <Link to='login' className='text-[.8em] font-medium cursor-pointer'>
+                                Login
                             </Link>
                         </div>
                         <ul className="flex">
-                            <li className='flex items-center py-3 text-[.9em] hesab hover w-full relative'>
-                                <span className="hidden md:inline">Hesabım</span>
+                            <li className='flex items-center py-3 text-[.85em] hesab hover w-full relative'>
+                                <span className="hidden md:inline text-nowrap font-medium">My Account</span>
                                 <FaChevronDown className='text-[.7em] mx-[2vw] cursor-pointer lg:mx-[5px]' />
-                                <ul className='bg-[#fff] h-0 overflow-hidden hesab-open hover-menu transition-all px-[15px] rounded-b-[10px] shadow text-black  text-[.9em] absolute left-[-15px] top-[calc(100%+0px)] min-w-[10vw]'>
+                                <ul className='bg-[#fff] font-medium h-0 overflow-hidden hesab-open hover-menu transition-all px-[15px] rounded-b-[10px] shadow text-black  text-[.9em] absolute left-[-15px] top-[calc(100%+2px)] min-w-[10vw]'>
                                     <li className='hover:text-[#43766C] m-1'>
-                                        <a href=''>Hesabım</a>
+                                        <a href=''>My Account</a>
                                     </li>
                                     <li className='hover:text-[#43766C] m-1'>
-                                        <a href=''>Ödəniş tarixçəsi</a>
+                                        <a href=''>Payment History</a>
                                     </li>
                                     <li className='hover:text-[#43766C] m-1'>
-                                        <a href=''>Əməliyyatlar</a>
+                                        <a href=''>Transactions</a>
                                     </li>
                                     <li className='hover:text-[#43766C] m-1'>
-                                        <a href=''>Yükləmələr</a>
+                                        <a href=''>Downloads</a>
                                     </li>
                                     <li className='hover:text-[#43766C] m-1'>
-                                        <a href=''>Sifarişi rəsmiləşdir</a>
+                                        <a href=''>Finalize Order</a>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
-                        <FaRegHeart className='text-[1.3em] ' />
+                        <FaRegHeart className='text-[1.3em] cursor-pointer' />
                         <LuRefreshCcw className='text-[1.3em] hover:rotate-[270deg] transition cursor-pointer' />
                         <Link
                             to='/basket'
@@ -424,75 +238,76 @@ c-0.1-0.1-0.2-0.3-0.2-0.5c0-0.2,0.1-0.3,0.2-0.5c0.1-0.1,0.3-0.2,0.5-0.2H554.7z'
                     <div className="py-4 overflow-y-auto">
                         <ul className="space-y-2 py-8">
                             <li className="border-b cursor-pointer">
-                                <p className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C]">Ana Səhifə </p>
+                                <p className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C]">Home</p>
                             </li>
                             <li className="border-b cursor-pointer">
                                 <div className=" bg-white rounded-xl">
                                     <Link to='/haqqimizda' onClick={() => toggleAccordion(0)} className=" p-2 text-gray-900 text-[.85em] hover:text-[#43766C] inline-flex justify-between items-center gap-x-3 w-full">
-                                        Haqqımızda
-                                        <svg className="hs-accordion-active:hidden block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        About Us
+                                        <svg className="hs-accordion-active:hidden:block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M5 12h14"></path>
                                             <path d="M12 5v14"></path>
                                         </svg>
                                     </Link>
                                     <div className={`${activeAccordion === 0 ? 'block' : 'hidden'} w-full overflow-hidden transition duration-300`}>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Siyasətimiz</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Yeniliklər</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Our Policy</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">News</p>
                                     </div>
                                 </div>
                             </li>
                             <li className="border-b cursor-pointer">
                                 <div className="bg-white rounded-xl">
                                     <button onClick={() => toggleAccordion(1)} className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C] inline-flex justify-between items-center gap-x-3 w-full">
-                                        Aksiyalar
-                                        <svg className="hs-accordion-active:hidden block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        Promotions
+                                        <svg className="hs-accordion-active:hidden:block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M5 12h14"></path>
                                             <path d="M12 5v14"></path>
                                         </svg>
                                     </button>
                                     <div className={`${activeAccordion === 1 ? 'block' : 'hidden'} w-full overflow-hidden transition-[height] duration-300`}>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Kampaniyalar</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Neptun Bonus Kart</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Elektron Kataloq</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Campaigns</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Bonus Card</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Electronic Catalog</p>
                                     </div>
                                 </div>
                             </li>
                             <li className="border-b cursor-pointer">
                                 <div className="bg-white rounded-xl">
                                     <button onClick={() => toggleAccordion(2)} className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C] inline-flex justify-between items-center gap-x-3 w-full">
-                                        Supermarketlər
-                                        <svg className="hs-accordion-active:hidden block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        Supermarkets
+                                        <svg className="hs-accordion-active:hidden:block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M5 12h14"></path>
                                             <path d="M12 5v14"></path>
                                         </svg>
                                     </button>
                                     <div className={`${activeAccordion === 2 ? 'block' : 'hidden'} w-full overflow-hidden transition-[height] duration-300`}>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Mağazalarımız</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">İrad və təkliflər</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Alıcıların Nəzərinə</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Partnyorluq</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Tərəfdaşlar</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Marketdə Reklam</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Our Stores</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Feedback and Suggestions</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">For Buyers</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Partnership</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Partners</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Advertising in Market</p>
                                     </div>
                                 </div>
                             </li>
                             <li className="border-b cursor-pointer">
                                 <div className="bg-white rounded-xl">
                                     <button onClick={() => toggleAccordion(3)} className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C] inline-flex justify-between items-center gap-x-3 w-full">
-                                        Karyera
-                                        <svg className="hs-accordion-active:hidden block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        Career
+                                        <svg className="hs-accordion-active:hidden:block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M5 12h14"></path>
                                             <path d="M12 5v14"></path>
                                         </svg>
                                     </button>
                                     <div className={`${activeAccordion === 3 ? 'block' : 'hidden'} w-full overflow-hidden transition-[height] duration-300`}>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">İşə qəbul proseduru</p>
-                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Vakansiyalar</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Recruitment Procedure</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Vacancies</p>
+                                        <p className="px-4 py-2 text-[.8em] hover:text-[#43766C]">Submit CV</p>
                                     </div>
                                 </div>
                             </li>
-                            <li className="border-b cursor-pointer">
-                                <Link to='/elaqe' className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C]">Əlaqə</Link>
+                            <li className="border-b pb-2 cursor-pointer">
+                                <Link to='/elaqe' className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C]">Contact</Link>
                             </li>
                         </ul>
                     </div>
