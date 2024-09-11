@@ -83,7 +83,7 @@ function LayoutAdmin() {
                                     <div className="flex flex-shrink-0 items-center px-4">
                                         <Link to={'/'}>
                                             <img
-                                                className="h-8 w-auto"
+                                                className="h-14 mb-2 w-auto"
                                                 src={logo}
                                                 alt="logo"
                                             />
@@ -93,6 +93,7 @@ function LayoutAdmin() {
                                         <nav className="space-y-1 px-2">
                                             {navigation.map((item) => (
                                                 <Link
+                                                    onClick={() => setSidebarOpen(!sidebarOpen)}
                                                     key={item.name}
                                                     to={item.href}
                                                     className='text-gray-800 hover:bg-gray-50 focus:bg-gray-100 group flex items-center px-2 py-2.5 text-sm font-medium rounded-md'
