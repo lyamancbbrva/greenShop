@@ -13,14 +13,25 @@ function CreateModal({open, setOpen, product, setProduct}) {
     const [id, setId] = useState()
     const editorRef = useRef(null)
     
-    console.log(category.filter(item => item.id == id).map(item => item.subcategory[0]).map(item => item.categoryName));
     
     useEffect(() => {
         getCategories().then(resp => setCategory(resp))
     }, [])
+       
+    
+    
 
-    const onDrop = useCallback(acceptedFiles => { }, [])
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
+    const onDrop = async (acceptedFiles) => {
+        formData.append("img", acceptedFiles[0])
+        const sekil = await createImg(formData)
+        setImagePreviews([...imagePreviews, sekil.img_url])
+
+    };
+
+    const { getRootProps, getInputProps } = useDropzone({
+        onDrop,
+        maxFiles: 5
+    });
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -83,7 +94,7 @@ function CreateModal({open, setOpen, product, setProduct}) {
                                     <select className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                         <option>Subkateqoriya seçin</option>
                                         {
-                                            category && category?.filter(item => item.id == id).map(item => item?.subcategory[0]).map((elem, i) => <option key={i}>{elem?.categoryName}</option>)
+                                            category?.filter(item => item.id == id)[0]?.subcategory?.map((item, i) => <option key={i}>{item.categoryName}</option>)
                                             
                                         }
                                     </select>

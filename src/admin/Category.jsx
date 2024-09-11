@@ -14,19 +14,19 @@ function Category() {
     const [categoryName, setCategoryName] = useState('')
     const [id, setId] = useState(false)
 
-    const obj = { categoryName }
-
+    
     async function handleCategory(id, categoryName) {
         setProduct({ id, categoryName })
         setCategoryName(categoryName)
         setOpen(!open)
     }
-
+    
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
     }, [data]);
-
+    
     function createNewCategory() {
+        const obj = { categoryName }
         createCategory(obj).then(resp => setData([...data, resp]))
     }
 
@@ -169,6 +169,20 @@ function Category() {
                                             placeholder='Kateqoriyanın adı'
                                         />
                                     </div>
+                                    {/* <div className='my-4'>
+                                        <label
+                                            htmlFor=''
+                                            className='block text-[12px] pt-2 font-bold text-gray-700 uppercase'
+                                        >
+                                            Subkateqoriyanın adı
+                                        </label>
+                                        <input
+                                            onInput={(e) => setCategoryName(e.target.value)}
+                                            type='text'
+                                            className='block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'
+                                            placeholder='Subkateqoriyanın adı'
+                                        />
+                                    </div> */}
                                     {product && (
                                         <div className='my-4'>
                                             <label

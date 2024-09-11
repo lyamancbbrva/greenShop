@@ -16,13 +16,12 @@ import toast from "react-hot-toast";
 
 function Subcategory() {
 
-  const [product, setProduct] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [addOpen, setAddOpen] = useState(false);
   const [delOpen, setDelOpen] = useState(false);
   const [cats, setCats] = useState([]);
-  const [subCat, setSubCat] = useState("");
+  const [inpValue, setInpValue] = useState("");
   const [catId, setCatId] = useState("");
-  const [data, setData] = useState([]);
   const [subcategory, setSubcategory] = useState([]);
 
   useEffect(() => {
@@ -30,38 +29,55 @@ function Subcategory() {
   }, []);
 
   function createNewSubCat() {
-    const obj = { categoryName: subCat, categoryId: catId };
-    createSubcategory(obj).then((resp) => {
-      setData([...data, obj]);
-    });
+
+    const obj = { categoryName: inpValue, categoryId: catId };
+
+    createSubcategory(obj)
+
+    setSubcategory([...subcategory, obj]);
+    
+
   }
 
   async function delSubcat(id) {
+
     await deleteSubcategory(id);
-    setData(data.filter((item) => item.id !== id));
+
+    setSubcategory(subcategory.filter((item) => item.id !== id));
+
     toast.success("Subkateqoriya gorbagor oldu!");
+
   }
+
+
   function handleCategory(e) {
+
     const id = e.target.value;
+
     setCatId(id);
 
     setSubcategory(cats.find((item) => item.id == id).subcategory);
-  }
-
-  function editSubcategory(id) {
-
-    setProduct({ id });
-    setOpen(!open);
-    const obj = { categoryName: subCat };
-    updateSubcategory(id, obj).then((res) => console.log(res));
-    console.log(subcategory);
     
-console.log(obj);
 
   }
   
 
+  function editSubcategory() {
+
+    setEditOpen(true)
+    
+    const obj = { categoryName: inpValue };
+
+    updateSubcategory(catId, obj).then((res) => setSubcategory(subcategory.map(item => item.id == catId ? {...item, categoryName: res.subcategory.categoryName} : item)));
+    
+    setCatId(null)
+
+  }
+   
+  
+
   return (
+
     <section className="px-6">
       <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">
         Subkateqoriyalarin əlavə olunmasi formu:
@@ -70,9 +86,10 @@ console.log(obj);
       <div className="flex gap-2 items-center">
         <select
           onChange={handleCategory}
+          defaultValue={cats[0]?.categoryName}
           className="bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2"
         >
-          <option defaultValue >
+          <option  >
             Kataqoriya seçin
           </option>
           {cats?.map((item) => (
@@ -83,8 +100,7 @@ console.log(obj);
         </select>
         <button
           onClick={() => {
-            setOpen(!open);
-            setProduct(null)
+            setAddOpen(true);
           }}
           className="bg-green-700 float-end text-white p-3 min-w-[150px] rounded-md font-semibold"
         >
@@ -132,9 +148,8 @@ console.log(obj);
                           <div className="flex gap-2">
                             <FiEdit
                               onClick={() => {
-                                setOpen(true);
+                                setEditOpen(true);
                                 setCatId(item.id);
-                                setProduct(item.id)
                               }}
                               className="text-[1.1em] text-[blue] cursor-pointer"
                             />
@@ -173,14 +188,14 @@ console.log(obj);
         </div>
       </div>
 
-      {/*    C A T E G O R Y    M O D A L     */}
-      <Transition show={open} as={Fragment}>
+      {/*    KATEQORİYA ƏLAVƏ EDƏN MODAL     */}
+
+      <Transition show={addOpen} as={Fragment}>
         <Dialog
           as="div"
           className="relative z-10"
           onClose={() => {
-            // setProduct(null);
-            setOpen(!open);
+            setAddOpen(false);
           }}
         >
           <Transition.Child
@@ -209,12 +224,10 @@ console.log(obj);
                 <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-xl sm:p-11">
                   <div className="flex justify-between pb-4 border-b border-gray-500">
                     <p className="font-bold text-xl">
-                      {product
-                        ? "Subkateqoriyaya düzəliş et"
-                        : "Subkateqoriya əlavə et"}
+                        Subkateqoriya əlavə et
                     </p>
                     <XMarkIcon
-                      onClick={() => setOpen(false)}
+                      onClick={() => setAddOpen(false)}
                       className="text-gray-400 w-6 cursor-pointer hover:text-red-600"
                     />
                   </div>
@@ -226,13 +239,13 @@ console.log(obj);
                       subkateqoriyanın adı
                     </label>
                     <input
-                      onInput={(e) => setSubCat(e.target.value)}
+                      onInput={(e) => setInpValue(e.target.value)}
                       type="text"
                       className="block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                       placeholder="Subkateqoriyanın adı"
                     />
                   </div>
-                  <div className={`my-3  ${product ? 'hidden' : 'block'}`}>
+                  <div className="my-3">
                     <label
                       htmlFor=""
                       className={`block text-[12px] py-2 font-bold text-gray-700 uppercase`}
@@ -241,13 +254,11 @@ console.log(obj);
                     </label>
                     <select
                       onChange={(e) =>
-                        setCatId(
-                         e.target.value
-                        )
+                        setCatId( e.target.value)
                       }
                       className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                     >
-                      <option defaultValue disabled>
+                      <option disabled >
                         Kateqoriya seçin:
                       </option>
                       {cats?.map((item, i) => (
@@ -257,13 +268,13 @@ console.log(obj);
                   </div>
                   <button
                     onClick={() => {
-                        product ? editSubcategory() :  createNewSubCat();
-                      setOpen(false);
+                    createNewSubCat();
+                    setAddOpen(false);
                      
                     }}
                     className="bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold"
                   >
-                    {product ? "Düzəliş et" : "Əlavə et"}
+                    Əlavə et
                   </button>
                 </Dialog.Panel>
               </Transition.Child>
@@ -271,6 +282,82 @@ console.log(obj);
           </div>
         </Dialog>
       </Transition>
+
+    {/*KATEGORIYAYA DÜZƏLİŞ EDƏN MODAL  */}
+
+    <Transition show={editOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-10"
+          onClose={() => {
+            setEditOpen(false);
+          }}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 z-10 overflow-y-auto">
+            <div className="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                enterTo="opacity-100 translate-y-0 sm:scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+              >
+                <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 w-full sm:max-w-xl sm:p-11">
+                  <div className="flex justify-between pb-4 border-b border-gray-500">
+                    <p className="font-bold text-xl">
+                        Subkateqoriyaya düzəliş et
+                    </p>
+                    <XMarkIcon
+                      onClick={() => setEditOpen(false)}
+                      className="text-gray-400 w-6 cursor-pointer hover:text-red-600"
+                    />
+                  </div>
+                  <div className="my-4">
+                    <label
+                      htmlFor=""
+                      className="block text-[12px] pt-2 font-bold text-gray-700 uppercase"
+                    >
+                      subkateqoriyanın adı
+                    </label>
+                    <input
+                      onInput={(e) => setInpValue(e.target.value)}
+                      type="text"
+                      value={inpValue || subcategory?.find(item => item.id == catId)?.categoryName}
+                      className="block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
+                      placeholder="Subkateqoriyanın adı"
+                    />
+                  </div>
+                  <button
+                    onClick={() => {
+                    editSubcategory();
+                    setEditOpen(false);
+                     
+                    }}
+                    className="bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold"
+                  >
+                    Düzəliş et
+                  </button>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    
 
       {/*    D E L E T E   C O M P O N E N T     */}
       <Transition.Root show={delOpen} as={Fragment}>
