@@ -24,11 +24,19 @@ function SliderPage() {
         getCategories().then(resp => setCategory(resp))
     }, [])
 
+    function addSlider() {
+        const obj = { category , imgSrc}
+        createSlider(obj).then(resp => setData([...data, resp]))
+        setOpen(!open); 
+        setImgSrc(null);
+    }
+
     function delSlider(id) {
         deleteSlider(id)
         setImg(img.filter(item => item !== imgSrc))
         toast.success('Şəkil silindi');
     }
+    
     const onDrop = async (acceptedFiles) => {
         formdata.append('img', acceptedFiles[0])
         const newImg = await createImg(formdata)
@@ -74,12 +82,12 @@ function SliderPage() {
                                         data?.map((item, i) => (
                                             <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
-                                                    {/* {item.} */}
+                                                    {item.imgSrc}
                                                 </td>
                                                 <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                                                     <FaTrashAlt
                                                         onClick={() => {
-                                                            setId(item.id)
+                                                            setId(id)
                                                             setDelOpen(true)
                                                         }}
                                                         className='text-[1.2em] text-[red] cursor-pointer'
@@ -173,7 +181,7 @@ function SliderPage() {
                                         </div>
                                     </div>
                                     <button 
-                                    onClick={()=> {createSlider(); setOpen(!open); setImgSrc(null)}}
+                                    onClick={()=> addSlider()}
                                     className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
                                         Əlavə et
                                     </button>
@@ -224,7 +232,7 @@ function SliderPage() {
                                         </span>
                                         istədiyinizə əminsiz?
                                     </p>
-                                    <div className='mt-5 flex gap-2 text-center justify-center'>
+                                    <div className='mt-5 flex gap-2 text-center flex-row-reverse justify-center'>
                                         <button
                                             type='button'
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'

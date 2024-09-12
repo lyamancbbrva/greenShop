@@ -19,10 +19,10 @@ function Category() {
         setCategoryName(categoryName)
         setOpen(!open)
     }
-    
+
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
-    }, [data]);
+    }, []);
     
     function createNewCategory() {
         const obj = { categoryName }
@@ -31,7 +31,7 @@ function Category() {
     }
 
     function delCategory(id) {
-        deleteCategory(id);
+        deleteCategory(id)
         setCategoryName(() => {
             const updatedData = data.filter(item => item.id !== id);
             return updatedData;
@@ -46,7 +46,7 @@ function Category() {
                 item.id == product.id ? { ...item, categoryName: resp.categoryName } : item
             )
             setData(updatedData)
-            setOpen(false)
+            setOpen(false);
             toast.success('Oldu çiçək kimii');
         })
     }
@@ -176,7 +176,7 @@ function Category() {
                                         <input
                                             onInput={(e) => setCategoryName(e.target.value)}
                                             type='text'
-                                            value={categoryName}
+                                            // value={categoryName}
                                             className='block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'
                                             placeholder='Kateqoriyanın adı'
                                         />
@@ -263,13 +263,13 @@ function Category() {
                                         />
                                     </div>
                                     <p className='text-center py-2 text-lg font-bold'>
-                                        Kateqoriyanı{" "}
-                                        <span className='text-red-700'>
+                                        Kateqoriyanı
+                                        <span className='text-red-700 mx-1.5'>
                                             silmək
-                                        </span>{" "}
+                                        </span>
                                         istədiyinizə əminsiz?
                                     </p>
-                                    <div className='mt-5 flex gap-2 text-center justify-center'>
+                                    <div className='mt-5 flex gap-2 text-center flex-row-reverse justify-center'>
                                         <button
                                             type='button'
                                             className='inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm'
