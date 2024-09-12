@@ -3,7 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from "@headlessui/react";
 import { ExclamationTriangleIcon, XMarkIcon, } from "@heroicons/react/24/outline";
-import { createCategory, deleteCategory, getCategories } from "../api/api";
+import { createCategory, deleteCategory, editCategory, getCategories } from "../api/api";
 import toast from "react-hot-toast";
 
 function Category() {
@@ -13,7 +13,6 @@ function Category() {
     const [data, setData] = useState([]);
     const [categoryName, setCategoryName] = useState('')
     const [id, setId] = useState(false)
-
     
     async function handleCategory(id, categoryName) {
         setProduct({ id, categoryName })
@@ -28,18 +27,30 @@ function Category() {
     function createNewCategory() {
         const obj = { categoryName }
         createCategory(obj).then(resp => setData([...data, resp]))
+        setOpen(false)
     }
 
     function delCategory(id) {
         deleteCategory(id);
-    
         setCategoryName(() => {
             const updatedData = data.filter(item => item.id !== id);
             return updatedData;
         });
-        
         toast.success('Silindi getdi');
     }
+
+    function updateCategory() {
+        const obj = { categoryName }
+        editCategory(product.id, obj).then((resp) => {
+            const updatedData = data.map(item => 
+                item.id == product.id ? { ...item, categoryName: resp.categoryName } : item
+            )
+            setData(updatedData)
+            setOpen(false)
+            toast.success('Oldu çiçək kimii');
+        })
+    }
+    
 
     return (
         <section className='px-6'>
@@ -165,6 +176,7 @@ function Category() {
                                         <input
                                             onInput={(e) => setCategoryName(e.target.value)}
                                             type='text'
+                                            value={categoryName}
                                             className='block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'
                                             placeholder='Kateqoriyanın adı'
                                         />
@@ -204,8 +216,7 @@ function Category() {
                                     )}
                                     <button
                                         onClick={() => {
-                                            createNewCategory()
-                                            setOpen(false)
+                                            product ? updateCategory() : createNewCategory()
                                         }}
                                         className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
 

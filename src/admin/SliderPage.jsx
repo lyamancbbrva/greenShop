@@ -18,7 +18,7 @@ function SliderPage() {
 
     useEffect(() => {
         getSliders().then((resp) => setData(resp))
-    }, [data])
+    }, [])
 
     useEffect(() => {
         getCategories().then(resp => setCategory(resp))
@@ -79,6 +79,7 @@ function SliderPage() {
                                                 <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                                                     <FaTrashAlt
                                                         onClick={() => {
+                                                            setId(item.id)
                                                             setDelOpen(true)
                                                         }}
                                                         className='text-[1.2em] text-[red] cursor-pointer'
@@ -168,7 +169,7 @@ function SliderPage() {
                                             </div>
                                         </div>
                                         <div className="flex my-2 gap-1">
-                                            {img?.map(item => <img onClick={() => { setImgSrc(item); setDelOpen(true) }} className="w-[100px] object-cover" src={item} />)}
+                                            {img?.map((item, i) => <img key={i} onClick={() => { setImgSrc(item); setDelOpen(true) }} className="w-[100px] object-cover" src={item} />)}
                                         </div>
                                     </div>
                                     <button 
