@@ -36,7 +36,6 @@ function Subcategory() {
 
     setSubcategory([...subcategory, obj]);
     
-
   }
 
   async function delSubcat(id) {
@@ -58,7 +57,6 @@ function Subcategory() {
 
     setSubcategory(cats.find((item) => item.id == id).subcategory);
     
-
   }
   
 
@@ -73,8 +71,6 @@ function Subcategory() {
     setCatId(null)
 
   }
-   
-  
 
   return (
 

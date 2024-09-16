@@ -5,19 +5,26 @@ import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import configObj from '../config/config';
 import { useDropzone } from 'react-dropzone';
-import { createImg, deleteImg, getCategories } from "../api/api";
+import { createImg, createProduct, deleteImg, getCategories } from "../api/api";
 import { ExclamationTriangleIcon } from "@heroicons/react/16/solid";
+import toast from "react-hot-toast";
 
 function CreateModal({ open, setOpen, product, setProduct }) {
 
     const formdata = new FormData()
     const apiKey = configObj.editorKey
     const [category, setCategory] = useState([])
-    const [id, setId] = useState()
     const editorRef = useRef(null)
     const [img, setImg] = useState([])
     const [delModal, setDelModal] = useState(false)
     const [imgSrc, setImgSrc] = useState('')
+
+    const [id, setId] = useState(0)
+    const [name, setName] = useState("")
+    const [price, setPrice] = useState(0)
+    const [discount, setDiscount] = useState(0);
+    const [meta, setMeta] = useState('')
+
 
     useEffect(() => {
         getCategories().then(resp => setCategory(resp))
@@ -39,6 +46,48 @@ function CreateModal({ open, setOpen, product, setProduct }) {
         onDrop,
         maxFiles: 5
     });
+
+    function addProduct() {
+        const productObj = {
+            name: name,
+            isTopSelling: true,
+            price: Number(price),
+            discount: Number(discount),
+            img: img,
+            categoryId: Number(id),
+            subcategoryId: Number(id),
+            description: editorRef.current.getContent(),
+            metadata: meta
+        }
+
+        console.log(productObj)
+
+        createProduct(productObj).then(resp => setProduct([...product, resp]))
+        setOpen(!open)
+        toast.success('Geldim e geldim!');
+    }
+
+
+    function updateProduct() {
+        const productObj = {
+            name,
+            isTopSelling: true, 
+            price: Number(price),
+            discount: Number(discount),
+            img,
+            categoryId: id,
+            subcategoryId: id,
+            description: editorRef.current ? editorRef.current.getContent() : '',
+            metadata: meta,
+        };
+        updateProduct(product.id, productObj)
+            .then(resp => {
+                setProduct(prevProducts => prevProducts.map(p => p.id === product.id ? resp : p));
+                setOpen(false);
+                toast.success('duzeltdim qaqa!');
+            })
+    }
+
 
     return (
         <>
@@ -81,6 +130,7 @@ function CreateModal({ open, setOpen, product, setProduct }) {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">məhsulun adı</label>
                                         <input
+                                            onInput={(e) => setName(e.target.value)}
                                             type="text"
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                             placeholder="Məhsulun adı"
@@ -110,6 +160,7 @@ function CreateModal({ open, setOpen, product, setProduct }) {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Endirim Miqdarı (%):</label>
                                         <input
+                                            onInput={(e) => { setDiscount(e.target.value) }}
                                             type="number"
                                             placeholder='0'
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
@@ -118,6 +169,7 @@ function CreateModal({ open, setOpen, product, setProduct }) {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Məhsulun qiyməti:</label>
                                         <input
+                                            onInput={(e) => setPrice(e.target.value)}
                                             type="number"
                                             placeholder='123'
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
@@ -172,9 +224,11 @@ function CreateModal({ open, setOpen, product, setProduct }) {
                                     </div>
                                     <div className='mb-3 border-b border-gray-400 py-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Meta məlumat</label>
-                                        <textarea name="" id="" className='text-sm block w-full rounded-md h-24 border-gray-400 p-2 border outline-indigo-600 shadow-sm' placeholder='Meta məlumatları daxil edin...'></textarea>
+                                        <textarea onInput={(e) => setMeta(e.target.value)} name="" id="" className='text-sm block w-full rounded-md h-24 border-gray-400 p-2 border outline-indigo-600 shadow-sm' placeholder='Meta məlumatları daxil edin...'></textarea>
                                     </div>
-                                    <button className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
+                                    <button
+                                        onClick={() => { product ? updateProduct() : addProduct() }}
+                                        className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
                                         {product ? 'Düzəliş et' : 'Əlavə et'}
                                     </button>
                                 </Dialog.Panel>

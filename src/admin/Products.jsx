@@ -1,15 +1,15 @@
 import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
-import { Dialog, Transition } from '@headlessui/react'
+import { Description, Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import CreateModal from "./CreateModal";
-import getAllProducts, { deleteProduct } from "../api/api";
+import getAllProducts, { deleteProduct, editProduct } from "../api/api";
 import toast from "react-hot-toast";
 
 function Products() {
 
-    const [product, setProduct] = useState(null)
+    const [product, setProduct] = useState([])
     const [open, setOpen] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
     const [data, setData] = useState([])
@@ -19,6 +19,7 @@ function Products() {
         setProduct({ id, name })
         setOpen(!open)
     }
+
     useEffect(() => {
         getAllProducts().then(resp => setData(resp))
     }, [])
@@ -31,8 +32,6 @@ function Products() {
         });
         toast.success('Məhsul gorbagor oldu!');
     }
-    
-    
 
     return (
         <section className="px-6">
@@ -87,7 +86,7 @@ function Products() {
                                                     </div>
                                                     <div className="ml-4">
                                                         <div className="font-medium text-gray-900">{item.name}</div>
-                                                        <div className="text-gray-500">{item.category.categoryName}</div>
+                                                        {/* <div className="text-gray-500">{item.category.categoryName}</div> */}
                                                     </div>
                                                 </div>
                                             </td>
