@@ -61,7 +61,7 @@ function Header({ catSt, setCatSt }) {
                             Search
                         </button>
                     </div>
-                    <button onClick={toggleSideBar} className='hidden md:block lg:hidden p-[10px] bg-[#FF8300] text-white rounded-[5px] text-[1.4em] '>
+                    <button onClick={toggleSideBar} className='hidden md:block lg:hidden p-[10px] bg-[#43766C] text-white rounded-[5px] text-[1.4em] '>
                         <FaBars />
                     </button>
                 </div>

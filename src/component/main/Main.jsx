@@ -3,9 +3,9 @@ import CardsSlider from "./CardsSlider";
 import Endirim from "./Endirim";
 import Slider from "./Slider";
 import { FaArrowRightLong } from "react-icons/fa6";
-import reklam1 from '../../assets/azn-50.png';
-import reklam2 from '../../assets/nes-cake.jpg';
-import reklam3 from '../../assets/heftesonu-banner.png';
+import reklam1 from '../../assets/reklam1.png';
+import reklam2 from '../../assets/reklam2.png';
+import reklam3 from '../../assets/reklam3.png';
 
 function Main() {
     return (
@@ -16,7 +16,7 @@ function Main() {
                     <div className='lg:w-[70%] xl:w-[78%] mt-0 lg:ml-0 lg:flex flex-col items-end'>
                         <Slider />
                         <div className='flex gap-3 justify-between py-3 w-[100%] '>
-                            <div className='w-[100%] lg:w-[18vw] xl:w-[20vw]'>
+                            <div className='w-[100%] border lg:w-[18vw] xl:w-[20vw]'>
                                 <div className='lg:w-[100%]'>
                                     <a href=''>
                                         <img
@@ -33,12 +33,12 @@ function Main() {
                                     <FaArrowRightLong />
                                 </div>
                             </div>
-                            <div className='w-[100%] lg:w-[18vw]  xl:w-[20vw]'>
+                            <div className='w-[100%] border lg:w-[18vw]  xl:w-[20vw]'>
                             <div className='lg:w-[100%]'>
                                     <a href=''>
                                         <img
                                             className='object-cover w-full'
-                                            src={reklam2}
+                                            src={reklam3}
                                             alt='endirim'
                                         />
                                     </a>
@@ -50,12 +50,12 @@ function Main() {
                                     <FaArrowRightLong />
                                 </div>
                             </div>
-                            <div className='w-[18vw] lg:block hidden xl:w-[20vw]'>
+                            <div className='w-[18vw] border lg:block hidden xl:w-[20vw]'>
                                 <div className='w-[100%]'>
                                     <a href=''>
                                         <img
                                             className='object-cover w-full'
-                                            src={reklam3}
+                                            src={reklam2}
                                             alt='heftesonuendirim'
                                         />
                                     </a>
