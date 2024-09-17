@@ -69,13 +69,13 @@
     left: 0;
 }
 .swiper-pagination-bullet-active {
-    background-color: #43766C !important;
+    background-color: #e4e0e0 !important;
     width: 20px !important;
     border-radius: 5px !important;
     transition: .8s;
 }
 :root {
-    --swiper-theme-color: #43766C !important;
+    --swiper-theme-color: #e4e0e0 !important;
     --swiper-navigation-size: 20px !important;
 }
 #amiroff-img {   filter: brightness(0) invert(1)}
@@ -87,7 +87,7 @@
     padding: 20px;
 }
 :root {
-    --swiper-theme-color: #43766C !important;
+    --swiper-theme-color: #e4e0e0 !important;
     --swiper-navigation-size: 20px !important;
 }
 @media only screen and (min-width: 768px) {

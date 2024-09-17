@@ -5,9 +5,9 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { EffectFade, Navigation, Pagination, Autoplay } from "swiper/modules";
-import banner1 from '../../assets/banner1.webp';
-import banner2 from '../../assets/banner2.webp';
-import banner3 from '../../assets/banner3.webp';
+import banner1 from '../../assets/banner11.png';
+import banner2 from '../../assets/banner22.png';
+import banner3 from '../../assets/banner33.png';
 
 function Slider() {
     return (

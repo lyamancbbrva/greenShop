@@ -28,7 +28,7 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                        50 azn 50 Bonus
+                                        50 USD 50 Bonus
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
@@ -45,7 +45,7 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                        Neptunda Dadlı Endirimlər!
+                                    Delicious Discounts at GreenShop!
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
@@ -62,7 +62,7 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                        Həftəsonu Endirimləri Neptunda!
+                                    Weekend Discounts in GreenShop!
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
