@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 .shadow {box-shadow: 0 10px 0 10px 20px #2f2e2e;}
 .range-input {
     appearance: none;
@@ -26,20 +27,18 @@
     cursor: pointer;
 }
 .dropdown:hover .dropdown-open {display: initial;}
-
 .karyera:hover .karyera-open,
 .supermarket:hover .supermarket-open, 
 .about:hover .about-open, 
 .aksia:hover .aksia-open {
     height: auto;
 }
-
 .hover:hover .hover-menu{
     z-index: 999;
     padding: 10px;
 }
 .card:hover .endirim {
-    background: var(--swiper-theme-color);
+    background: #43766ca6;
     color: #fff;
     transition: .4s;
 }

@@ -4,14 +4,20 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Navigation } from "swiper/modules";
 import { GoHeart } from "react-icons/go";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
+import getAllProducts from "../../api/api";
 spiral.register();
 
 function CardsSlider() {
-    const { data, addToBasket, setSebetSay, sebetSay } = useContext(Cntx);
+    const { setSebetSay, sebetSay, basket, setBasket } = useContext(Cntx);
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getAllProducts().then(resp => setData(resp))
+    }, [])
 
     return (
         <div className='flex justify-center items-start'>
@@ -43,7 +49,7 @@ function CardsSlider() {
             >
                 {data ? (
                     data.map((item, i) => {
-                        const { img, title, price, id } = item;
+                        const { img, name, price, id } = item;
                         return (
                             <SwiperSlide key={i}>
                                 <Link
@@ -51,14 +57,14 @@ function CardsSlider() {
                                     className='text-center border rounded-md p-3 bg-white relative inline-block'
                                 >
                                     <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
-                                    <img src={img} alt={title} />
-                                    <h5 className='py-4 hover:text-[#43766C] h-16 text-[.7em] font-semibold'>
-                                        {title}
+                                    <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
+                                    <h5 className='py-4 hover:text-[#43766C] text-[.82em] capitalize font-semibold'>
+                                        {name}
                                     </h5>
-                                    <p className='font-bold text-[1.3em]'>
+                                    <p className='font-bold text-[1.2em]'>
                                         {price} ₼
                                     </p>
-                                    <div className='py-3'>
+                                    <div className='py-3.5'>
                                         <button
                                             onClick={(e) => {
                                                 e.preventDefault();
@@ -76,10 +82,10 @@ function CardsSlider() {
                                         </button>
                                     </div>
                                     <button onClick={(e) => {
-                                                e.preventDefault();
-                                                setSebetSay(sebetSay + 1)
-                                                addToBasket(item)
-                                            }} className='rounded-3xl  text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'>
+                                        e.preventDefault();
+                                        setSebetSay(sebetSay + 1)
+                                        setBasket([...basket, item]);
+                                    }} className='rounded-3xl  text-[.8em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'>
                                         Add to basket
                                     </button>
                                 </Link>

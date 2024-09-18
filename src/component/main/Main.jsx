@@ -13,7 +13,7 @@ function Main() {
             <div className='wrapper-md'>
                 <div className='flex gap-1 justify-between'>
                     <Aside />
-                    <div className='lg:w-[70%] xl:w-[78%] mt-0 lg:ml-0 lg:flex flex-col items-end'>
+                    <div className='lg:w-[70%] xl:w-[78%] mt-0 lg:ml-0 lg:flex flex-col items-end px-2'>
                         <Slider />
                         <div className='flex gap-3 justify-between py-3 w-[100%] '>
                             <div className='w-[100%] border lg:w-[18vw] xl:w-[20vw]'>
@@ -28,7 +28,7 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                        50 USD 50 Bonus
+                                        New Bonus Card!
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
@@ -45,7 +45,7 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                    Delicious Discounts at GreenShop!
+                                    Delicious Discounts!
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
@@ -70,13 +70,13 @@ function Main() {
                         </div>
                     </div>
                 </div>
-                <section className="mb-8 px-2">
+                {/* <section className="mb-8 px-2">
                     <div className='flex justify-between items-center py-2'>
                         <h3 className='font-bold'>Discount products</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
                     <Endirim />
-                </section>
+                </section> */}
                 <section className="px-2">
                     <div className='flex justify-between items-center py-2'>
                         <h3 className='font-bold'>Best sellers</h3>

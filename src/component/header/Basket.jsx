@@ -48,13 +48,13 @@ export const Basket = () => {
                         {basket.map((item) => (
                             <tr key={item.id}>
                                 <td className="w-32 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-                                    <img src={item.img} alt={item.title} className="md:w-24 w-20" />
+                                    <img src={item.img} alt={item.name} className="md:w-24 w-20" />
                                     <dl className="font-normal lg:hidden">
                                         <dd className="mt-1 truncate text-gray-700">{item.title}</dd>
                                         <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} ₼</dd>
                                     </dl>
                                 </td>
-                                <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{item.title}</td>
+                                <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{item.name}</td>
                                 <td className="px-3 py-4 w-fit text-sm text-gray-500 sm:table-cell">
                                     <button
                                         onClick={() => HandleDecrement(item.id)}

@@ -4,14 +4,21 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Navigation } from "swiper/modules";
 import { GoHeart } from "react-icons/go";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
+import getAllProducts from "../../api/api";
 spiral.register();
 
 function Endirim() {
-    const { data, addToBasket,  setSebetSay , sebetSay } = useContext(Cntx);
+    const { addToBasket,  setSebetSay , sebetSay } = useContext(Cntx);
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getAllProducts().then(resp => setData(resp))
+    }, [])
+
     function rand(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
@@ -46,7 +53,7 @@ function Endirim() {
             >
                 {data ? (
                     data.map((item, i) => {
-                        const { img, title, price, id } = item;
+                        const { img, name, price, id } = item;
                         const endirimliQiymet =
                             (price * (100 - rand(10, 40))) / 100;
 
@@ -57,19 +64,19 @@ function Endirim() {
                                     className='text-center border rounded-md p-3 bg-white relative inline-block card'
                                 >
                                     <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
-                                    <img src={img} alt={title} />
-                                    <h5 className='py-4 hover:text-[#43766C] h-16 text-[.7em] font-semibold'>
-                                        {title}
+                                    <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md"/>
+                                    <h5 className='py-4 hover:text-[#43766C] text-[.82em] capitalize font-semibold'>
+                                        {name}
                                     </h5>
                                     <div className='flex items-center justify-center gap-2'>
                                         <span className='bg-[#43766c34] endirim rounded-[50%] w-[40px] h-[40px] flex justify-center items-center text-[.8em] font-semibold'>
                                             -{rand(10, 40)}%
                                         </span>
                                         <div>
-                                            <p className='line-through text-gray-400'>
+                                            <p className='line-through text-sm text-gray-400'>
                                                 {price} ₼
                                             </p>
-                                            <p className='font-bold text-[1.3em]'>
+                                            <p className='font-bold text-[1.2em]'>
                                                 {endirimliQiymet.toFixed(2)} ₼
                                             </p>
                                         </div>
@@ -97,7 +104,7 @@ function Endirim() {
                                             setSebetSay(sebetSay + 1)
                                             addToBasket(item)
                                         }}
-                                        className='rounded-3xl bg-[#43766C] text-[.85em] text-white px-4 py-2 font-semibold mb-3'>
+                                        className='rounded-3xl bg-[#43766C] text-[.8em] text-white px-4 py-2 font-semibold mb-3'>
                                         Add to basket
                                     </button>
                                 </Link>
