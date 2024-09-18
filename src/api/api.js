@@ -225,10 +225,23 @@ async function verifyToken() {
     }
 }
 
+async function searchProduct(query) {
+    try {
+        const res = await axiosInstance.get(`/products/search`, {
+            params: { q: query },
+        });
+        return res.data;
+    } catch (error) {
+        return false;
+    }
+}
+
+
 export default getAllProducts
 
 export {
     verifyToken,
+    searchProduct,
     getAllProducts,
     createProduct,
     getDiscountedProduct,

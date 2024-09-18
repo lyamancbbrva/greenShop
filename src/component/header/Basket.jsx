@@ -50,7 +50,7 @@ export const Basket = () => {
                                 <td className="w-32 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
                                     <img src={item.img} alt={item.name} className="md:w-24 w-20" />
                                     <dl className="font-normal lg:hidden">
-                                        <dd className="mt-1 truncate text-gray-700">{item.title}</dd>
+                                        <dd className="mt-1 truncate text-gray-700">{item.name}</dd>
                                         <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} ₼</dd>
                                     </dl>
                                 </td>

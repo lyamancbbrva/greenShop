@@ -2,6 +2,7 @@ import {  useEffect, useState } from "react";
 import { GoChevronRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../api/api";
+import icon from "../../assets/leaf.webp"
 
 function Aside() {
     const [cat, setCat] = useState([])
@@ -24,7 +25,7 @@ function Aside() {
                                         : "bg-white"
                                         } gap-3 items-center border-b py-2 hover:bg-[#43766c2c] relative dropdown`}
                                 >
-                                    {/* <img src={icon} alt={categoryName} /> */}
+                                    <img src={icon} className="w-6"/>
                                     <div className='flex justify-between items-center w-full relative'>
                                         <p className='font-bold text-[10px] lg:text-[.7em]'>
                                             {item.categoryName}

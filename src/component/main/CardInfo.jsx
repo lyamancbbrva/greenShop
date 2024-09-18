@@ -15,7 +15,7 @@ function CardInfo({ product, updateCount }) {
         <section className='wrapper'>
             <div className='text-gray-600 font-semibold py-10 px-3'>
                 <Link to='/'>Home /</Link>
-                <span className='text-[.8em]'> {item?.title}</span>
+                <span className='text-[.8em]'> {item?.name}</span>
             </div>
             <div className='flex flex-col items-center bg-white md:flex-row md:max-w-4xl mb-5'>
                 <img
