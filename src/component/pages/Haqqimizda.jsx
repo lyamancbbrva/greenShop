@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import Aside from "../main/Aside";
 
-function Haqqimizda() {
+function Haqqimizda({catSt}) {
     return (
-        <section className="wrapper px-3">
+        <section className="wrapper px-3 relative">
+            <div className="absolute top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
             <div className="text-gray-600 font-semibold text-sm py-6">
                 <Link to="/">Home /</Link>
                 <span className="capitalize"> About Us</span>

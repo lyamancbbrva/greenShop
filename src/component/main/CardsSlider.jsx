@@ -33,16 +33,20 @@ function CardsSlider() {
                         slidesPerView: 2,
                         spaceBetween: 0,
                     },
-                    768: {
+                    568: {
                         slidesPerView: 3,
-                        spaceBetween: 0,
+                        spaceBetween: 10,
+                    },
+                    768: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
                     },
                     992: {
-                        slidesPerView: 4,
-                        spaceBetween: 0,
+                        slidesPerView: 5,
+                        spaceBetween: 10,
                     },
                     1280: {
-                        slidesPerView: 5,
+                        slidesPerView: 6,
                         spaceBetween: 10,
                     },
                 }}
@@ -62,7 +66,7 @@ function CardsSlider() {
                                         {name}
                                     </h5>
                                     <p className='font-bold text-[1.2em]'>
-                                        {price} ₼
+                                        {price} $
                                     </p>
                                     <div className='py-3.5'>
                                         <button
@@ -72,7 +76,7 @@ function CardsSlider() {
                                             className='font-bold text-[1.2em] text-[#43766C]'>
                                             ‒
                                         </button>
-                                        <span className='px-2'> ədəd</span>
+                                        <span className='px-2'>1 pcs</span>
                                         <button
                                             onClick={(e) => {
                                                 e.preventDefault();

@@ -45,38 +45,43 @@ export const Basket = () => {
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200 bg-white">
-                        {basket.map((item) => (
-                            <tr key={item.id}>
-                                <td className="w-32 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-                                    <img src={item.img} alt={item.name} className="md:w-24 w-20" />
-                                    <dl className="font-normal lg:hidden">
-                                        <dd className="mt-1 truncate text-gray-700">{item.name}</dd>
-                                        <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} ₼</dd>
-                                    </dl>
-                                </td>
-                                <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{item.name}</td>
-                                <td className="px-3 py-4 w-fit text-sm text-gray-500 sm:table-cell">
-                                    <button
-                                        onClick={() => HandleDecrement(item.id)}
-                                        className='font-bold text-[1.2em] text-[#43766C] active:text-[#000]'>
-                                        ‒
-                                    </button>
-                                    <span className='px-2'>{item.count}</span>
-                                    <button
-                                        onClick={() => HandleIncrement(item.id)}
-                                        className='font-bold text-[1.2em] text-[#43766C] active:text-[#000]'>
-                                        ＋
-                                    </button>
-                                </td>
-                                <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{item.price} ₼</td>
-                                <td className="px-3 py-4 text-sm text-gray-500">{(item.price * item.count).toFixed(2)} ₼</td>
-                                <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                                    <p className="hover:text-red-600 text-[1.2em] cursor-pointer">
-                                        <FaTrashAlt onClick={() => { HandleDelete(item.id) }} />
-                                    </p>
-                                </td>
-                            </tr>
-                        ))}
+                        {basket.length > 0 ?
+                            basket.map((item) => (
+                                <tr key={item.id}>
+                                    <td className="w-32 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
+                                        <img src={item.img} alt={item.name} className="md:w-24 w-20" />
+                                        <dl className="font-normal lg:hidden">
+                                            <dd className="mt-1 truncate text-gray-700">{item.name}</dd>
+                                            <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} ₼</dd>
+                                        </dl>
+                                    </td>
+                                    <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{item.name}</td>
+                                    <td className="px-3 py-4 w-fit text-sm text-gray-500 sm:table-cell">
+                                        <button
+                                            onClick={() => {
+                                                item.count > 1 ? HandleDecrement(item.id) : HandleDelete(item.id)
+                                            }}
+                                            className='font-bold text-[1.2em] text-[#43766C] active:text-[#000]'>
+                                            ‒
+                                        </button>
+                                        <span className='px-2'>{item.count}</span>
+                                        <button
+                                            onClick={() => HandleIncrement(item.id)}
+                                            className='font-bold text-[1.2em] text-[#43766C] active:text-[#000]'>
+                                            ＋
+                                        </button>
+                                    </td>
+                                    <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{item.price} ₼</td>
+                                    <td className="px-3 py-4 text-sm text-gray-500">{(item.price * item.count).toFixed(2)} ₼</td>
+                                    <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <p className="hover:text-red-600 text-[1.2em] cursor-pointer">
+                                            <FaTrashAlt onClick={() => { HandleDelete(item.id) }} />
+                                        </p>
+                                    </td>
+                                </tr>
+                            )) : <tr>
+                                <td colSpan={6} className="text-center py-8 text-red-800 text-xl font-semibold">YOUR BAG IS EMPTY! <br />Your shopping bag is currently empty.</td>
+                            </tr>}
                     </tbody>
                 </table>
             </div>

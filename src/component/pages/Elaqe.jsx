@@ -2,10 +2,12 @@ import { Link } from "react-router-dom"
 import { FaMapMarkedAlt } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { FaRegEnvelope } from "react-icons/fa";
+import Aside from "../main/Aside";
 
-function Elaqe() {
+function Elaqe({catSt}) {
     return (
-        <section className="wrapper px-3">
+        <section className="wrapper px-3 relative">
+            <div className="absolute top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
             <div className='text-gray-600 font-semibold text-sm py-6 mb-9'>
                 <Link to='/'>Home /</Link>
                 <span className='capitalize'> Contact</span>

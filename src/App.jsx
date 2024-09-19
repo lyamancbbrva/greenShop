@@ -78,8 +78,8 @@ function App() {
                     <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} product={product} setProduct={setProduct} />} />
                     <Route path='/product/:id' element={<CardInfo updateCount={updateCount} product={product} />} />
                     <Route path="/basket" element={<Basket catSt={catSt}/>} />
-                    <Route path="/haqqimizda" element={<Haqqimizda />} />
-                    <Route path="/elaqe" element={<Elaqe />} />
+                    <Route path="/haqqimizda" element={<Haqqimizda catSt={catSt}/>} />
+                    <Route path="/elaqe" element={<Elaqe catSt={catSt}/>} />
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="register" element={<Register />} />

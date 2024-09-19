@@ -76,8 +76,8 @@ function Header({ catSt, setCatSt }) {
                         </button>
                         <div id="scrollbar" className={`${status ? 'block' : 'hidden'} max-h-[250px] sm:max-h-[200px] overflow-y-auto absolute z-20 rounded-md shadow-md m-auto w-[47vw] lg:w-[30vw] md:w-[45vw]`}>
                             {
-                                filteredProducts && filteredProducts?.map((item) => (
-                                    <Link key={item?.id} className="flex gap-5 items-center p-3 border-b w-full bg-gray-50 hover:bg-gray-200">
+                                filteredProducts && filteredProducts?.map((item, i) => (
+                                    <Link key={i} className="flex gap-5 items-center p-3 border-b w-full bg-gray-50 hover:bg-gray-200">
                                         <img src={item?.img} className="w-16 h-16 object-cover rounded-md" alt={item?.name} />
                                         <div>
                                             <h3 className="text-sm hover:text-green-700 capitalize text-md transition-all">
@@ -95,7 +95,7 @@ function Header({ catSt, setCatSt }) {
                     </button>
                 </div>
             </div>
-            <nav className='bg-[#43766C] text-white py-[10px] flex justify-between items-center lg:p-[0] px-[1.5vw]'>
+            <nav className='bg-[#43766C] text-white py-[10px] flex justify-between items-center lg:p-[0] px-[2vw]'>
                 <div className='wrapper flex justify-between items-center w-[100%]'>
                     <FiBarChart
                         onClick={() => setSideSt(!sideSt)}

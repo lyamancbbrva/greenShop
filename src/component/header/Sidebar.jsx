@@ -31,25 +31,25 @@ function Sidebar({ sideSt, setSideSt }) {
                             <div
                                 key={i}
                                 onClick={() => setAccSt(accSt === i ? null : i)}
-                                className={`${categoryName == 'Kampaniyalar' ? 'bg-[#43766C] text-white' : 'bg-white'} border-b`}
+                                className='bg-white border-b'
                             >
-                                <button className='flex p-1 items-center gap-3 '>
+                                <button className='flex pt-2.5 hover:text-[#43766C] font-medium items-center gap-3'>
                                     <img
                                         src={icon}
-                                        // alt={name}
-                                        className='w-6 h-6'
+                                        alt='icon'
+                                        className='w-8'
                                     />
                                     <p className="text-sm">{categoryName}</p>
                                 </button>
                                 {subcategory && subcategory.length > 0 && (
-                                    <div className={`${accSt === i ? 'h-[100%] ' : 'h-0'} overflow-hidden pl-[30px] py-[5px] transition-[3000ms]`}>
+                                    <div className={`${accSt === i ? 'h-[100%] ' : 'h-0'} overflow-hidden pl-[30px] py-[5px] transition-all`}>
                                         {subcategory.map((elem, j) => (
                                             <Link
                                                 onClick={() => setSideSt(false)}
                                                 key={j} to={`/${elem.slug}`}>
-                                                <p className="py-[3px]">{elem.categoryName}</p>
+                                                <p className="py-[5px] hover:text-[#43766C] pl-7 text-sm capitalize">- {elem.categoryName}</p>
                                             </Link>
-                                        ))}
+                                        ))} 
                                     </div>
                                 )}
                             </div>
