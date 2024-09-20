@@ -20,6 +20,17 @@ function CardsSlider() {
         getAllProducts().then(resp => setData(resp))
     }, [])
 
+    function addToBasket(e, item) {
+        e.preventDefault();
+        const existingItem = basket.find(i => i.id === item.id)
+        setBasket(
+            existingItem
+                ? [...basket.map(i => i.id === existingItem.id ? { ...i, count: i.count + 1 } : i)]
+                : [...basket, { ...item, count: 1 }]
+        )
+        setSebetSay(sebetSay + 1)
+    }
+
     return (
         <div className='flex justify-center items-start'>
             <Swiper
@@ -69,11 +80,9 @@ function CardsSlider() {
                                     <p className='font-semibold py-3 italic text-[1.2em]'>
                                         {price} $
                                     </p>
-                                    <button onClick={(e) => {
-                                        e.preventDefault();
-                                        setSebetSay(sebetSay + 1)
-                                        setBasket([...basket, item]);
-                                    }} className='rounded-md flex gap-2 w-full text-[.8em] bg-[#f0eeee] transition-all duration-200 hover:bg-[#508e8279] px-4 py-2 font-semibold'>
+                                    <button
+                                        onClick={(e) => addToBasket(e, item)} 
+                                        className='rounded-md flex gap-2 w-full text-[.8em] bg-[#f0eeee] transition-all duration-200 hover:bg-[#508e8279] px-4 py-2 font-semibold'>
                                         <GiShoppingCart className="text-lg text-gray-500" />Add to Basket
                                     </button>
                                 </Link>

@@ -1,4 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { Cntx } from "../../context/DataContext";
+import getAllProducts, { searchProduct } from "../../api/api";
+import Sidebar from "./Sidebar";
 import { FaBars } from "react-icons/fa6";
 import { FiBarChart } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
@@ -7,11 +11,7 @@ import { LuRefreshCcw } from "react-icons/lu";
 import { SlBasket } from "react-icons/sl";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiMiniBars4 } from "react-icons/hi2";
-import Sidebar from "./Sidebar";
-import { Link, useParams } from "react-router-dom";
-import { Cntx } from "../../context/DataContext";
 import logo from '../../assets/greenLogo.png';
-import getAllProducts, { searchProduct } from "../../api/api";
 
 function Header({ catSt, setCatSt }) {
     const [status, setStatus] = useState(false)
@@ -39,7 +39,6 @@ function Header({ catSt, setCatSt }) {
         setStatus(true);
         setFilteredProducts(filtered)
     }
-
 
     return (
         <header onClick={() => setStatus(false)}>
