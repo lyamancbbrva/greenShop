@@ -2,24 +2,32 @@ import { Link, useParams } from "react-router-dom";
 import { FaRegStar } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { LuRefreshCcw } from "react-icons/lu";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
+import getAllProducts from "../../api/api";
+import Aside from "./Aside";
 
-function CardInfo({ product, updateCount }) {
-
+function CardInfo({ updateCount, catSt }) {
     const { setSebetSay, sebetSay } = useContext(Cntx);
     const { id } = useParams();
-    const item = product && product.find(item => item.id == id);
+    const [data, setData] = useState([])
+
+    useEffect(() => {
+        getAllProducts().then(resp => setData(resp))
+    }, [])
+
+    const item = data && data.find(item => item.id == id);
     
     return (
-        <section className='wrapper'>
-            <div className='text-gray-600 font-semibold py-10 px-3'>
+        <section className='wrapper relative'>
+            <div className="absolute z-10 top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
+            <div className='text-gray-600 py-10 px-3'>
                 <Link to='/'>Home /</Link>
-                <span className='text-[.8em]'> {item?.name}</span>
+                <span> {item?.name}</span>
             </div>
-            <div className='flex flex-col items-center bg-white md:flex-row md:max-w-4xl mb-5'>
+            <div className='flex flex-col gap-[5vw] items-center bg-white md:flex-row md:max-w-4xl mb-5'>
                 <img
-                    className='object-contain w-full rounded-t-lg h-96 md:h-auto md:w-[450px] md:rounded-none md:rounded-s-lg'
+                    className='object-cover w-full px-3 rounded-lg md:h-auto md:w-[300px]'
                     src={item?.img}
                     alt={item?.title}
                 />
@@ -48,7 +56,7 @@ function CardInfo({ product, updateCount }) {
                             className='font-bold text-[1.2em] text-[#43766C]'>
                             ‒
                         </button>
-                        <span className='px-4'>{item?.count} pieces</span>
+                        <span className='px-4'>{item?.count} pcs</span>
                         <button
                             onClick={(e) => {
                                 e.preventDefault();

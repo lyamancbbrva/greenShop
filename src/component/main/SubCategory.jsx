@@ -2,23 +2,30 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { GoHeart } from "react-icons/go";
 import { FaChevronDown } from "react-icons/fa";
-import getAllProducts from "../../api/api";
 import Aside from "./Aside";
 import { Cntx } from "../../context/DataContext";
+import getAllProducts from "../../api/api";
 
-function SubCategory({ catSt, product, setProduct, updateCount }) {
+function SubCategory({ catSt, updateCount }) {
 
     const [page, setPage] = useState(1);
     const { basket, setBasket, setCartCount, cartCount } = useContext(Cntx);
     const { category, subCategory } = useParams();
     const [pageCount, setPageCount] = useState(1);
 
+    const [data, setData] = useState([])
+    
+    // useEffect(() => {
+    //     getAllProducts().then(resp => setData(resp))
+    // }, [])
+
     useEffect(() => {
         getAllProducts(category, subCategory, pageCount).then((res) => {
-            setProduct(res?.data?.map((item) => ({ ...item, count: 1 })));
+            setData(res?.data?.map((item) => ({ ...item, count: 1 })));
             setPage(res?.meta);
         });
     }, [pageCount, category, subCategory]);
+    console.log(data);
 
     function addToBasket(item) {
         const existingProduct = basket.find(
@@ -69,9 +76,6 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                         <span className='inline-block w-[12px] h-[12px] bg-[#43766C] mx-[4px]'></span>
                                         GreenShop - Fast Delivery
                                     </div>
-                                    <span className='text-[#43766C] inline-block text-end'>
-                                        13
-                                    </span>
                                 </div>
                             </div>
                             <div className='price border-b py-[8px]'>
@@ -97,8 +101,8 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                             </div>
                         </div>
                         <div className='flex flex-wrap gap-[5px] w-[100%] justify-start'>
-                            {product && product.length > 0 ? (
-                                product.map((item, i) => {
+                            {data && data.length > 0 ? (
+                                data.map((item, i) => {
                                     const { img, title, price, id, count } = item;
                                     return (
                                         <div
@@ -152,7 +156,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                                     );
                                 })
                             ) : (
-                                <div className="p-[40px] m-auto text-[3em]">No result found 😔</div>
+                                <div className="p-[40px] m-auto text-[2em]">No result found 😔</div>
                             )}
                         </div>
                     </div>
@@ -173,7 +177,7 @@ function SubCategory({ catSt, product, setProduct, updateCount }) {
                             {i + 1}
                         </button>
                     ))
-                ) : "No results..."}
+                ) : "No pages..."}
             </div>
         </main>
     );

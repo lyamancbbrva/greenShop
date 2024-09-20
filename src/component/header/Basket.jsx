@@ -2,8 +2,9 @@ import { useContext, useState } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
+import Aside from "../main/Aside";
 
-export const Basket = () => {
+export const Basket = ({catSt}) => {
     const { basket, setBasket, setSebetSay } = useContext(Cntx)
 
     function HandleDelete(id) {
@@ -30,7 +31,8 @@ export const Basket = () => {
     const totalAmount = basket.reduce((acc, item) => acc + item.price * item.count, 0).toFixed(2)
 
     return (
-        <section className='wrapper py-5 px-3'>
+        <section className='wrapper py-5 px-3 relative'>
+            <div className="absolute z-10 top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
             <h1 className="text-[1.7em]">Basket</h1>
             <div className=" mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 md:rounded-sm">
                 <table className="min-w-full divide-y divide-gray-300">

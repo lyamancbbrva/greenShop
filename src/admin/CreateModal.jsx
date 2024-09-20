@@ -199,7 +199,7 @@ function CreateModal({ open, setOpen, product, setProduct }) {
                                             </div>
                                         </div>
                                         <div className="flex my-2 gap-1">
-                                            {img?.map(item => <img onClick={() => { setImgSrc(item); setDelModal(true) }} className="w-[100px] object-cover" src={item} />)}
+                                            {img?.map((item, i) => <img key={i} onClick={() => { setImgSrc(item); setDelModal(true) }} className="w-[100px] object-cover" src={item} />)}
                                         </div>
                                     </div>
                                     <div className='my-3'>

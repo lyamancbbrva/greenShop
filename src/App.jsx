@@ -75,8 +75,8 @@ function App() {
                 }
                 <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
                     <Route path='/' element={<Main />} />
-                    <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} product={product} setProduct={setProduct} />} />
-                    <Route path='/product/:id' element={<CardInfo updateCount={updateCount} product={product} />} />
+                    <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} />} />
+                    <Route path='/product/:id' element={<CardInfo updateCount={updateCount} catSt={catSt}/>} />
                     <Route path="/basket" element={<Basket catSt={catSt}/>} />
                     <Route path="/haqqimizda" element={<Haqqimizda catSt={catSt}/>} />
                     <Route path="/elaqe" element={<Elaqe catSt={catSt}/>} />

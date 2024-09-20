@@ -1,132 +1,241 @@
-import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
-import { ImInstagram } from "react-icons/im";
-import { TfiYoutube } from "react-icons/tfi";
 import delivery from '../../assets/delivery.svg';
 import cash from '../../assets/cash.svg';
 import gift from '../../assets/gift.svg';
 import mobile from '../../assets/mobile.svg';
 import online from '../../assets/online.svg';
 
-function Footer() {
+const navigation = {
+    about: [
+        { name: 'Our Policy', href: '#' },
+        { name: 'News', href: '#' },
+        { name: 'Commerce', href: '#' },
+    ],
+    promotions: [
+        { name: 'Campaings', href: '#' },
+        { name: 'Bonus Card', href: '#' },
+        { name: 'Electronic Catalog', href: '#' },
+    ],
+    supermarkets: [
+        { name: 'Our Stores', href: '#' },
+        { name: 'Feedback and suggestions', href: '#' },
+        { name: 'Partnership', href: '#' },
+        { name: 'For Buyers', href: '#' },
+        { name: 'Advertising in Market', href: '#' },
+    ],
+    career: [
+        { name: 'Vacancies', href: '#' },
+        { name: 'Recruitment Procedure', href: '#' },
+        { name: 'Submit CV', href: '#' },
+    ],
+    social: [
+        {
+            name: 'Facebook',
+            href: '#',
+            icon: (props) => (
+                <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+                    <path
+                        fillRule="evenodd"
+                        d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+            ),
+        },
+        {
+            name: 'Instagram',
+            href: '#',
+            icon: (props) => (
+                <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+                    <path
+                        fillRule="evenodd"
+                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+            ),
+        },
+        {
+            name: 'Twitter',
+            href: '#',
+            icon: (props) => (
+                <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                </svg>
+            ),
+        },
+        {
+            name: 'GitHub',
+            href: '#',
+            icon: (props) => (
+                <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+                    <path
+                        fillRule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+            ),
+        },
+        {
+            name: 'YouTube',
+            href: '#',
+            icon: (props) => (
+                <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
+                    <path
+                        fillRule="evenodd"
+                        d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z"
+                        clipRule="evenodd"
+                    />
+                </svg>
+            ),
+        },
+    ],
+}
 
+function Footer() {
     return (
-        <footer className='bg-[#43766C] px-[2vw] text-white relative overflow-hidden'>
-            <div className='text-[.7em] font-bold flex items-center justify-around text-center py-[20px] gap-[4vw]'>
-                <div className='w-[30%] lg:flex gap-[10px] lg:w-[170px] lg:pl-[30px] lg:text-start'>
-                    <img
-                        src={delivery}
-                        alt='neptun delivery'
-                        className='mx-auto hover:scale-[1.2] transition'
-                    />
-                    <h4 className='py-[10px]'>
-                        Free delivery over 50 azn
-                    </h4>
-                </div>
-                <div className='w-[30%] lg:flex gap-[10px] lg:w-[150px] lg:text-start'>
-                    <img
-                        src={cash}
-                        alt='neptun cash'
-                        className=' mx-auto  hover:scale-[1.2] transition'
-                    />
-                    <h4 className='py-[10px]'>Payment by cash or card</h4>
-                </div>
-                <div className='w-[30%] lg:flex gap-[10px] lg:w-[150px] lg:text-start'>
-                    <img
-                        src={gift}
-                        alt='neptun gift'
-                        className='mx-auto  hover:scale-[1.2] transition'
-                    />
-                    <h4 className='py-[10px]'>Gift coupons</h4>
-                </div>
-                <div className=' hidden lg:flex gap-[10px] w-[150px] text-start'>
-                    <img
-                        src={online}
-                        alt='online gift'
-                        className='mx-auto  hover:scale-[1.2] transition'
-                    />
-                    <h4 className='py-[10px]'>Online customer service</h4>
-                </div>
-                <div className=' hidden lg:flex gap-[10px] w-[150px] text-start'>
-                    <img
-                        src={mobile}
-                        alt='neptun gift'
-                        className='mx-auto  hover:scale-[1.2] transition'
-                    />
-                    <h4 className='py-[10px]'>Fast mobile store</h4>
-                </div>
-            </div>
-            <div className='p-[20px]'>
-                <div className="flex items-center flex-wrap justify-center md:justify-between lg:justify-around">
-                    <form action='' className='lg:flex items-center gap-[1vw]'>
-                        <h3 className='text-[.7em] font-bold py-[10px]'>
-                            Subscribe to us
-                        </h3>
-                        <div className='relative w-[75vw] lg:w-[30vw] sm:w-[80vw] md:max-w-[400px]'>
-                            <input
-                                type='search'
-                                name='Search'
-                                placeholder='your email... '
-                                className='py-[10px]  w-[100%] pl-[10px] text-black text-[.8rem] text-sm bg-white rounded-[30px] focus:outline-none border-[1px] sm:py-[12px] '
-                            />
-                            <button
-                                onClick={(e) => e.preventDefault()}
-                                className='text-white text-[.9em] bg-[#43766C] rounded-[30px] py-[8px] sm:py-[10px] px-[15px] font-bold absolute right-[3px] top-[2px]'
-                            >
-                                Subscribe
-                            </button>
-                        </div>
-                    </form>
-                    <form action='' className='py-[20px] lg:flex items-center gap-[1vw]'>
-                        <h3 className='text-[.7em] font-bold py-[10px]'>
-                            For sms alert
-                        </h3>
-                        <div className='relative w-[75vw] lg:w-[30vw] sm:w-[80vw] md:max-w-[400px]'>
-                            <input
-                                type='search'
-                                name='Search'
-                                placeholder='XXX YY ZZ'
-                                className='py-[10px]  w-[100%] pl-[10px] text-black text-[.9rem] text-sm bg-white rounded-[30px] focus:outline-none border-[1px] sm:py-[12px]'
-                            />
-                            <button
-                                onClick={(e) => e.preventDefault()}
-                                className='text-white text-[.9em] bg-[#43766C] rounded-[30px] py-[8px] sm:py-[10px] px-[15px] font-bold absolute right-[3px] top-[2px] '
-                            >
-                                Subscribe
-                            </button>
-                        </div>
-                    </form>
-                    <div className='icons justify-center py-2 lg:flex gap-[4vw]'>
-                        <div>
-                            <a
-                                href=''
-                                className='mr-[10px] w-[40px] h-[40px] p-[11px] text-center rounded-[50%] inline-block text-[#43766C] bg-white '
-                            >
-                                <FaFacebookF />
-                            </a>
-                            <a
-                                href=''
-                                className='mr-[10px] w-[40px] h-[40px] p-[11px] text-center rounded-[50%] inline-block text-[#43766C] bg-white '
-                            >
-                                <ImInstagram />
-                            </a>
-                            <a
-                                href=''
-                                className='mr-[10px] w-[40px] h-[40px] p-[11px] text-center rounded-[50%] inline-block text-[#43766C] bg-white '
-                            >
-                                <TfiYoutube />
-                            </a>
-                            <a
-                                href=''
-                                className='mr-[10px] w-[40px] h-[40px] p-[11px] text-center rounded-[50%] inline-block text-[#43766C] bg-white '
-                            >
-                                <FaLinkedinIn />
-                            </a>
-                        </div>
+        <footer className="bg-[#43766C]">
+            <div className="wrapper px-5">
+                <div className='text-[.75em] border-b font-medium border-white/10 text-white flex items-center justify-between text-center py-[50px] gap-[4vw]'>
+                    <div className='w-[30%] lg:flex gap-[10px] lg:w-[150px] lg:text-start'>
+                        <img
+                            src={delivery}
+                            alt='delivery'
+                            className='mx-auto hover:scale-[1.2] transition'
+                        />
+                        <h4 className='py-[10px]'>
+                            Free delivery over 50 azn
+                        </h4>
+                    </div>
+                    <div className='w-[30%] lg:flex gap-[10px] lg:w-[150px] lg:text-start'>
+                        <img
+                            src={cash}
+                            alt='cash'
+                            className=' mx-auto  hover:scale-[1.2] transition'
+                        />
+                        <h4 className='py-[10px]'>Payment by cash or card</h4>
+                    </div>
+                    <div className='w-[30%] lg:flex gap-[10px] lg:w-[100px] lg:text-start'>
+                        <img
+                            src={gift}
+                            alt='gift'
+                            className='mx-auto hover:scale-[1.2] transition'
+                        />
+                        <h4 className='py-[10px]'>Gift coupons</h4>
+                    </div>
+                    <div className=' hidden lg:flex gap-[10px] w-[150px] text-start'>
+                        <img
+                            src={online}
+                            alt='online gift'
+                            className='mx-auto  hover:scale-[1.2] transition'
+                        />
+                        <h4 className='py-[10px]'>Online customer service</h4>
+                    </div>
+                    <div className='hidden lg:flex gap-[10px] w-[100px] text-start'>
+                        <img
+                            src={mobile}
+                            alt='mobil'
+                            className='mx-auto  hover:scale-[1.2] transition'
+                        />
+                        <h4 className='py-[10px]'>Fast mobile store</h4>
                     </div>
                 </div>
-                <p className='text-[.85rem] text-center py-[10px]'>
-                    © 2024 | All rights reserved
-                </p>
+                <div className="pb-8 pt-10 ">
+                    <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+                        <div className="grid grid-cols-2 gap-8 xl:col-span-2">
+                            <div className="md:grid md:grid-cols-2 md:gap-8">
+                                <div>
+                                    <h3 className="text-sm font-semibold leading-6 text-white">About</h3>
+                                    <ul role="list" className="mt-6 space-y-4">
+                                        {navigation.about.map((item) => (
+                                            <li key={item.name}>
+                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                    {item.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="mt-10 md:mt-0">
+                                    <h3 className="text-sm font-semibold leading-6 text-white">Promotions</h3>
+                                    <ul role="list" className="mt-6 space-y-4">
+                                        {navigation.promotions.map((item) => (
+                                            <li key={item.name}>
+                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                    {item.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div className="md:grid md:grid-cols-2 md:gap-8">
+                                <div>
+                                    <h3 className="text-sm font-semibold leading-6 text-white">Supermarkets</h3>
+                                    <ul role="list" className="mt-6 space-y-4">
+                                        {navigation.supermarkets.map((item) => (
+                                            <li key={item.name}>
+                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                    {item.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="mt-10 md:mt-0">
+                                    <h3 className="text-sm font-semibold leading-6 text-white">Career</h3>
+                                    <ul role="list" className="mt-6 space-y-4">
+                                        {navigation.career.map((item) => (
+                                            <li key={item.name}>
+                                                <a href={item.href} className="text-sm leading-6 text-gray-300 hover:text-white">
+                                                    {item.name}
+                                                </a>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="mt-10 xl:mt-0">
+                            <h3 className="text-sm font-semibold leading-6 text-white">Subscribe to our newsletter</h3>
+                            <p className="mt-2 text-sm leading-6 text-gray-300">
+                                The latest news, discounts, and earnings, sent to your inbox weekly.
+                            </p>
+                            <form className="mt-6 sm:flex sm:max-w-md">
+                                <input
+                                    type="email"
+                                    name="email-address"
+                                    id="email-address"
+                                    autoComplete="email"
+                                    required
+                                    className="w-full min-w-0 appearance-none rounded-md border-white/10 bg-gray-400/10 px-[calc(theme(spacing.3)-1px)] py-[calc(theme(spacing[1.5])-1px)] text-base leading-7 text-white shadow-sm sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
+                                    placeholder="Enter your email"
+                                />
+                                <div className="mt-4 rounded-md sm:mt-0 sm:ml-4 sm:flex-shrink-0">
+                                    <button
+                                        type="submit"
+                                        className="flex w-full items-center justify-center rounded-md bg-[#425954] py-1.5 px-3 text-base font-semibold leading-7 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:text-sm sm:leading-6"
+                                    >
+                                        Subscribe
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between">
+                        <div className="flex space-x-6 md:order-2">
+                            {navigation.social.map((item) => (
+                                <a key={item.name} href={item.href} className="text-gray-300 transition-all hover:text-gray-400">
+                                    <span className="sr-only">{item.name}</span>
+                                    <item.icon className="h-6 w-6" aria-hidden="true" />
+                                </a>
+                            ))}
+                        </div>
+                        <p className="mt-8 text-sm leading-5 text-gray-300 md:order-1 md:mt-0">
+                            &copy; 2024 GreenShop. All rights reserved.
+                        </p>
+                    </div>
+                </div>
             </div>
         </footer>
     );

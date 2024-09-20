@@ -8,7 +8,7 @@ import { SlBasket } from "react-icons/sl";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiMiniBars4 } from "react-icons/hi2";
 import Sidebar from "./Sidebar";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Cntx } from "../../context/DataContext";
 import logo from '../../assets/greenLogo.png';
 import getAllProducts, { searchProduct } from "../../api/api";
@@ -17,6 +17,7 @@ function Header({ catSt, setCatSt }) {
     const [status, setStatus] = useState(false)
     const [sideSt, setSideSt] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
+    const { category, subCategory } = useParams();
     const [inp, setInp] = useState("")
     const [data, setData] = useState([])
     const { sebetSay } = useContext(Cntx)
@@ -27,15 +28,15 @@ function Header({ catSt, setCatSt }) {
 
     useEffect(() => {
         searchProduct().then(res => { setFilteredProducts(res) })
-        getAllProducts().then(res => {setData(res)})
+        getAllProducts().then(res => { setData(res) })
     }, [])
 
     async function handleSearch(e) {
         setInp(e.target.value)
-        setStatus(true);
         const filtered = data.filter(item =>
             item.name.toLowerCase().startsWith(inp.toLowerCase())
         );
+        setStatus(true);
         setFilteredProducts(filtered)
     }
 
@@ -74,11 +75,19 @@ function Header({ catSt, setCatSt }) {
                         <button className='text-white text-[.9em] bg-[#43766C] rounded-[30px] py-[4px] sm:py-[10px] px-[15px]  absolute right-0 '>
                             Search
                         </button>
-                        <div id="scrollbar" className={`${status ? 'block' : 'hidden'} max-h-[250px] sm:max-h-[200px] overflow-y-auto absolute z-20 rounded-md shadow-md m-auto w-[47vw] lg:w-[30vw] md:w-[45vw]`}>
+                        <div id="scrollbar" className={`${status ? 'block' : 'hidden'} max-h-[250px] sm:max-h-[350px] overflow-y-auto absolute z-20 rounded-md shadow-md m-auto w-[47vw] lg:w-[30vw] md:w-[45vw]`}>
                             {
-                                filteredProducts && filteredProducts?.map((item, i) => (
-                                    <Link key={i} className="flex gap-5 items-center p-3 border-b w-full bg-gray-50 hover:bg-gray-200">
-                                        <img src={item?.img} className="w-16 h-16 object-cover rounded-md" alt={item?.name} />
+                                filteredProducts?.length > 0 ? filteredProducts.map((item, i) => (
+                                    <Link
+                                        to={`/product/${item?.id}`}
+                                        key={i}
+                                        className="flex gap-5 items-center p-3 border-b w-full bg-gray-50 hover:bg-gray-200 transition-all"
+                                    >
+                                        <img
+                                            src={item?.img}
+                                            className="w-16 h-16 object-cover rounded-md"
+                                            alt={item?.name}
+                                        />
                                         <div>
                                             <h3 className="text-sm hover:text-green-700 capitalize text-md transition-all">
                                                 {item?.name}
@@ -86,11 +95,11 @@ function Header({ catSt, setCatSt }) {
                                             <p className="text-sm font-bold text-green-900">{item?.price} ₼</p>
                                         </div>
                                     </Link>
-                                ))
+                                )) : <div className="p-4 bg-white italic cursor-not-allowed">No products available...</div>
                             }
                         </div>
                     </div>
-                    <button onClick={()=>setIsOpen(!isOpen)} className='hidden md:block lg:hidden p-[10px] bg-[#43766C] text-white rounded-[5px] text-[1.4em] '>
+                    <button onClick={() => setIsOpen(!isOpen)} className='hidden md:block lg:hidden p-[10px] bg-[#43766C] text-white rounded-[5px] text-[1.4em] '>
                         <FaBars />
                     </button>
                 </div>
@@ -231,13 +240,13 @@ function Header({ catSt, setCatSt }) {
                             </span>
                         </Link>
                     </div>
-                    <button onClick={()=>setIsOpen(!isOpen)} className='md:hidden  p-[1.7vw] text-[#43766C] bg-white rounded-[5px] text-[1.4em] '>
+                    <button onClick={() => setIsOpen(!isOpen)} className='md:hidden  p-[1.7vw] text-[#43766C] bg-white rounded-[5px] text-[1.4em] '>
                         <FaBars />
                     </button>
                 </div>
             </nav>
             <div className="sidebar" id="scrollbar">
-                <div onClick={()=> setIsOpen(!isOpen)} className={`${isOpen ? 'block' : 'hidden'} bg-[#0000004b] z-10 absolute w-[100%] h-[100%] top-0`}></div>
+                <div onClick={() => setIsOpen(!isOpen)} className={`${isOpen ? 'block' : 'hidden'} bg-[#0000004b] z-10 absolute w-[100%] h-[100%] top-0`}></div>
                 <div
                     id="drawer-navigation"
                     className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 shadow-2xl overflow-y-auto transition-transform duration-300 bg-white ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}
@@ -246,7 +255,7 @@ function Header({ catSt, setCatSt }) {
                 >
                     <button
                         type="button"
-                        onClick={()=> setIsOpen(!isOpen)}
+                        onClick={() => setIsOpen(!isOpen)}
                         aria-controls="drawer-navigation"
                         className="text-black bg-transparent rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center"
                     >
@@ -267,11 +276,11 @@ function Header({ catSt, setCatSt }) {
                     <div className="py-4 overflow-y-auto">
                         <ul className="space-y-2 py-8">
                             <li className="border-b cursor-pointer">
-                                <Link to={'/'} onClick={()=> setIsOpen(!isOpen)} className="p-2 block text-gray-900 text-[.85em] hover:text-[#43766C]">Home</Link>
+                                <Link to={'/'} onClick={() => setIsOpen(!isOpen)} className="p-2 block text-gray-900 text-[.85em] hover:text-[#43766C]">Home</Link>
                             </li>
                             <li className="border-b cursor-pointer">
                                 <div className=" bg-white rounded-xl">
-                                    <Link to='/haqqimizda' onClick={() => {toggleAccordion(0); setIsOpen(!isOpen)}} className=" p-2 text-gray-900 text-[.85em] hover:text-[#43766C] inline-flex justify-between items-center gap-x-3 w-full">
+                                    <Link to='/haqqimizda' onClick={() => { toggleAccordion(0); setIsOpen(!isOpen) }} className=" p-2 text-gray-900 text-[.85em] hover:text-[#43766C] inline-flex justify-between items-center gap-x-3 w-full">
                                         About Us
                                         <svg className="hs-accordion-active:hidden:block size-4 bg-[#43766C] text-white" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                             <path d="M5 12h14"></path>
@@ -336,7 +345,7 @@ function Header({ catSt, setCatSt }) {
                                 </div>
                             </li>
                             <li className="border-b pb-2 cursor-pointer">
-                                <Link to='/elaqe' onClick={()=> setIsOpen(!isOpen)} className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C]">Contact</Link>
+                                <Link to='/elaqe' onClick={() => setIsOpen(!isOpen)} className="p-2 text-gray-900 text-[.85em] hover:text-[#43766C]">Contact</Link>
                             </li>
                         </ul>
                     </div>
