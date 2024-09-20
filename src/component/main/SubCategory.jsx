@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { GoHeart } from "react-icons/go";
 import { FaChevronDown } from "react-icons/fa";
+import { GoHeartFill } from "react-icons/go";
+import { GiShoppingCart } from "react-icons/gi";
 import Aside from "./Aside";
 import { Cntx } from "../../context/DataContext";
 import getAllProducts from "../../api/api";
@@ -9,22 +10,22 @@ import getAllProducts from "../../api/api";
 function SubCategory({ catSt, updateCount }) {
 
     const [page, setPage] = useState(1);
-    const { basket, setBasket, setCartCount, cartCount } = useContext(Cntx);
+    const { basket, setBasket, setSebetSay, sebetSay } = useContext(Cntx);
     const { category, subCategory } = useParams();
     const [pageCount, setPageCount] = useState(1);
 
     const [data, setData] = useState([])
-    
-    // useEffect(() => {
-    //     getAllProducts().then(resp => setData(resp))
-    // }, [])
 
     useEffect(() => {
-        getAllProducts(category, subCategory, pageCount).then((res) => {
-            setData(res?.data?.map((item) => ({ ...item, count: 1 })));
-            setPage(res?.meta);
-        });
-    }, [pageCount, category, subCategory]);
+        getAllProducts().then(resp => setData(resp))
+    }, [])
+
+    // useEffect(() => {
+    //     getAllProducts(category, subCategory, pageCount).then((res) => {
+    //         setData(res?.data?.map((item) => ({ ...item, count: 1 })));
+    //         setPage(res?.meta);
+    //     });
+    // }, [pageCount, category, subCategory]);
     console.log(data);
 
     function addToBasket(item) {
@@ -52,13 +53,13 @@ function SubCategory({ catSt, updateCount }) {
             <div className='wrapper relative'>
                 <div className="absolute z-10 top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
                 <div>
-                    <div className='text-gray-600 font-semibold py-5 px-3'>
+                    <div className='text-gray-600 py-5 px-3'>
                         <Link to='/'>Home /</Link>
                         <span className='capitalize'> {category} /</span>
                         <span className='capitalize'> {subCategory}</span>
                     </div>
-                    <div className='flex justify-center items-start'>
-                        <div className='filter hidden bg-white rounded-[10px] lg:inline-block px-[5px] w-[23vw] text-[.8em]'>
+                    <div className='flex gap-[2vw] justify-center items-start w-full'>
+                        <div className='filter hidden bg-white rounded-[10px] lg:inline-block px-[5px] w-[300px] text-[.8em]'>
                             <h3 className='p-[10px]'>Filter</h3>
                             <div className='flex justify-between py-[20px] border-b'>
                                 <h5 className='px-[10px]'>
@@ -100,59 +101,33 @@ function SubCategory({ catSt, updateCount }) {
                                 </button>
                             </div>
                         </div>
-                        <div className='flex flex-wrap gap-[5px] w-[100%] justify-start'>
+                        <div className='flex flex-wrap gap-[1.5vw] w-full'>
                             {data && data.length > 0 ? (
                                 data.map((item, i) => {
-                                    const { img, title, price, id, count } = item;
+                                    const { img, name, price, id } = item;
                                     return (
-                                        <div
+                                        <Link
                                             key={i}
-                                            className='sm:w-[49%] md:w-[30%] xl:w-[calc(26%-1vw)]'>
-                                            <Link
-                                                to={`/product/${id}`}
-                                                className='text-center rounded-md p-3 bg-white relative inline-block m-[.5vw]'>
-                                                <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
-                                                <img src={img} alt={title} />
-                                                <h5 className='py-4 hover:text-[#43766C] h-16 text-[.7em] font-semibold'>
-                                                    {title}
-                                                </h5>
-                                                <p className='font-bold text-[1.3em]'>
-                                                    {price * count} ₼
-                                                </p>
-                                                <div className='py-3'>
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            updateCount(id, -1);
-                                                        }}
-                                                        className='font-bold text-[1.2em] text-[#43766C]'>
-                                                        ‒
-                                                    </button>
-                                                    <span className='px-2'>
-                                                        {count} pcs
-                                                    </span>
-                                                    <button
-                                                        onClick={(e) => {
-                                                            e.preventDefault();
-                                                            updateCount(id, 1);
-                                                        }}
-                                                        className='font-bold text-[1.2em] text-[#43766C]'>
-                                                        ＋
-                                                    </button>
-                                                </div>
-                                                <button
-                                                    onClick={(e) => {
-                                                        e.preventDefault();
-                                                        addToBasket(item);
-                                                        setCartCount(
-                                                            cartCount + 1
-                                                        );
-                                                    }}
-                                                    className='rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'>
-                                                    Add to Cart
-                                                </button>
-                                            </Link>
-                                        </div>
+                                            to={`/product/${id}`}
+                                            className='border xl:w-[210px] lg:w-[17vw] md:w-[25vw] sm:w-[35vw] w-[48%] hover:shadow-md transition-all rounded-md p-3 bg-white relative'
+                                        >
+                                            <GoHeartFill className='absolute cursor-pointer top-4 right-4 text-[1.3em] text-white hover:text-[#43766C]' />
+                                            <img src={img} alt={name} className="w-full object-cover h-[25vh] rounded-md" />
+                                            <h5 className='pt-4 hover:text-[#43766C] text-[.85em] capitalize'>
+                                                {name}
+                                            </h5>
+                                            <p className='font-semibold py-3 italic text-[1.2em]'>{price} $</p>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    setSebetSay(sebetSay + 1)
+                                                    setBasket([...basket, item]);
+                                                }}
+                                                className='rounded-md flex justify-center gap-2 w-full text-[.8em] bg-[#f0eeee] transition-all duration-200 hover:bg-[#508e8279] px-4 py-2 font-semibold'>
+                                                <GiShoppingCart className="text-lg text-gray-500" />
+                                                Add to Basket
+                                            </button>
+                                        </Link>
                                     );
                                 })
                             ) : (
