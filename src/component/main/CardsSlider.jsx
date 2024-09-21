@@ -4,7 +4,7 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { GiShoppingCart } from "react-icons/gi";
 import { FreeMode, Navigation } from "swiper/modules";
-import { GoHeartFill } from "react-icons/go";
+import { GoHeartFill, GoHeart  } from "react-icons/go";
 import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
@@ -72,7 +72,7 @@ function CardsSlider() {
                                     to={`/product/${id}`}
                                     className='border hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                                 >
-                                    <GoHeartFill className='absolute cursor-pointer top-4 right-4 text-white shadow-xl text-[1.3em] transition-all hover:text-[#43766C]' />
+                                    <GoHeart className='absolute cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
                                     <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
                                     <h5 className='pt-4 hover:text-[#43766C] text-[.85em] capitalize'>
                                         {name}
@@ -82,7 +82,7 @@ function CardsSlider() {
                                     </p>
                                     <button
                                         onClick={(e) => addToBasket(e, item)} 
-                                        className='rounded-md flex gap-2 w-full text-[.8em] bg-[#f0eeee] transition-all duration-200 hover:bg-[#508e8279] px-4 py-2 font-semibold'>
+                                        className='rounded-md flex gap-2 w-full text-[.8em] border border-[#43766C] transition-all duration-200 hover:bg-[#43766c2b] px-4 py-2 font-semibold'>
                                         <GiShoppingCart className="text-lg text-gray-500" />Add to Basket
                                     </button>
                                 </Link>

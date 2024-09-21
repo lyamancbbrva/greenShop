@@ -29,11 +29,11 @@ function CardInfo({ updateCount, catSt }) {
                 <img
                     className='object-cover w-full px-3 rounded-lg md:h-auto md:w-[300px]'
                     src={item?.img}
-                    alt={item?.title}
+                    alt={item?.name}
                 />
                 <div className='flex flex-col justify-between p-4 leading-normal'>
-                    <h5 className='mb-2 text-xl font-bold tracking-tight text-gray-900'>
-                        {item?.title}
+                    <h5 className='mb-2 text-xl uppercase font-bold tracking-tight text-gray-900'>
+                        {item?.name}
                     </h5>
                     <div className='flex gap-1 text-[#43766C] text-[1.4em] py-2'>
                         <FaRegStar /> <FaRegStar /> <FaRegStar /> <FaRegStar /> <FaRegStar />
@@ -43,6 +43,9 @@ function CardInfo({ updateCount, catSt }) {
                     </p>
                     <p className='mb-3 text-[.9em] text-gray-700'>
                         Availability: 🗹 In Stock
+                    </p>
+                    <p className='mb-3 text-[.9em] text-gray-700'>
+                        Delivery: 🗹 Yes
                     </p>
                     <p className='mb-3 text-[2em] font-bold text-[#43766C]'>
                         {(item?.price)} ₼
@@ -56,7 +59,7 @@ function CardInfo({ updateCount, catSt }) {
                             className='font-bold text-[1.2em] text-[#43766C]'>
                             ‒
                         </button>
-                        <span className='px-4'>{item?.count} pcs</span>
+                        <span className='px-4'>{item?.count}1 pcs</span>
                         <button
                             onClick={(e) => {
                                 e.preventDefault();

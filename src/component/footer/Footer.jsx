@@ -141,8 +141,8 @@ function Footer() {
                     </div>
                 </div>
                 <div className="pb-8 pt-10 ">
-                    <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-                        <div className="grid grid-cols-2 gap-8 xl:col-span-2">
+                    <div className="xl:grid xl:grid-cols-2 xl:gap-10">
+                        <div className="grid grid-cols-2 gap-10 xl:col-span-2">
                             <div className="md:grid md:grid-cols-2 md:gap-8">
                                 <div>
                                     <h3 className="text-sm font-semibold leading-6 text-white">About</h3>
@@ -195,31 +195,6 @@ function Footer() {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        <div className="mt-10 xl:mt-0">
-                            <h3 className="text-sm font-semibold leading-6 text-white">Subscribe to our newsletter</h3>
-                            <p className="mt-2 text-sm leading-6 text-gray-300">
-                                The latest news, discounts, and earnings, sent to your inbox weekly.
-                            </p>
-                            <form className="mt-6 sm:flex sm:max-w-md">
-                                <input
-                                    type="email"
-                                    name="email-address"
-                                    id="email-address"
-                                    autoComplete="email"
-                                    required
-                                    className="w-full min-w-0 appearance-none rounded-md border-white/10 bg-gray-400/10 px-[calc(theme(spacing.3)-1px)] py-[calc(theme(spacing[1.5])-1px)] text-base leading-7 text-white shadow-sm sm:w-64 sm:text-sm sm:leading-6 xl:w-full"
-                                    placeholder="Enter your email"
-                                />
-                                <div className="mt-4 rounded-md sm:mt-0 sm:ml-4 sm:flex-shrink-0">
-                                    <button
-                                        type="submit"
-                                        className="flex w-full items-center justify-center rounded-md bg-[#425954] py-1.5 px-3 text-base font-semibold leading-7 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 sm:text-sm sm:leading-6"
-                                    >
-                                        Subscribe
-                                    </button>
-                                </div>
-                            </form>
                         </div>
                     </div>
                     <div className="mt-16 border-t border-white/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between">

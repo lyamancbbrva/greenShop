@@ -6,7 +6,9 @@ import Sidebar from "./Sidebar";
 import { FaBars } from "react-icons/fa6";
 import { FiBarChart } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
-import { FaChevronDown, FaRegHeart } from "react-icons/fa6";
+import { FaChevronDown } from "react-icons/fa6";
+import { AiOutlineUser } from "react-icons/ai";
+import {  GoHeart  } from "react-icons/go";
 import { LuRefreshCcw } from "react-icons/lu";
 import { SlBasket } from "react-icons/sl";
 import { TiArrowSortedDown } from "react-icons/ti";
@@ -198,12 +200,6 @@ function Header({ catSt, setCatSt }) {
                         </ul>
                     </div>
                     <div className='flex items-center gap-[4vw] lg:gap-[1vw]'>
-                        <div className='border-r-[1px] border-r-[#fff] px-[2vw] hover:text-[#ccc] flex items-center '>
-                            <FaLock className='inline text-[.8em] mx-[5px]' />
-                            <Link to='login' className='text-[.8em] font-medium cursor-pointer'>
-                                Login
-                            </Link>
-                        </div>
                         <ul className="flex">
                             <li className='flex items-center py-3 text-[.85em] hesab hover w-full relative'>
                                 <span className="hidden md:inline text-nowrap font-medium">My Account</span>
@@ -227,8 +223,8 @@ function Header({ catSt, setCatSt }) {
                                 </ul>
                             </li>
                         </ul>
-                        <FaRegHeart className='text-[1.3em] cursor-pointer' />
-                        <LuRefreshCcw className='text-[1.3em] hover:rotate-[270deg] transition cursor-pointer' />
+                        <GoHeart className='text-[1.4em] cursor-pointer' />
+                        <Link to={'/login'}><AiOutlineUser className='text-[1.4em] ml-2 cursor-pointer' /></Link>
                         <Link
                             to='/basket'
                             className='relative p-[2vw] sm:p-[1vw] lg:p-[10px]'

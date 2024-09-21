@@ -68,7 +68,7 @@ export const Basket = ({ catSt }) => {
                                                 />
                                             ) : (
                                                 <FaRegTrashAlt
-                                                    onClick={() => handleRemove(item.id)}
+                                                    onClick={() => handleDelete(item.id)}
                                                     className="text-white bg-[#43766C] active:scale-105 rounded-full w-[24px] h-[24px] cursor-pointer px-[6px] text-[15px]"
                                                 />
                                             )}
