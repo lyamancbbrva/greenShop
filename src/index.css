@@ -38,8 +38,7 @@
     padding: 10px;
 }
 .card:hover .endirim {
-    background: #43766ca6;
-    color: #fff;
+    background: #43766c;
     transition: .4s;
 }
 #scrollbar::-webkit-scrollbar {

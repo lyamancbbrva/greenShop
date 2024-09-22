@@ -13,6 +13,7 @@ function Products() {
     const [open, setOpen] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
     const [data, setData] = useState([])
+    const [inp, setInp] = useState('')
     const [id, setId] = useState(false)
 
     async function handleCategory(id, name) {
@@ -35,7 +36,7 @@ function Products() {
 
     return (
         <section className="px-6">
-            {open && <CreateModal product={product} open={open} setOpen={setOpen} setProduct={setProduct}/> }
+            {open && <CreateModal product={product} open={open} setOpen={setOpen} setProduct={setProduct} />}
             <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">Məhsulların idarə olunmasi formu:</h1>
             <button
                 onClick={() => { setOpen(!open) }}
@@ -49,7 +50,7 @@ function Products() {
                             </svg>
                         </button>
                     </span>
-                    <input type="search" name="Search" placeholder="Məhsulun adını daxil edin..." className="w-[100%] py-4 pl-10 text-sm rounded-md focus:outline-none border-2 focus:dark:bg-gray-50 focus:dark:border-default-600" />
+                    <input onChange={(e) => setInp(e.target.value)} type="search" name="Search" placeholder="Məhsulun adını daxil edin..." className="w-[100%] py-4 pl-10 text-sm rounded-md focus:outline-none border-2 focus:dark:bg-gray-50 focus:dark:border-default-600" />
                 </div>
             </fieldset>
             <div className="flex flex-col">
@@ -77,39 +78,41 @@ function Products() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {data.map((item, i) => (
-                                        <tr key={i} className="hover:bg-gray-200">
-                                            <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-                                                <div className="flex items-center">
-                                                    <div className="h-10 w-10 flex-shrink-0">
-                                                        <img className="h-10 w-10 rounded-full" src={item.img[0]} alt="" />
+                                    {data
+                                        .filter(item => item.name.toLowerCase().startsWith(inp.toLowerCase()))
+                                        .map((item, i) => (
+                                            <tr key={i} className="hover:bg-gray-200">
+                                                <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                                                    <div className="flex items-center">
+                                                        <div className="h-10 w-10 flex-shrink-0">
+                                                            <img className="h-10 w-10 rounded-full" src={item.img[0]} alt="" />
+                                                        </div>
+                                                        <div className="ml-4">
+                                                            <div className="font-medium text-gray-900">{item.name}</div>
+                                                            {/* <div className="text-gray-500">{item.category.categoryName}</div> */}
+                                                        </div>
                                                     </div>
-                                                    <div className="ml-4">
-                                                        <div className="font-medium text-gray-900">{item.name}</div>
-                                                        {/* <div className="text-gray-500">{item.category.categoryName}</div> */}
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm">
+                                                    <div className="text-red-600 font-semibold">{item.discount} %</div>
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <span className="inline-flex px-2">
+                                                        {item.price} azn
+                                                    </span>
+                                                </td>
+                                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                                    <div className="flex gap-2">
+                                                        <FiEdit
+                                                            onClick={() => handleCategory("1", "kartof")}
+                                                            className="text-[1.1em] text-[blue] cursor-pointer" />
+                                                        <FaTrashAlt
+                                                            onClick={() => { setDelOpen(!open); setId(item.id) }}
+                                                            className="text-[1.1em] text-[red] cursor-pointer" />
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm">
-                                                <div className="text-red-600 font-semibold">{item.discount} %</div>
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <span className="inline-flex px-2">
-                                                    {item.price} azn
-                                                </span>
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="flex gap-2">
-                                                    <FiEdit
-                                                        onClick={() => handleCategory("1", "kartof")}
-                                                        className="text-[1.1em] text-[blue] cursor-pointer" />
-                                                    <FaTrashAlt
-                                                        onClick={() => {setDelOpen(!open); setId(item.id)}}
-                                                        className="text-[1.1em] text-[red] cursor-pointer" />
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    ))}
+                                                </td>
+                                            </tr>
+                                        ))}
                                 </tbody>
                             </table>
                         </div>

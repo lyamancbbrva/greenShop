@@ -6,6 +6,8 @@ import { GiShoppingCart } from "react-icons/gi";
 import Aside from "./Aside";
 import { Cntx } from "../../context/DataContext";
 import getAllProducts from "../../api/api";
+import { spiral } from "ldrs";
+spiral.register();
 
 function SubCategory({ catSt, updateCount }) {
 
@@ -131,7 +133,9 @@ function SubCategory({ catSt, updateCount }) {
                                     );
                                 })
                             ) : (
-                                <div className="p-[40px] m-auto text-[2em]">No result found 😔</div>
+                                <div className='flex justify-center m-auto items-center'>
+                                    <l-spiral size='40' speed='0.9' color='#43766C'></l-spiral>
+                                </div>
                             )}
                         </div>
                     </div>

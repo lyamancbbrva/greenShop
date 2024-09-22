@@ -23,7 +23,7 @@ const cook = new Cookies()
 
 function App() {
     const [catSt, setCatSt] = useState(false)
-    const [product, setProduct] = useState();
+    const [product, setProduct] = useState([]);
     const [auth, setAuth] = useState(false)
 
     const { pathname } = useLocation();

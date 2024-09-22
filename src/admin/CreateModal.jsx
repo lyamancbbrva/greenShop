@@ -5,7 +5,7 @@ import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import configObj from '../config/config';
 import { useDropzone } from 'react-dropzone';
-import { createImg, createProduct, deleteImg, getCategories } from "../api/api";
+import { createImg, createProduct, deleteImg, editProduct, getCategories } from "../api/api";
 import { ExclamationTriangleIcon } from "@heroicons/react/16/solid";
 import toast from "react-hot-toast";
 
@@ -67,7 +67,6 @@ function CreateModal({ open, setOpen, product, setProduct }) {
         toast.success('Geldim e geldim!');
     }
 
-
     function updateProduct() {
         const productObj = {
             name,
@@ -80,12 +79,23 @@ function CreateModal({ open, setOpen, product, setProduct }) {
             description: editorRef.current ? editorRef.current.getContent() : '',
             metadata: meta,
         };
-        updateProduct(product.id, productObj)
-            .then(resp => {
-                setProduct(prevProducts => prevProducts.map(p => p.id === product.id ? resp : p));
-                setOpen(false);
-                toast.success('duzeltdim qaqa!');
-            })
+        editProduct(product.id, productObj)
+        .then((resp) => {
+            setProduct((prevProducts) => {
+                if (Array.isArray(prevProducts)) {
+                    return prevProducts.map((p) => (p.id === product.id ? resp : p));
+                }
+                return [resp];
+            });
+            setOpen(false);
+            toast.success('Məhsul uğurla yeniləndi!');
+        })
+        // editProduct(product.id, productObj)
+        //     .then(resp => {
+        //         setProduct(prevProducts => prevProducts.map(p => p.id === product.id ? resp : p));
+        //         setOpen(false);
+        //         toast.success('duzeltdim qaqa!');
+        //     })
     }
 
 

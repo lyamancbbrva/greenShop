@@ -8,8 +8,7 @@ import { FiBarChart } from "react-icons/fi";
 import { FaLock } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
 import { AiOutlineUser } from "react-icons/ai";
-import {  GoHeart  } from "react-icons/go";
-import { LuRefreshCcw } from "react-icons/lu";
+import { GoHeart } from "react-icons/go";
 import { SlBasket } from "react-icons/sl";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiMiniBars4 } from "react-icons/hi2";
@@ -19,27 +18,21 @@ function Header({ catSt, setCatSt }) {
     const [status, setStatus] = useState(false)
     const [sideSt, setSideSt] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-    const { category, subCategory } = useParams();
+    // const { category, subCategory } = useParams();
     const [inp, setInp] = useState("")
     const [data, setData] = useState([])
     const { sebetSay } = useContext(Cntx)
     const [activeAccordion, setActiveAccordion] = useState(null)
-    const [filteredProducts, setFilteredProducts] = useState([null])
 
     function toggleAccordion(index) { setActiveAccordion(activeAccordion === index ? null : index) }
 
     useEffect(() => {
-        searchProduct().then(res => { setFilteredProducts(res) })
         getAllProducts().then(res => { setData(res) })
     }, [])
 
     async function handleSearch(e) {
         setInp(e.target.value)
-        const filtered = data.filter(item =>
-            item.name.toLowerCase().startsWith(inp.toLowerCase())
-        );
         setStatus(true);
-        setFilteredProducts(filtered)
     }
 
     return (
@@ -78,26 +71,35 @@ function Header({ catSt, setCatSt }) {
                         </button>
                         <div id="scrollbar" className={`${status ? 'block' : 'hidden'} max-h-[250px] sm:max-h-[350px] overflow-y-auto absolute z-20 rounded-md shadow-md m-auto w-[47vw] lg:w-[30vw] md:w-[45vw]`}>
                             {
-                                filteredProducts?.length > 0 ? filteredProducts.map((item, i) => (
-                                    <Link
-                                        to={`/product/${item?.id}`}
-                                        key={i}
-                                        className="flex gap-5 items-center p-3 border-b w-full bg-gray-50 hover:bg-gray-200 transition-all"
-                                    >
-                                        <img
-                                            src={item?.img}
-                                            className="w-16 h-16 object-cover rounded-md"
-                                            alt={item?.name}
-                                        />
-                                        <div>
-                                            <h3 className="text-sm hover:text-green-700 capitalize text-md transition-all">
-                                                {item?.name}
-                                            </h3>
-                                            <p className="text-sm font-bold text-green-900">{item?.price} ₼</p>
-                                        </div>
-                                    </Link>
-                                )) : <div className="p-4 bg-white italic cursor-not-allowed">No products available...</div>
+                                data
+                                    .filter(item => item?.name.toLowerCase().startsWith(inp.toLowerCase()))
+                                    .length > 0 ? (
+                                    data
+                                        .filter(item => item?.name.toLowerCase().startsWith(inp.toLowerCase()))
+                                        .map((item, i) => (
+                                            <Link
+                                                to={`/product/${item?.id}`}
+                                                key={i}
+                                                className="flex gap-5 items-center p-3 border-b w-full bg-gray-50 hover:bg-gray-200 transition-all"
+                                            >
+                                                <img
+                                                    src={item?.img}
+                                                    className="w-16 h-16 object-cover rounded-md"
+                                                    alt={item?.name}
+                                                />
+                                                <div>
+                                                    <h3 className="text-sm hover:text-green-700 capitalize text-md transition-all">
+                                                        {item?.name}
+                                                    </h3>
+                                                    <p className="text-sm font-bold text-green-900">{item?.price} ₼</p>
+                                                </div>
+                                            </Link>
+                                        ))
+                                ) : (
+                                    <div className="p-4 bg-white italic cursor-not-allowed">No products available...</div>
+                                )
                             }
+
                         </div>
                     </div>
                     <button onClick={() => setIsOpen(!isOpen)} className='hidden md:block lg:hidden p-[10px] bg-[#43766C] text-white rounded-[5px] text-[1.4em] '>

@@ -77,7 +77,7 @@ function Main() {
                         </div>
                     </div>
                 </div>
-                <section className="px-2">
+                <section className="px-2 pt-5">
                     <div className='flex justify-between items-center py-2'>
                         <h3>Popular products</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>

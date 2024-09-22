@@ -1,8 +1,10 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { GoChevronRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../api/api";
 import icon from "../../assets/leaf.webp"
+import { dotPulse } from 'ldrs'
+dotPulse.register()
 
 function Aside() {
     const [cat, setCat] = useState([])
@@ -10,6 +12,15 @@ function Aside() {
     useEffect(() => {
         getCategories().then((resp) => setCat(resp));
     }, [])
+
+    if (cat.length === 0) {
+        return (
+            <div className="mx-auto py-6">
+                <l-dot-pulse size="20" speed="1.3" color="#43766C"></l-dot-pulse>
+                <span className="mx-3">Loading...</span>
+            </div>
+        );
+    }
 
     return (
         <aside className='pt-6 mb-3 bg-white shadow-lg lg:inline-block w-[245.5px] hidden'>
@@ -22,7 +33,7 @@ function Aside() {
                                     key={i}
                                     className={`flex px-3 gap-3 items-center border-b py-2 hover:bg-[#43766c2c] relative dropdown`}
                                 >
-                                    <img src={icon} className="w-6"/>
+                                    <img src={icon} className="w-6" />
                                     <div className='flex justify-between items-center w-full relative'>
                                         <p className='font-bold text-[10px] lg:text-[.7em]'>
                                             {item.categoryName}
