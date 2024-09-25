@@ -23,6 +23,7 @@ function Category() {
     useEffect(() => {
         getCategories().then((resp) => setData(resp));
     }, []);
+    console.log(data);
     
     function createNewCategory() {
         const obj = { categoryName }

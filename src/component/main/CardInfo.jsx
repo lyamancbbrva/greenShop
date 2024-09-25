@@ -18,6 +18,8 @@ function CardInfo({ catSt }) {
     }, []);
 
     const item = data && data.find(item => item.id == id);
+    console.log(item);
+    
 
     function addToBasket(e) {
         e.preventDefault();

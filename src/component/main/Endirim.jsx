@@ -63,7 +63,7 @@ function Endirim() {
                                     to={`/product/${id}`}
                                     className='text-center border rounded-md p-3 bg-white relative inline-block card'
                                 >
-                                    <GoHeart className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
+                                    <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-3 right-3 text-[1.3em] text-[#43766C]' />
                                     <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md"/>
                                     <h5 className='py-4 hover:text-[#43766C] text-[.82em] capitalize font-semibold'>
                                         {name}

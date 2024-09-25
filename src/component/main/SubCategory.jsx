@@ -5,8 +5,9 @@ import { GoHeartFill } from "react-icons/go";
 import { GiShoppingCart } from "react-icons/gi";
 import Aside from "./Aside";
 import { Cntx } from "../../context/DataContext";
-import getAllProducts from "../../api/api";
+import getAllProducts, { getCategories, getProductBySubcategory } from "../../api/api";
 import { spiral } from "ldrs";
+import { filter } from "list";
 spiral.register();
 
 function SubCategory({ catSt, updateCount }) {
@@ -15,20 +16,41 @@ function SubCategory({ catSt, updateCount }) {
     const { basket, setBasket, setSebetSay, sebetSay } = useContext(Cntx);
     const { category, subCategory } = useParams();
     const [pageCount, setPageCount] = useState(1);
+    const [cat, setCat] = useState([]);
 
     const [data, setData] = useState([])
-
+    const catName =  category.includes('-') ? category.split('-').join('') : category
+    const subcatName =  subCategory.includes('-') ? subCategory.split('-').join('') : subCategory
+    const id = cat.find(item => item.categoryName.replace(/\s+/g, '').toLowerCase() == catName.toLowerCase())?.subcategory.find(item => item.categoryName.replace(/\s+/g, '') == subcatName).id
+    // const id = cat?.find(item => item.categoryName.toLowerCase() == catName.toLowerCase())?.subcategory?.find(elem => elem.categoryName.toLowerCase() == subCategory.toLowerCase()).id 
+    
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp))
-    }, [])
-
+        getCategories().then(resp => setCat(resp))
+        // getAllProducts().then(resp => console.log(resp))
+        getProductBySubcategory(id).then(resp => setData(resp))
+    }, []);
+    console.log(id);
+    
+    // console.log(cat?.find(item => item.categoryName.toLowerCase() == catName.toLowerCase())?.subcategory?.map(elem => elem.categoryName.toLowerCase() ));
+    
+    
+    
+  
+    
+    
+    
+   
+    
+    
+    
+    
     // useEffect(() => {
     //     getAllProducts(category, subCategory, pageCount).then((res) => {
     //         setData(res?.data?.map((item) => ({ ...item, count: 1 })));
     //         setPage(res?.meta);
     //     });
     // }, [pageCount, category, subCategory]);
-    console.log(data);
+    // console.log(data);
 
     function addToBasket(item) {
         const existingProduct = basket.find(

@@ -67,7 +67,7 @@ function CardsSlider() {
                                 to={`/product/${id}`}
                                 className='border card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                             >
-                                <GoHeart className='absolute cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
+                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
                                 <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
                                 <h5 className='pt-4 hover:text-[#43766C] text-[.85em] capitalize'>{name}</h5>
                                 {discount > 0 && (

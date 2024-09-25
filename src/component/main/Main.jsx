@@ -113,7 +113,7 @@ function Main() {
                             <input
                                 type="email"
                                 placeholder="Email address"
-                                autocomplete="email"
+                                autoomplete="email"
                                 aria-label="Email address"
                                 className="block w-full rounded-lg border border-neutral-300 bg-white py-4 pl-6 pr-20 text-sm text-neutral-950 ring-4 ring-transparent transition placeholder:text-neutral-500 focus:border-neutral-950 focus:outline-none focus:ring-neutral-950/5"
                             />
@@ -123,11 +123,11 @@ function Main() {
                                     aria-label="Submit"
                                     className="flex w-[70px] h-full items-center justify-center rounded-lg bg-[#43766C] text-white transition hover:bg-neutral-800"
                                 >
-                                    <svg viewBox="0 0 16 6" aria-hidden="true" class="w-4">
+                                    <svg viewBox="0 0 16 6" aria-hidden="true" className="w-4">
                                         <path
                                             fill="currentColor"
-                                            fill-rule="evenodd"
-                                            clip-rule="evenodd"
+                                            fillRule="evenodd"
+                                            clipule="evenodd"
                                             d="M16 3 10 .5v2H0v1h10v2L16 3Z"
                                         ></path>
                                     </svg>
@@ -141,7 +141,7 @@ function Main() {
                         </div>
                         <p className="uppercase py-4 font-semibold tracking-wider">SMS Signup</p>
                         <p className="text-xs">Subscribe to our SMS to be the first to know about exclusive offers and product launches!</p>
-                        <div class="p-4 rounded-t-lg">
+                        <div className="p-4 rounded-t-lg">
                             <div className="relative bg-white rounded-t-lg mt-2 text-gray-500">
                                 <div className="absolute inset-y-0 left-3 my-auto h-6 flex items-center border-r pr-2">
                                     <select className="text-sm outline-none rounded-lg h-full">
