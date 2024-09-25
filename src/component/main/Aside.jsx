@@ -13,14 +13,14 @@ function Aside() {
         getCategories().then((resp) => setCat(resp));
     }, [])
 
-    if (cat.length === 0) {
-        return (
-            <div className="mx-auto py-6">
-                <l-dot-pulse size="20" speed="1.3" color="#43766C"></l-dot-pulse>
-                <span className="mx-3">Loading...</span>
-            </div>
-        );
-    }
+    // if (cat.length === 0) {
+    //     return (
+    //         <div className="mx-auto py-6">
+    //             <l-dot-pulse size="20" speed="1.3" color="#43766C"></l-dot-pulse>
+    //             <span className="mx-3">Loading...</span>
+    //         </div>
+    //     );
+    // }
 
     return (
         <aside className='pt-6 mb-3 bg-white shadow-lg lg:inline-block w-[245.5px] hidden'>

@@ -14,7 +14,7 @@ import Awards from "./Awards";
 function Main() {
     return (
         <main className='bg-slate-50'>
-            <a href="https://wa.me/994709233313" target="_blank" className="bg-[#31564e] right-5 bottom-5 fixed flex justify-center items-center w-[60px] h-[60px] hover:scale-105 transition-all duration-200 shadow-xl rounded-full">
+            <a href="https://wa.me/994709233313" target="_blank" className="bg-[#31564e] z-20 right-5 bottom-5 fixed flex justify-center items-center w-[60px] h-[60px] hover:scale-105 transition-all duration-200 shadow-xl rounded-full">
                 <MdCall className="text-[2em] text-[#fff]" />
             </a>
             <div className='wrapper-md'>

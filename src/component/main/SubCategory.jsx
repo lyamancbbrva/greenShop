@@ -137,7 +137,7 @@ function SubCategory({ catSt, updateCount }) {
                                         >
                                             <GoHeartFill className='absolute cursor-pointer top-4 right-4 text-[1.3em] text-white hover:text-[#43766C]' />
                                             <img src={img} alt={name} className="w-full object-cover h-[25vh] rounded-md" />
-                                            <h5 className='pt-4 hover:text-[#43766C] text-[.85em] capitalize'>
+                                            <h5 className='pt-4 hover:text-[#43766C]  text-ellipsis whitespace-nowrap overflow-hidden max-w-[148px] text-[.85em] capitalize'>
                                                 {name}
                                             </h5>
                                             <p className='font-semibold py-3 italic text-[1.2em]'>{price} $</p>
@@ -178,7 +178,7 @@ function SubCategory({ catSt, updateCount }) {
                             {i + 1}
                         </button>
                     ))
-                ) : "No pages..."}
+                ) : null}
             </div>
         </main>
     );

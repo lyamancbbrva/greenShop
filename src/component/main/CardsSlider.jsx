@@ -50,12 +50,13 @@ function CardsSlider() {
                 freeMode={true}
                 navigation={true}
                 modules={[FreeMode, Navigation]}
-                className='mySwiper my-4 lg:mx-0 w-[100%]'
+                className='mySwiper m-auto my-4 lg:mx-0 w-[100%]'
                 breakpoints={{
                     320: { slidesPerView: 2, spaceBetween: 0 },
-                    568: { slidesPerView: 3, spaceBetween: 10 },
-                    768: { slidesPerView: 4, spaceBetween: 10 },
-                    992: { slidesPerView: 5, spaceBetween: 10 },
+                    568: { slidesPerView: 3, spaceBetween: 0},
+                    715: { slidesPerView: 3.5, spaceBetween: 20},
+                    910: { slidesPerView: 4, spaceBetween: 10 },
+                    1125: { slidesPerView: 5, spaceBetween: 10 },
                     1280: { slidesPerView: 6, spaceBetween: 10 },
                 }}
             >
@@ -67,12 +68,12 @@ function CardsSlider() {
                                 to={`/product/${id}`}
                                 className='border card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                             >
-                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
+                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
                                 <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
-                                <h5 className='pt-4 hover:text-[#43766C] text-[.85em] capitalize'>{name}</h5>
+                                <h5 className='pt-4 hover:text-[#43766C] text-ellipsis whitespace-nowrap overflow-hidden max-w-[148px] text-[.85em] capitalize'>{name}</h5>
                                 {discount > 0 && (
                                     <div>
-                                        <span className='bg-[#43766ca6] text-white absolute top-[47%] right-[25px] endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold'>
+                                        <span className='bg-[#43766ca6] text-white absolute top-[47%] right-[18px] endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold'>
                                             {discount} %
                                         </span>
                                         <div className="flex gap-3 items-center py-3">
@@ -86,7 +87,7 @@ function CardsSlider() {
                                 </p>
                                 <button
                                     onClick={(e) => addToBasket(e, item)}
-                                    className='rounded-md flex gap-2 w-full text-[.8em] border border-[#43766C] transition-all duration-200 hover:bg-[#43766c2b] px-4 py-2 font-semibold'
+                                    className='rounded-md text-nowrap flex gap-2 w-full text-[.8em] border border-[#43766C] transition-all duration-200 hover:bg-[#43766c2b] px-4 py-2 font-semibold'
                                 >
                                     <GiShoppingCart className="text-lg text-gray-500" /> Add to Basket
                                 </button>

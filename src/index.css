@@ -37,6 +37,7 @@
     z-index: 999;
     padding: 10px;
 }
+footer svg{fill: #fff !important;}
 .card:hover .endirim {
     background: #43766c;
     transition: .4s;

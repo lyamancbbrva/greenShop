@@ -12,26 +12,12 @@ function Awards() {
             }}
             speed={3000}
             breakpoints={{
-                300: {
-                    slidesPerView: 3,
-                    spaceBetween: 10,
-                },
-                768: {
-                    slidesPerView: 5,
-                    spaceBetween: 10,
-                },
-                992: {
-                    slidesPerView: 5,
-                    spaceBetween: 10,
-                },
-                1024: {
-                    slidesPerView: 6,
-                    spaceBetween: 10,
-                },
-                1280: {
-                    slidesPerView: 8,
-                    spaceBetween: 10,
-                },
+                300: { slidesPerView: 3, spaceBetween: 10,},
+                500: { slidesPerView: 4, spaceBetween: 10,},
+                768: { slidesPerView: 5, spaceBetween: 10,},
+                992: { slidesPerView: 5, spaceBetween: 10,},
+                1024: { slidesPerView: 6, spaceBetween: 10,},
+                1280: { slidesPerView: 8, spaceBetween: 10,},
             }}
             modules={[Autoplay]}
             className="mySwiper py-5">
