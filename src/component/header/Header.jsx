@@ -66,7 +66,7 @@ function Header({ catSt, setCatSt }) {
                             placeholder='Search...'
                             className='py-[4px] sm:py-[10px] w-[100%] pl-10 text-sm bg-white rounded-[30px] text-[.7rem] focus:outline-none border-[1px] border-[#43766C]'
                         />
-                        <button className='text-white text-[.9em] bg-[#43766C] rounded-[30px] py-[4px] sm:py-[10px] px-[15px]  absolute right-0 '>
+                        <button className='text-white text-[.9em] bg-[#43766C] rounded-[30px] sm:py-[10px] px-[20px] absolute right-0 '>
                             Search
                         </button>
                         <div id="scrollbar" className={`${status ? 'block' : 'hidden'} max-h-[250px] sm:max-h-[350px] overflow-y-auto absolute z-20 rounded-md shadow-md m-auto w-[47vw] lg:w-[30vw] md:w-[45vw]`}>

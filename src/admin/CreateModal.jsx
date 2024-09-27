@@ -9,7 +9,7 @@ import { createImg, createProduct, deleteImg, editProduct, getCategories } from 
 import { ExclamationTriangleIcon } from "@heroicons/react/16/solid";
 import toast from "react-hot-toast";
 
-function CreateModal({ open, setOpen, product, setProduct }) {
+function CreateModal({ open, setOpen, product = [], setProduct }) {
 
     const formdata = new FormData()
     const apiKey = configObj.editorKey
@@ -24,7 +24,6 @@ function CreateModal({ open, setOpen, product, setProduct }) {
     const [price, setPrice] = useState(0)
     const [discount, setDiscount] = useState(0);
     const [meta, setMeta] = useState('')
-
 
     useEffect(() => {
         getCategories().then(resp => setCategory(resp))
