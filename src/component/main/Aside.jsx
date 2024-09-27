@@ -49,7 +49,7 @@ function Aside() {
                                                         to={`/${elem.slug}`}
                                                         key={i}
                                                     >
-                                                        <li className='text-[.8em] py-2 px-3 hover:bg-[#43766c29]'>
+                                                        <li className='text-[.8em] py-2 px-3 capitalize hover:bg-[#43766c29]'>
                                                             {elem.categoryName}
                                                         </li>
                                                     </Link>

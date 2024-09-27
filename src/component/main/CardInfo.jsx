@@ -94,7 +94,7 @@ function CardInfo({ catSt }) {
                             Delivery: 🗹 Yes
                         </p>
                         <p className='mb-3 text-[.9em] text-gray-700'>
-                            {item?.description}
+                            Description: {item?.metadata}
                         </p>
                         <p className='mb-3 text-[2em] font-bold text-[#43766C]'>
                             {item?.price} ₼

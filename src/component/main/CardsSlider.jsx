@@ -10,6 +10,7 @@ import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
 import getAllProducts, { getDiscountedProduct } from "../../api/api";
+import toast from "react-hot-toast";
 
 spiral.register();
 
@@ -32,6 +33,7 @@ function CardsSlider() {
                 : [...basket, { ...item, count: 1 }]
         );
         setSebetSay(sebetSay + 1);
+        toast.success(`${item.name} added to cart!`)
     }
 
     if (data.length === 0) {

@@ -88,7 +88,9 @@ export const Basket = ({ catSt }) => {
                                     </td>
                                 </tr>
                             )) : <tr>
-                                <td colSpan={6} className="text-center py-8 text-red-900 text-md font-semibold">YOUR BAG IS EMPTY! <br />Your shopping bag is currently empty.</td>
+                                <td colSpan={6}>
+                                    <img src="https://www.adasglobal.com/img/empty-cart.png" alt="" className="sm:w-[40%] w-full m-auto" />
+                                </td>
                             </tr>}
                     </tbody>
                 </table>
