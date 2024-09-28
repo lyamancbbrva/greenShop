@@ -9,6 +9,7 @@ import getAllProducts, { getCategories, getProductBySubcategory } from "../../ap
 import { spiral } from "ldrs";
 import { filter } from "list";
 spiral.register();
+import toast from "react-hot-toast";
 
 function SubCategory({ catSt }) {
     const [page, setPage] = useState(1);
@@ -41,7 +42,8 @@ function SubCategory({ catSt }) {
         }
     }, [id])
 
-    function addToBasket(item) {
+    function addToBasket(e, item) {
+        e.preventDefault();
         const existingProduct = basket.find(basketItem => basketItem.id === item.id);
         if (existingProduct) {
             setBasket(
@@ -55,6 +57,7 @@ function SubCategory({ catSt }) {
             setBasket([...basket, { ...item, count: 1 }]);
         }
         setSebetSay(sebetSay + 1);
+        toast.success(`${item.name} added to cart!`)
     }
 
     return (
@@ -149,7 +152,7 @@ function SubCategory({ catSt }) {
                                             </p>
                                             <button
                                                 onClick={(e) => addToBasket(e, item)}
-                                                className='rounded-md text-nowrap flex gap-2 w-full text-[.8em] border border-[#43766C] transition-all duration-200 hover:bg-[#43766c2b] px-4 py-2 font-semibold'
+                                                className='rounded-md text-nowrap justify-center flex gap-2 w-full text-[.8em] border border-[#43766C] transition-all duration-200 hover:bg-[#43766c2b] px-4 py-2 font-semibold'
                                             >
                                                 <GiShoppingCart className="text-lg text-gray-500" /> Add to Basket
                                             </button>

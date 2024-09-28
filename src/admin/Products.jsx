@@ -1,24 +1,25 @@
 import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
-import { Description, Dialog, Transition } from '@headlessui/react'
+import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import CreateModal from "./CreateModal";
-import getAllProducts, { deleteProduct, editProduct } from "../api/api";
+import getAllProducts, { deleteProduct } from "../api/api";
 import toast from "react-hot-toast";
 
 function Products() {
-
     const [product, setProduct] = useState([])
     const [open, setOpen] = useState(false)
+    const [editOpen, setEditOpen] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
     const [data, setData] = useState([])
     const [inp, setInp] = useState('')
     const [id, setId] = useState(false)
 
-    async function handleCategory(id, name) {
-        setProduct({ id, name })
-        setOpen(!open)
+    function handleCategory(item) {
+        setProduct(item)
+        setEditOpen(true)
+        console.log(item);
     }
 
     useEffect(() => {
@@ -36,7 +37,7 @@ function Products() {
 
     return (
         <section className="px-6">
-            {open && <CreateModal product={product} open={open} setOpen={setOpen} setProduct={setProduct} />}
+            <CreateModal product={product} setEditOpen={setEditOpen} editOpen={editOpen} open={open} setOpen={setOpen} setProduct={setProduct} />
             <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">Məhsulların idarə olunmasi formu:</h1>
             <button
                 onClick={() => { setOpen(!open) }}
@@ -104,7 +105,7 @@ function Products() {
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     <div className="flex gap-2">
                                                         <FiEdit
-                                                            onClick={() => handleCategory("1", "kartof")}
+                                                            onClick={() => handleCategory(item)}
                                                             className="text-[1.1em] text-[blue] cursor-pointer" />
                                                         <FaTrashAlt
                                                             onClick={() => { setDelOpen(!open); setId(item.id) }}

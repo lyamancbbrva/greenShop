@@ -12,7 +12,8 @@ function SliderPage() {
     const [category, setCategory] = useState([]);
     const [open, setOpen] = useState(false);
     const [delOpen, setDelOpen] = useState(false);
-    const [id, setId] = useState();
+    const [id, setId] = useState(0);
+    const [subCatId, setsubCatId] = useState(0);
     const [img, setImg] = useState([])
     const [imgSrc, setImgSrc] = useState('')
 
@@ -25,15 +26,23 @@ function SliderPage() {
     }, [])
 
     function addSlider() {
-        const obj = { category , imgSrc}
-        createSlider(obj).then(resp => setData([...data, resp]))
+        const obj = { 
+            categoryId: id, 
+            subcategoryId: Number(subCatId),
+            img: imgSrc, 
+        }
+        createSlider(obj).then(resp => {
+            setData([...data, resp])
+            setImg([])
+        })
         setOpen(!open); 
         setImgSrc(null);
+        console.log(obj);
     }
 
     function delSlider(id) {
         deleteSlider(id)
-        setImg(img.filter(item => item !== imgSrc))
+        setData(data.filter(item => item.id !== id))
         toast.success('Şəkil silindi');
     }
     
@@ -41,12 +50,10 @@ function SliderPage() {
         formdata.append('img', acceptedFiles[0])
         const newImg = await createImg(formdata)
         setImg([...img, newImg.img_url])
+        setImgSrc(newImg.img_url)
     };
 
-    const { getRootProps, getInputProps } = useDropzone({
-        onDrop,
-        maxFiles: 5
-    });
+    const { getRootProps, getInputProps } = useDropzone({onDrop, maxFiles: 5});
 
     return (
         <section className="px-6">
@@ -82,12 +89,12 @@ function SliderPage() {
                                         data?.map((item, i) => (
                                             <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
-                                                    {item.imgSrc}
+                                                    <a href={item.img}>{item.img}</a>
                                                 </td>
                                                 <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                                                     <FaTrashAlt
                                                         onClick={() => {
-                                                            setId(id)
+                                                            setId(item.id)
                                                             setDelOpen(true)
                                                         }}
                                                         className='text-[1.2em] text-[red] cursor-pointer'
@@ -137,7 +144,7 @@ function SliderPage() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Kateqoriya seçin:</label>
                                         <select
-                                            onChange={(e) => setId(e.target.value)}
+                                            onChange={(e) => setId(+e.target.value)}
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                             <option>Kateqoriya seçin:</option>
                                             {
@@ -147,11 +154,14 @@ function SliderPage() {
                                     </div>
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Subkateqoriya:</label>
-                                        <select className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
+                                        <select
+                                            onChange={(e) => setsubCatId(e.target.value)}
+                                            className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
+                                        >
                                             <option>Subkateqoriya seçin</option>
-                                            {
-                                                category?.filter(item => item.id == id)[0]?.subcategory?.map((item, i) => <option key={i}>{item.categoryName}</option>)
-                                            }
+                                            {category?.filter(item => item.id == id)[0]?.subcategory?.map((item, i) => (
+                                                <option key={i} value={item.id}>{item.categoryName}</option>
+                                            ))}
                                         </select>
                                     </div>
                                     <div className="my-3">
