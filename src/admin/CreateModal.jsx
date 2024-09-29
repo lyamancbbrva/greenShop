@@ -23,6 +23,7 @@ function CreateModal({ open, setOpen, setEditOpen, editOpen }) {
     const [price, setPrice] = useState(0)
     const [discount, setDiscount] = useState(0);
     const [meta, setMeta] = useState('')
+    const [topSell, setTopSell] = useState(false)
     const [product, setProduct] = useState([])
 
     useEffect(() => {
@@ -47,7 +48,7 @@ function CreateModal({ open, setOpen, setEditOpen, editOpen }) {
     function addProduct() {
         const productObj = {
             name: name,
-            isTopSelling: true,
+            isTopSelling: topSell,
             price: Number(price),
             discount: Number(discount),
             img: img,
@@ -59,6 +60,7 @@ function CreateModal({ open, setOpen, setEditOpen, editOpen }) {
         console.log(productObj)
         createProduct(productObj).then(resp => setProduct([...product, resp]))
         setOpen(false)
+        setEditOpen(false)
         toast.success('Geldim e geldim!');
     }
 
@@ -66,7 +68,7 @@ function CreateModal({ open, setOpen, setEditOpen, editOpen }) {
         const productObj = {
             id,
             name,
-            isTopSelling: true,
+            isTopSelling: topSell,
             price: Number(price),
             discount: Number(discount),
             img,
@@ -88,6 +90,8 @@ function CreateModal({ open, setOpen, setEditOpen, editOpen }) {
                 toast.success('Məhsul uğurla yeniləndi!');
             })
     }
+
+    console.log(topSell);
 
     return (
         <>
@@ -175,6 +179,17 @@ function CreateModal({ open, setOpen, setEditOpen, editOpen }) {
                                             placeholder='123'
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                         />
+                                    </div>
+                                    <div className='my-6 flex items-center gap-10'>
+                                        <span htmlFor="" className="text-[12px] font-bold text-gray-700 uppercase">Çox satılandır:</span>
+                                        <label className="flex justify-center gap-2">
+                                            <input
+                                                type="checkbox"
+                                                checked={topSell}
+                                                onChange={(e) => setTopSell(e.target.checked)}
+                                                className="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-5 h-5"
+                                            />
+                                        </label>
                                     </div>
                                     <div className="my-3">
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Şəkil əlavə et!</label>
