@@ -23,7 +23,7 @@ function CardInfo({ catSt }) {
 
     function addToBasket(e) {
         e.preventDefault();
-        const existingItem = basket.find(i => i.id === item.id);
+        const existingItem = basket.find(i => i.id === id);
         setBasket(
             existingItem
                 ? [...basket.map(i => i.id === existingItem.id ? { ...i, count: i.count + itemCount } : i)]

@@ -18,7 +18,8 @@ function Products() {
 
     function handleCategory(item) {
         setProduct(item)
-        setEditOpen(true)
+        setEditOpen(true);
+        setOpen(true);
         console.log(item);
     }
 

@@ -23,7 +23,7 @@ function Main() {
                     <div className='lg:w-[70%] xl:w-[78%] mt-0 lg:ml-0 lg:flex flex-col items-end px-2'>
                         <Slider />
                         <div className='flex gap-3 justify-between py-3 w-[100%] '>
-                            <div className='w-[100%] border lg:w-[18vw] xl:w-[20vw]'>
+                            <div className='w-[100%] border xl:w-[20vw]'>
                                 <div className='lg:w-[100%]'>
                                     <a href=''>
                                         <img
@@ -40,7 +40,7 @@ function Main() {
                                     <FaArrowRightLong />
                                 </div>
                             </div>
-                            <div className='w-[100%] border lg:w-[18vw]  xl:w-[20vw]'>
+                            <div className='w-[100%] border xl:w-[20vw]'>
                                 <div className='lg:w-[100%]'>
                                     <a href=''>
                                         <img
@@ -52,12 +52,12 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                        Delicious Discounts!
+                                        50% Sale!
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
                             </div>
-                            <div className='w-[18vw] border lg:block hidden xl:w-[20vw]'>
+                            <div className='w-[18vw] border xl:block hidden xl:w-[20vw]'>
                                 <div className='w-[100%]'>
                                     <a href=''>
                                         <img
@@ -69,7 +69,7 @@ function Main() {
                                 </div>
                                 <div className='flex justify-between items-center bg-white py-2 px-5'>
                                     <p className='text-[13px] font-semibold'>
-                                        Weekend Discounts in GreenShop!
+                                        Weekend Discounts!
                                     </p>
                                     <FaArrowRightLong />
                                 </div>
