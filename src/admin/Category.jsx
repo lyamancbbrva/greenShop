@@ -13,37 +13,33 @@ function Category() {
     const [data, setData] = useState([]);
     const [categoryName, setCategoryName] = useState('')
     const [id, setId] = useState(false)
-    
+
+    useEffect(() => {
+        getCategories().then((resp) => setData(resp));
+    }, []);
+
     async function handleCategory(id, categoryName) {
         setProduct({ id, categoryName })
         setCategoryName(categoryName)
         setOpen(!open)
     }
 
-    useEffect(() => {
-        getCategories().then((resp) => setData(resp));
-    }, []);
-    console.log(data);
-    
     function createNewCategory() {
         const obj = { categoryName }
         createCategory(obj).then(resp => setData([...data, resp]))
         setOpen(false)
     }
 
-    function delCategory(id) {
-        deleteCategory(id)
-        setCategoryName(() => {
-            const updatedData = data.filter(item => item.id !== id);
-            return updatedData;
-        });
+    async function delCategory(id) {
+        await deleteCategory(id)
+        setCategoryName(data.filter(item => item.id !== id));
         toast.success('Silindi getdi');
     }
 
     function updateCategory() {
         const obj = { categoryName }
         editCategory(product.id, obj).then((resp) => {
-            const updatedData = data.map(item => 
+            const updatedData = data.map(item =>
                 item.id == product.id ? { ...item, categoryName: resp.categoryName } : item
             )
             setData(updatedData)
@@ -51,7 +47,6 @@ function Category() {
             toast.success('Oldu çiçək kimii');
         })
     }
-    
 
     return (
         <section className='px-6'>
@@ -59,9 +54,7 @@ function Category() {
                 Kataqoriyaların idarə olunmasi formu:
             </h1>
             <button
-                onClick={() => {
-                    setOpen(true);
-                }}
+                onClick={() => { setOpen(true) }}
                 className='bg-green-700 text-white p-3 rounded-md font-semibold'
             >
                 + Kataqoriya əlavə et
@@ -106,9 +99,10 @@ function Category() {
                                                             className='text-[1.2em] text-blue-500 cursor-pointer'
                                                         />
                                                         <FaTrashAlt
-                                                            onClick={() =>{
+                                                            onClick={() => {
                                                                 setDelOpen(true)
-                                                                setId(item.id)}}
+                                                                setId(item.id)
+                                                            }}
                                                             className='text-[1.2em] text-[red] cursor-pointer'
                                                         />
                                                     </div>

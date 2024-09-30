@@ -2,7 +2,7 @@ import { useState, Fragment, useEffect } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon , XMarkIcon} from '@heroicons/react/24/outline'
+import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import configObj from '../config/config';
@@ -11,26 +11,34 @@ import getAllProducts, { createImg, createProduct, deleteImg, deleteProduct, edi
 import toast from "react-hot-toast";
 
 function Products() {
+    const formdata = new FormData()
+    const apiKey = configObj.editorKey
+    const editorRef = useRef(null)
     const [product, setProduct] = useState([])
     const [open, setOpen] = useState(false)
     const [editOpen, setEditOpen] = useState(false)
+    const [delModal, setDelModal] = useState(false)
     const [delOpen, setDelOpen] = useState(false)
     const [inp, setInp] = useState('')
-    const [delId, setDelId] = useState(false)
-    const formdata = new FormData()
-    const apiKey = configObj.editorKey
-    const [category, setCategory] = useState([])
-    const editorRef = useRef(null)
-    const [img, setImg] = useState([])
-    const [delModal, setDelModal] = useState(false)
-    const [imgSrc, setImgSrc] = useState('')
     const [id, setId] = useState(0)
-    const [subCatId, setsubCatId] = useState(0)
-    const [name, setName] = useState("")
-    const [price, setPrice] = useState(0)
-    const [discount, setDiscount] = useState(0);
-    const [meta, setMeta] = useState('')
-    const [topSell, setTopSell] = useState(false)
+    const [category, setCategory] = useState([])
+    const [img, setImg] = useState([])
+    const [imgSrc, setImgSrc] = useState('')
+    const [catId, setCatId] = useState(0)
+
+    const initialObj = {
+        name: "",
+        isTopSelling: false,
+        price: 0,
+        discount: 0,
+        img: [],
+        categoryId: 0,
+        subcategoryId: 0,
+        description: "",
+        metadata: ""
+    }
+
+    const [obj, setObj] = useState(initialObj)
 
     useEffect(() => {
         getCategories().then(resp => setCategory(resp))
@@ -47,69 +55,44 @@ function Products() {
         formdata.append('img', acceptedFiles[0])
         const newImg = await createImg(formdata)
         setImg([...img, newImg.img_url])
+        setObj({ ...obj, img: [newImg.img_url] })
     };
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles: 5 });
 
     function addProduct() {
-        const productObj = {
-            name: name,
-            isTopSelling: topSell,
-            price: Number(price),
-            discount: Number(discount),
-            img: img,
-            categoryId: Number(id),
-            subcategoryId: Number(subCatId),
-            description: editorRef.current.getContent(),
-            metadata: meta
-        }
-        console.log(productObj)
-        createProduct(productObj).then(resp => setProduct([...product, resp]))
-        setOpen(false)
-        setEditOpen(false)
+        const productObj = { ...obj, description: editorRef.current.getContent() }
+        console.log(productObj);
+        createProduct(productObj).then(resp => setProduct([...product, resp]));
+        setOpen(false);
+        setEditOpen(false);
+        setObj(initialObj);
+        setImg(null)
         toast.success('Geldim e geldim!');
     }
 
     function updateProduct() {
-        const productObj = {
-            id,
-            name,
-            isTopSelling: topSell,
-            price: Number(price),
-            discount: Number(discount),
-            img,
-            categoryId: id,
-            subcategoryId: Number(subCatId),
-            description: editorRef.current ? editorRef.current.getContent() : '',
-            metadata: meta,
-        };
-        editProduct(product.id, productObj)
+        const productObj = { ...obj, description: editorRef.current.getContent() }
+        editProduct(id, productObj)
             .then((resp) => {
-                setProduct((prevProducts) => {
-                    if (Array.isArray(prevProducts)) {
-                        return prevProducts.map((p) => (p.id == product.id ? resp : p));
-                    }
-                    return [resp];
-                });
-                setOpen(false)
+                setProduct(product.map((prod) => (prod.id === id ? resp : prod)));
+                setOpen(false);
                 setEditOpen(false);
+                setObj(initialObj);
                 toast.success('Məhsul uğurla yeniləndi!');
             })
     }
 
     function handleCategory(item) {
-        setEditOpen(true);
-        setOpen(true);
-        console.log(item);
+        setId(item.id)
+        setEditOpen(true)
+        setOpen(true)
     }
 
-    async function delProduct(delId) {
-        await deleteProduct(delId);
-        setProduct(() => {
-            const updatedData = product.filter(item => item.id !== delId);
-            return updatedData;
-        });
-        toast.success('Məhsul gorbagor oldu!');
+    async function delProduct(id) {
+        await deleteProduct(id)
+        setProduct(product.filter(item => item.id !== id))
+        toast.success('Məhsul gorbagor oldu!')
     }
 
     return (
@@ -174,7 +157,7 @@ function Products() {
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                                     <span className="inline-flex px-2">
-                                                        {item.price} azn
+                                                        {item.price} $
                                                     </span>
                                                 </td>
                                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -195,7 +178,7 @@ function Products() {
                     </div>
                 </div>
             </div>
-            
+
             {/* C R E A T E     M O D A L    */}
             <Transition.Root show={open} as={Fragment}>
                 <Dialog as="div" className="relative z-10" onClose={setOpen}>
@@ -231,10 +214,8 @@ function Products() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">məhsulun adı</label>
                                         <input
-                                            value={
-                                                editOpen ? product?.find((item) => item.id == id)?.name : name
-                                            }
-                                            onInput={(e) => setName(e.target.value)}
+                                            onInput={(e) => setObj({ ...obj, name: e.target.value })}
+                                            // value={editOpen ? (product.name || product.find(item => item.id == id).name) : product.name}
                                             type="text"
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                             placeholder="Məhsulun adı"
@@ -243,7 +224,8 @@ function Products() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Kateqoriya seçin:</label>
                                         <select
-                                            onChange={(e) => setId(e.target.value)}
+                                            onChange={(e) => {setCatId(e.target.value); setObj({ ...obj, categoryId: e.target.value })}}
+                                            // value={editOpen ? (obj.categoryId || product.find(item => item.id == id).categoryId) : obj.categoryId}
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                             <option>Kateqoriya seçin:</option>
                                             {
@@ -254,11 +236,12 @@ function Products() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Subkateqoriya:</label>
                                         <select
-                                            onChange={(e) => setsubCatId(e.target.value)}
+                                            onChange={(e) => setObj({ ...obj, subcategoryId: e.target.value })}
+                                            // value={editOpen ? (product.find(item => item.id == id).subcategoryId || obj.subcategoryId) : obj.subcategoryId}
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                         >
                                             <option>Subkateqoriya seçin</option>
-                                            {category?.filter(item => item.id == id)[0]?.subcategory?.map((item, i) => (
+                                            {category?.filter(item => item.id == catId)[0]?.subcategory?.map((item, i) => (
                                                 <option key={i} value={item.id}>{item.categoryName}</option>
                                             ))}
                                         </select>
@@ -266,7 +249,8 @@ function Products() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Endirim Miqdarı (%):</label>
                                         <input
-                                            onInput={(e) => { setDiscount(e.target.value) }}
+                                            onInput={(e) => { setObj({ ...obj, discount: e.target.value }) }}
+                                            // value={editOpen ? (obj.discount || product.find(item => item.id == id).discount ) : obj.discount}
                                             type="number"
                                             placeholder='0'
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
@@ -275,7 +259,8 @@ function Products() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Məhsulun qiyməti:</label>
                                         <input
-                                            onInput={(e) => setPrice(e.target.value)}
+                                            onInput={(e) => setObj({ ...obj, price: e.target.value })}
+                                            // value={editOpen ? (obj.price || product.find(item => item.id == id).price ) : obj.price}
                                             type="number"
                                             placeholder='123'
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
@@ -286,8 +271,8 @@ function Products() {
                                         <label className="flex justify-center gap-2">
                                             <input
                                                 type="checkbox"
-                                                checked={topSell}
-                                                onChange={(e) => setTopSell(e.target.checked)}
+                                                // checked={product.isTopSelling}
+                                                onInput={(e) => setObj({ ...obj, isTopSelling: e.target.checked })}
                                                 className="dark:border-white-400/20 dark:scale-100 transition-all duration-500 ease-in-out dark:hover:scale-110 dark:checked:scale-100 w-5 h-5"
                                             />
                                         </label>
@@ -340,7 +325,11 @@ function Products() {
                                     </div>
                                     <div className='mb-3 border-b border-gray-400 py-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Meta məlumat</label>
-                                        <textarea onInput={(e) => setMeta(e.target.value)} name="" id="" className='text-sm block w-full rounded-md h-24 border-gray-400 p-2 border outline-indigo-600 shadow-sm' placeholder='Meta məlumatları daxil edin...'></textarea>
+                                        <textarea
+                                            onInput={(e) => setObj({...obj, metadata: e.target.value})}
+                                            // value={editOpen ? (obj.metadata || product.find(item => item.id == id).metadata ) : obj.metadata}
+                                            className='text-sm block w-full rounded-md h-24 border-gray-400 p-2 border outline-indigo-600 shadow-sm'
+                                            placeholder='Meta məlumatları daxil edin...'></textarea>
                                     </div>
                                     <button
                                         onClick={() => !editOpen ? addProduct() : updateProduct()}
@@ -456,7 +445,7 @@ function Products() {
                                             type="button"
                                             className="inline-flex justify-center rounded-md border border-transparent bg-red-600 px-6 py-2 text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                                             onClick={() => {
-                                                delProduct(delId)
+                                                delProduct(id)
                                                 setDelOpen(!delOpen)
                                             }}
                                         >

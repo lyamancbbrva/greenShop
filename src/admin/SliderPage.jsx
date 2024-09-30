@@ -19,9 +19,6 @@ function SliderPage() {
 
     useEffect(() => {
         getSliders().then((resp) => setData(resp))
-    }, [])
-
-    useEffect(() => {
         getCategories().then(resp => setCategory(resp))
     }, [])
 
@@ -37,7 +34,7 @@ function SliderPage() {
         })
         setOpen(!open); 
         setImgSrc(null);
-        console.log(obj);
+        toast.success('Şəkil əlavə olunduuu');
     }
 
     function delSlider(id) {
@@ -89,7 +86,8 @@ function SliderPage() {
                                         data?.map((item, i) => (
                                             <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
-                                                    <a href={item.img}>{item.img}</a>
+                                                    {/* <a href={item.img}>{item.img}</a> */}
+                                                    <p>{item.id}</p>
                                                 </td>
                                                 <td className='whitespace-nowrap px-3 py-4 text-sm text-gray-500'>
                                                     <FaTrashAlt
