@@ -25,7 +25,6 @@ function App() {
     const [catSt, setCatSt] = useState(false)
     const [product, setProduct] = useState([]);
     const [auth, setAuth] = useState(false)
-
     const { pathname } = useLocation();
 
     function updateCount(id, increment) {
@@ -35,16 +34,12 @@ function App() {
             }
             return item;
         });
-
         setProduct(updatedProducts);
     }
 
-
     useEffect(() => {
         window.scroll(0, 0);
-
         if (pathname.split('/')[1] === 'admin') {
-
             if (pathname.startsWith('/admin')) {
                 const yoxla = verifyToken()
                 yoxla.then(res => {

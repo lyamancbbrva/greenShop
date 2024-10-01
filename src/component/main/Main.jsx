@@ -93,7 +93,7 @@ function Main() {
                         <h3>Discount products</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
-                    <CardsSlider />
+                    <Endirim />
                 </section>
                 <section className="px-2">
                     <div className='flex justify-between items-center py-2'>

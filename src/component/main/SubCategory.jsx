@@ -19,6 +19,7 @@ function SubCategory({ catSt }) {
     const [cat, setCat] = useState([]);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [priceRange, setPriceRange] = useState(250);
 
     const catName = category.includes("-") ? category.split("-").join("") : category;
     const subcatName = subCategory.includes("-") ? subCategory.split("-").join("") : subCategory;
@@ -60,6 +61,8 @@ function SubCategory({ catSt }) {
         toast.success(`${item.name} added to cart!`)
     }
 
+    const filteredData = data.filter(item => item.price <= priceRange)
+
     return (
         <main className="bg-[#F2F2F2]">
             <div className="wrapper relative">
@@ -73,11 +76,14 @@ function SubCategory({ catSt }) {
                     <div className="flex gap-[2vw] justify-center items-start w-full">
                         <div className='filter hidden bg-white rounded-[10px] lg:inline-block px-[5px] w-[300px] text-[.8em]'>
                             <h3 className='p-[10px]'>Filter</h3>
-                            <div className='flex justify-between py-[20px] border-b'>
-                                <h5 className='px-[10px]'>
-                                    Subcategory
-                                </h5>
-                                <FaChevronDown className='pr-[5px]' />
+                            <div className="border-b py-4">
+                                <div className='flex justify-between'>
+                                    <h5 className='px-[10px]'>
+                                        Subcategory
+                                    </h5>
+                                    <FaChevronDown className='pr-[5px]' />
+                                </div>
+                                <span className="capitalize m-5">- {subCategory}</span>
                             </div>
                             <div className='brand py-[20px]'>
                                 <div className='flex justify-between py-[5px]'>
@@ -91,29 +97,27 @@ function SubCategory({ catSt }) {
                                     </div>
                                 </div>
                             </div>
-                            <div className='price border-b py-[8px]'>
+                            <div className='price border-b py-[8px] pb-3'>
                                 <div className='flex justify-between py-[5px]'>
                                     <h5 className='px-[10px]'>Price</h5>
                                     <FaChevronDown className='pr-[5px]' />
                                 </div>
                                 <div className='flex justify-between p-[10px]'>
-                                    <h6>0₼</h6>
-                                    <h6>13₼</h6>
+                                    <h6>0 $</h6>
+                                    <h6>{priceRange} $</h6>
                                 </div>
                                 <div className='text-center'>
                                     <input
                                         type='range'
+                                        min="0"
+                                        max="250"
+                                        value={priceRange}
+                                        onChange={(e) => setPriceRange(+e.target.value)}
                                         className='w-[80%] h-[3px] range-input'
                                     />
                                 </div>
                             </div>
-                            <div className='py-[20px] text-center'>
-                                <button className='rounded-3xl text-[.85em] bg-[#43766C] text-white px-4 py-2 font-semibold mb-3'>
-                                    Reset all
-                                </button>
-                            </div>
                         </div>
-
                         <div className="flex flex-wrap gap-[1.5vw] w-full">
                             {loading ? (
                                 new Array(8).fill("").map((_, i) => (
@@ -124,8 +128,8 @@ function SubCategory({ catSt }) {
                                         <div className="mt-3 bg-gray-300 w-full h-8 rounded-md"></div>
                                     </div>
                                 ))
-                            ) : data && data.length > 0 ? (
-                                data.map((item, i) => {
+                            ) : filteredData && filteredData.length > 0 ? (
+                                filteredData.map((item, i) => {
                                     const { img, name, price, id, discount, totalPrice } = item;
                                     return (
                                         <Link
@@ -133,18 +137,18 @@ function SubCategory({ catSt }) {
                                             to={`/product/${id}`}
                                             className='border xl:w-[210px] lg:w-[17vw] md:w-[25vw] sm:w-[35vw] w-[48%] card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                                         >
-                                            <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
-                                            <img src={img} alt={name} className="w-full object-cover h-[25vh] rounded-md" />
+                                            <div className="relative">
+                                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-2 right-2 text-[1.3em] text-[#43766C]' />
+                                                <img src={img} alt={name} className="w-full object-cover h-[25vh] rounded-md" />
+                                                <span className={`${discount != 0 ? 'block' : 'hidden'} bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold`}>
+                                                    {discount} %
+                                                </span>
+                                            </div>
                                             <h5 className='pt-4 hover:text-[#43766C] text-ellipsis whitespace-nowrap overflow-hidden max-w-[148px] text-[.85em] capitalize'>{name}</h5>
                                             {discount > 0 && (
-                                                <div>
-                                                    <span className='bg-[#43766ca6] text-white absolute top-[47%] right-[18px] endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold'>
-                                                        {discount} %
-                                                    </span>
-                                                    <div className="flex gap-3 items-center py-3">
-                                                        <p className='line-through text-md text-gray-400'>{price} $</p>
-                                                        <p className='font-semibold italic text-[1.2em]'>{totalPrice} $</p>
-                                                    </div>
+                                                <div className="flex gap-3 items-center py-3">
+                                                    <p className='line-through text-md text-gray-400'>{price} $</p>
+                                                    <p className='font-semibold italic text-[1.2em]'>{totalPrice.toFixed(2)} $</p>
                                                 </div>
                                             )}
                                             <p className={`${discount === 0 ? 'block' : 'hidden'} font-semibold py-3 italic text-[1.2em]`}>
@@ -165,7 +169,6 @@ function SubCategory({ catSt }) {
                                 </div>
                             )}
                         </div>
-
                     </div>
                 </div>
             </div>

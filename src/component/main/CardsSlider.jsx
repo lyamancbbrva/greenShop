@@ -55,8 +55,8 @@ function CardsSlider() {
                 className='mySwiper m-auto my-4 lg:mx-0 w-[100%]'
                 breakpoints={{
                     320: { slidesPerView: 2, spaceBetween: 0 },
-                    568: { slidesPerView: 3, spaceBetween: 0},
-                    715: { slidesPerView: 3.5, spaceBetween: 20},
+                    568: { slidesPerView: 3, spaceBetween: 0 },
+                    715: { slidesPerView: 3.5, spaceBetween: 20 },
                     910: { slidesPerView: 4, spaceBetween: 10 },
                     1125: { slidesPerView: 5, spaceBetween: 10 },
                     1280: { slidesPerView: 6, spaceBetween: 10 },
@@ -68,20 +68,20 @@ function CardsSlider() {
                         <SwiperSlide key={id}>
                             <Link
                                 to={`/product/${id}`}
-                                className='border card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
+                                className='border card hover:shadow-md transition-all rounded-md p-3 bg-white inline-block'
                             >
-                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-4 right-4 text-[1.3em] text-[#43766C]' />
-                                <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
+                                <div className="relative">
+                                    <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-2 right-2 text-[1.3em] text-[#43766C]' />
+                                    <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
+                                    <span className={`${discount != 0 ? 'block' : 'hidden'} bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold`}>
+                                        {discount} %
+                                    </span>
+                                </div>
                                 <h5 className='pt-4 hover:text-[#43766C] text-ellipsis whitespace-nowrap overflow-hidden max-w-[148px] text-[.85em] capitalize'>{name}</h5>
                                 {discount > 0 && (
-                                    <div>
-                                        <span className='bg-[#43766ca6] text-white absolute top-[47%] right-[18px] endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold'>
-                                            {discount} %
-                                        </span>
-                                        <div className="flex gap-3 items-center py-3">
-                                            <p className='line-through text-md text-gray-400'>{price} $</p>
-                                            <p className='font-semibold italic text-[1.2em]'>{totalPrice} $</p>
-                                        </div>
+                                    <div className="flex gap-3 items-center py-3">
+                                        <p className='line-through text-md text-gray-400'>{price} $</p>
+                                        <p className='font-semibold italic text-[1.2em]'>{totalPrice.toFixed(2)} $</p>
                                     </div>
                                 )}
                                 <p className={`${discount === 0 ? 'block' : 'hidden'} font-semibold py-3 italic text-[1.2em]`}>
