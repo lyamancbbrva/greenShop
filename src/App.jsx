@@ -22,7 +22,7 @@ import SliderPage from "./admin/SliderPage";
 const cook = new Cookies()
 
 function App() {
-    const [catSt, setCatSt] = useState(false)
+    // const [catSt, setCatSt] = useState(false)
     const [auth, setAuth] = useState(false)
     const { pathname } = useLocation();
 
@@ -57,13 +57,13 @@ function App() {
                         </Route>
                         : <Route path="/admin" element={<Login />} />
                 }
-                <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
+                <Route path='/' element={<Layout />}>
                     <Route path='/' element={<Main />} />
-                    <Route path='/:category/:subCategory' element={<SubCategory catSt={catSt} />} />
-                    <Route path='/product/:id' element={<CardInfo catSt={catSt}/>} />
-                    <Route path="/basket" element={<Basket catSt={catSt}/>} />
-                    <Route path="/haqqimizda" element={<Haqqimizda catSt={catSt}/>} />
-                    <Route path="/elaqe" element={<Elaqe catSt={catSt}/>} />
+                    <Route path='/:category/:subCategory' element={<SubCategory  />} />
+                    <Route path='/product/:id' element={<CardInfo />} />
+                    <Route path="/basket" element={<Basket />} />
+                    <Route path="/haqqimizda" element={<Haqqimizda />} />
+                    <Route path="/elaqe" element={<Elaqe />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="register" element={<Register />} />

@@ -1,10 +1,13 @@
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { GoChevronRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../api/api";
 import icon from "../../assets/leaf.webp"
+import { Cntx } from "../../context/DataContext";
 
 function Aside() {
+    const { setCatSt } = useContext(Cntx)
+
     useEffect(() => {
         getCategories().then((resp) => {
             localStorage.setItem('categories', JSON.stringify(resp))
@@ -30,23 +33,26 @@ function Aside() {
                                             {item.categoryName}
                                         </p>
                                         <GoChevronRight className={`w-[13px] ${item.subcategory.length == 0 ? 'hidden' : 'block'}`} />
-                                        <ul
-                                            id='scrollbar'
-                                            className={`bg-[#fff] shadow-md  max-h-[200px] overflow-auto z-20 hidden dropdown-open border-l-[2px] border-l-[#43766C] rounded-sm py-2 absolute left-[calc(100%+13px)] top-[calc(100%-40px)] min-w-[12vw]`}
-                                        >
-                                            {
-                                                item.subcategory.map((elem, i) => (
-                                                    <Link
-                                                        to={`/${elem.slug}`}
-                                                        key={i}
-                                                    >
-                                                        <li className='text-[.8em] py-2 px-3 capitalize hover:bg-[#43766c29]'>
-                                                            {elem.categoryName}
-                                                        </li>
-                                                    </Link>
-                                                ))
-                                            }
-                                        </ul>
+                                        { item.subcategory != 0 ?
+                                            <ul
+                                                id='scrollbar'
+                                                className={`bg-[#fff] shadow-md  max-h-[200px] overflow-auto z-20 hidden dropdown-open border-l-[2px] border-l-[#43766C] rounded-sm py-2 absolute left-[calc(100%+13px)] top-[calc(100%-40px)] min-w-[12vw]`}
+                                            >
+                                                {
+                                                    item.subcategory.map((elem, i) => (
+                                                        <Link
+                                                            to={`/${elem.slug}`}
+                                                            key={i}
+                                                            onClick={()=> setCatSt(false)}
+                                                        >
+                                                            <li className='text-[.8em] text-nowrap py-2 px-3 capitalize hover:bg-[#43766c29]'>
+                                                                {elem.categoryName}
+                                                            </li>
+                                                        </Link>
+                                                    ))
+                                                }
+                                            </ul> : ''
+                                        }
                                     </div>
                                 </li>
                             );

@@ -9,7 +9,12 @@ import { BsEnvelope } from "react-icons/bs";
 import reklam1 from '../../assets/reklam1.png';
 import reklam2 from '../../assets/reklam2.png';
 import reklam3 from '../../assets/reklam3.png';
+import freshmaker from '../../assets/freshmaker.png';
+import joyful from '../../assets/joyful.png';
+import payman from '../../assets/payman.png';
+import pfanner from '../../assets/pfanner.png';
 import Awards from "./Awards";
+import { Link } from "react-router-dom";
 
 function Main() {
     function scrollToTop() {
@@ -91,7 +96,7 @@ function Main() {
                         </div>
                     </div>
                 </div>
-                <section className="px-2 pt-5">
+                <section className="px-3 pt-5">
                     <div className='flex justify-between items-center py-2'>
                         <h3>Popular products</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>
@@ -102,14 +107,24 @@ function Main() {
                     <h2 className="uppercase text-center tracking-widest py-5 italic"> - Over 300 awards won -</h2>
                     <Awards />
                 </div>
-                <section className="px-2">
+                <section className="px-3">
                     <div className='flex justify-between items-center py-2'>
                         <h3>Discounted products</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
                     <Endirim />
                 </section>
-                <section className="px-2">
+                <div className="py-5 flex gap-5 lg:flex-row flex-col justify-center px-3">
+                    <div className="flex gap-5 flex-col sm:flex-row">
+                        <Link to=''><img src={freshmaker} alt="banner-freshmaker" className="w-full"/></Link>
+                        <Link to=''><img src={payman} alt="banner-payman" className="w-full"/></Link>
+                    </div>
+                    <div className="flex gap-5 flex-col sm:flex-row">
+                        <Link to=''><img src={joyful} alt="banner-joyful" className="w-full"/></Link>
+                        <Link to=''><img src={pfanner} alt="banner-pfanner" className="w-full"/></Link>
+                    </div>
+                </div>
+                <section className="px-3">
                     <div className='flex justify-between items-center py-2'>
                         <h3>Best sellers</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>

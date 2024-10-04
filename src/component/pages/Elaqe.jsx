@@ -3,8 +3,12 @@ import { FaMapMarkedAlt } from "react-icons/fa";
 import { FiPhoneCall } from "react-icons/fi";
 import { FaRegEnvelope } from "react-icons/fa";
 import Aside from "../main/Aside";
+import { Cntx } from "../../context/DataContext";
+import { useContext } from "react";
 
-function Elaqe({catSt}) {
+function Elaqe() {
+    const { catSt } = useContext(Cntx)
+    
     return (
         <section className="wrapper px-3 relative">
             <div className="absolute top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>

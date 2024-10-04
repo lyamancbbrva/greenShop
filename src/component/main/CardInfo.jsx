@@ -6,8 +6,8 @@ import { Cntx } from "../../context/DataContext";
 import getAllProducts from "../../api/api";
 import Aside from "./Aside";
 
-function CardInfo({ catSt }) {
-    const { setSebetSay, sebetSay, setBasket, basket } = useContext(Cntx);
+function CardInfo() {
+    const { setSebetSay, sebetSay, setBasket, basket, catSt } = useContext(Cntx);
     const { id } = useParams();
     const [data, setData] = useState([]);
     const [itemCount, setItemCount] = useState(1);

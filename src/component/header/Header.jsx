@@ -13,22 +13,19 @@ import { TiArrowSortedDown } from "react-icons/ti";
 import { HiMiniBars4 } from "react-icons/hi2";
 import logo from '../../assets/greenLogo.png';
 
-function Header({ catSt, setCatSt }) {
+function Header() {
     const [status, setStatus] = useState(false)
     const [sideSt, setSideSt] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [inp, setInp] = useState("")
     const [data, setData] = useState([])
-    const { sebetSay } = useContext(Cntx)
+    const { sebetSay, basket, catSt, setCatSt } = useContext(Cntx)
     const [activeAccordion, setActiveAccordion] = useState(null)
 
     function toggleAccordion(index) { setActiveAccordion(activeAccordion === index ? null : index) }
 
     useEffect(() => {
-        getAllProducts().then(res => {
-            // console.log(res.products);
-            setData(res.products)
-        })
+        getAllProducts().then(res => setData(res.products))
     }, [])
 
     useEffect(() => {
@@ -116,18 +113,18 @@ function Header({ catSt, setCatSt }) {
                     <FiBarChart
                         onClick={() => setSideSt(!sideSt)}
                         className='rotate-90 h-[30px] w-[30px] lg:hidden' />
-                    <div className='desktop-nav  lg:flex items-center gap-[30px] justify-between '>
+                    <div className='desktop-nav hidden  lg:flex items-center gap-[30px] justify-between '>
                         <div
-                            onClick={() => setCatSt(!catSt)}
+                            onMouseEnter={() => setCatSt(!catSt)}
                             id='category-button'
-                            className='hidden lg:inline cursor-pointer py-[12px] px-[10px] text-[#43766C] bg-white w-[250px] xl:w-[360px]'
+                            className='hidden lg:inline cursor-pointer py-[12px] px-[10px] text-[#43766C] bg-white w-[250px] lg:w-[360px]'
                         >
                             <HiMiniBars4 className='text-[1.4em] inline mr-[2vw] ' />
                             <span className='text-[.9em] tracking-wider font-bold '>
                                 Categories
                             </span>
                         </div>
-                        <ul className='xl:flex gap-[15px] w-[100%] hidden '>
+                        <ul className='lg:flex gap-[15px] w-[100%] hidden '>
                             <li className='text-[.8em] font-medium py-3'>
                                 <Link to='/'>Home</Link>
                             </li>
@@ -205,7 +202,7 @@ function Header({ catSt, setCatSt }) {
                         </ul>
                     </div>
                     <div className='flex items-center gap-[4vw] lg:gap-[1vw]'>
-                        <ul className="flex">
+                        {/* <ul className="flex">
                             <li className='flex items-center py-3 text-[.85em] hesab hover w-full relative'>
                                 <span className="hidden md:inline text-nowrap font-medium">My Account</span>
                                 <FaChevronDown className='text-[.7em] mx-[2vw] cursor-pointer lg:mx-[5px]' />
@@ -227,7 +224,7 @@ function Header({ catSt, setCatSt }) {
                                     </li>
                                 </ul>
                             </li>
-                        </ul>
+                        </ul> */}
                         <GoHeart className='text-[1.4em] cursor-pointer' />
                         <Link to={'/login'}><AiOutlineUser className='text-[1.4em] ml-2 cursor-pointer' /></Link>
                         <Link
@@ -235,9 +232,10 @@ function Header({ catSt, setCatSt }) {
                             className='relative p-[2vw] sm:p-[1vw] lg:p-[10px]'
                         >
                             <SlBasket className='text-[1.3em]' />
-                            <span className='bg-[#fcfbf4] absolute top-0 right-0 rounded-[50%] px-[5px] text-[.7em] text-black '>
+                            {basket.length > 0 ? <span className='bg-[#fcfbf4] absolute top-0 right-0 rounded-[50%] px-[5px] text-[.7em] text-black '>
                                 {sebetSay}
                             </span>
+                                : null}
                         </Link>
                     </div>
                     <button onClick={() => setIsOpen(!isOpen)} className='md:hidden  p-[1.7vw] text-[#43766C] bg-white rounded-[5px] text-[1.4em] '>

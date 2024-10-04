@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 import Aside from "../main/Aside";
 import { AiFillMinusCircle, AiFillPlusCircle } from "react-icons/ai";
 
-export const Basket = ({ catSt }) => {
-    const { basket, setBasket, setSebetSay } = useContext(Cntx)
+export const Basket = () => {
+    const { basket, setBasket, setSebetSay, catSt } = useContext(Cntx)
 
     function handleDelete(id) {
         const elem = basket.filter(item => item.id !== id)

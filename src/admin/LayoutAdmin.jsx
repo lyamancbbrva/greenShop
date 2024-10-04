@@ -197,7 +197,7 @@ function LayoutAdmin() {
                                             <span className="sr-only">Open user menu</span>
                                             <img
                                                 className="h-8 w-8 rounded-full"
-                                                src="https://pbs.twimg.com/profile_images/551416883191087104/gxoNeGX8_400x400.jpeg"
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQksZ8pPDgsZruGb8cQguP3T6aWoZGNxbao2A&s"
                                                 alt=""
                                             />
                                             <span className='font-semibold mx-2.5 capitalize'>{cook.get('user')}</span>

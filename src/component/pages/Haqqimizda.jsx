@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import Aside from "../main/Aside";
+import { Cntx } from "../../context/DataContext";
+import { useContext } from "react";
 
-function Haqqimizda({catSt}) {
+function Haqqimizda() {
+    const { catSt } = useContext(Cntx)
+
     return (
         <section className="wrapper px-3 relative">
             <div className="absolute top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>

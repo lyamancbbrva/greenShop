@@ -11,9 +11,9 @@ import { filter } from "list";
 spiral.register();
 import toast from "react-hot-toast";
 
-function SubCategory({ catSt }) {
+function SubCategory() {
     const [page, setPage] = useState(1);
-    const { basket, setBasket, setSebetSay, sebetSay } = useContext(Cntx);
+    const { basket, setBasket, setSebetSay, sebetSay, catSt} = useContext(Cntx);
     const { category, subCategory } = useParams();
     const [pageCount, setPageCount] = useState(1);
     const [cat, setCat] = useState([]);
@@ -43,23 +43,28 @@ function SubCategory({ catSt }) {
         }
     }, [id])
 
-    console.log(data);
-    
+    // useEffect(() => {
+    //     if (subCategory) {
+    //         getProductBySubcategory(subCategory).then(resp => {
+    //             setData(resp.products);
+    //             setLoading(false);
+    //         });
+    //     }
+    // }, [subCategory]);
+
 
     function addToBasket(e, item) {
         e.preventDefault();
         const existingProduct = basket.find(basketItem => basketItem.id === item.id);
-        if (existingProduct) {
+        existingProduct ?
             setBasket(
                 basket.map(basketItem =>
                     basketItem.id === item.id
                         ? { ...basketItem, count: basketItem.count + 1 }
                         : basketItem
                 )
-            );
-        } else {
-            setBasket([...basket, { ...item, count: 1 }]);
-        }
+            ) 
+        : setBasket([...basket, { ...item, count: 1 }]);
         setSebetSay(sebetSay + 1);
         toast.success(`${item.name} added to cart!`)
     }
