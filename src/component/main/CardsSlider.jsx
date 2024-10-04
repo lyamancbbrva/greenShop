@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { GiShoppingCart } from "react-icons/gi";
-import { FreeMode, Navigation , Autoplay} from "swiper/modules";
+import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 import { GoHeart } from "react-icons/go";
 import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
@@ -43,6 +43,19 @@ function CardsSlider() {
         );
     }
 
+    function addWish(item) {
+        const wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const status = wishList.find(i => i.id === item.id);
+
+        if (status) {
+            toast.error(`${item.name} ayqa bunnan wishlistde vardana!`);
+        } else {
+            const updatedWishList = [...wishList, item];
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishList));
+            toast.success(`${item.name} uxxxx tıkladım!`);
+        }
+    }
+
     return (
         <div className='flex justify-center items-start'>
             <Swiper
@@ -76,7 +89,7 @@ function CardsSlider() {
                                 className='border card hover:shadow-md transition-all rounded-md p-3 bg-white inline-block'
                             >
                                 <div className="relative">
-                                    <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
+                                    <GoHeart onClick={(e) => { e.preventDefault(); addWish(item) }} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C] hover:text-red-600 hover:scale-[1.1] transition-all' />
                                     <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
                                     <span className={`${discount != 0 ? 'block' : 'hidden'} bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold`}>
                                         {discount} %

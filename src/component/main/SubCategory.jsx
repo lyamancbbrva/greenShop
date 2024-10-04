@@ -19,7 +19,7 @@ function SubCategory() {
     const [cat, setCat] = useState([]);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [priceRange, setPriceRange] = useState(150);
+    const [priceRange, setPriceRange] = useState(10);
 
     const catName = category.includes("-")
         ? category.split("-").join("").replace(/[\s,]/g, "")
@@ -48,16 +48,6 @@ function SubCategory() {
         }
     }, [id])
 
-    // useEffect(() => {
-    //     if (subCategory) {
-    //         getProductBySubcategory(subCategory).then(resp => {
-    //             setData(resp.products);
-    //             setLoading(false);
-    //         });
-    //     }
-    // }, [subCategory]);
-
-
     function addToBasket(e, item) {
         e.preventDefault();
         const existingProduct = basket.find(basketItem => basketItem.id === item.id);
@@ -72,6 +62,20 @@ function SubCategory() {
             : setBasket([...basket, { ...item, count: 1 }]);
         setSebetSay(sebetSay + 1);
         toast.success(`${item.name} added to cart!`)
+    }
+
+    function addWish(e, item) {
+        e.preventDefault()
+        const wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const status = wishList.find(i => i.id === item.id);
+
+        if (status) {
+            toast.error(`${item.name} ayqa bunnan wishlistde vardana!`);
+        } else {
+            const updatedWishList = [...wishList, item];
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishList));
+            toast.success(`uxxxx tıkladım!`);
+        }
     }
 
     const filteredData = data?.filter(item => item.totalPrice <= priceRange)
@@ -123,7 +127,7 @@ function SubCategory() {
                                     <input
                                         type='range'
                                         min="0"
-                                        max="250"
+                                        max='12'
                                         value={priceRange}
                                         onChange={(e) => setPriceRange(+e.target.value)}
                                         className='w-[80%] h-[3px] range-input'
@@ -131,7 +135,7 @@ function SubCategory() {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex flex-wrap gap-[1.5vw] w-full">
+                        <div className="flex flex-wrap gap-[1.5vw] w-full pb-5">
                             {loading ? (
                                 new Array(8).fill("").map((_, i) => (
                                     <div key={i} className="border xl:w-[210px] lg:w-[17vw] md:w-[25vw] sm:w-[35vw] w-[48%] card transition-all rounded-md p-3 bg-white relative inline-block animate-pulse">
@@ -151,7 +155,7 @@ function SubCategory() {
                                             className='border xl:w-[210px] lg:w-[17vw] md:w-[25vw] sm:w-[35vw] w-[48%] card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                                         >
                                             <div className="relative">
-                                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
+                                                <GoHeart onClick={(e) => addWish(e, item)} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
                                                 <img src={img} alt={name} className="w-full object-cover h-[25vh] rounded-md" />
                                                 <span className={`${discount != 0 ? 'block' : 'hidden'} bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold`}>
                                                     {discount} %
@@ -185,7 +189,7 @@ function SubCategory() {
                     </div>
                 </div>
             </div>
-            <div className="flex justify-center space-x-1 dark:text-gray-800 py-[20px]">
+            {/* <div className="flex justify-center space-x-1 dark:text-gray-800 py-[20px]">
                 {page?.pages &&
                     new Array(page.pages).fill("").map((_, i) => (
                         <button
@@ -201,7 +205,7 @@ function SubCategory() {
                             {i + 1}
                         </button>
                     ))}
-            </div>
+            </div> */}
         </main>
     );
 }

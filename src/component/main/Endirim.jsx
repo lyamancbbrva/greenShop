@@ -35,6 +35,20 @@ function Endirim() {
         toast.success(`${item.name} added to cart!`)
     }
 
+    function addWish(e,item) {
+        e.preventDefault()
+        const wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
+        const status = wishList.find(i => i.id === item.id);
+
+        if (status) {
+            toast.error(`${item.name} ayqa bunnan wishlistde vardana!`);
+        } else {
+            const updatedWishList = [...wishList, item];
+            localStorage.setItem('wishlist', JSON.stringify(updatedWishList));
+            toast.success(`${item.name} uxxxx tıkladım!`);
+        }
+    }
+
     if (data.length === 0) {
         return (
             <div className='flex justify-center items-center'>
@@ -75,7 +89,7 @@ function Endirim() {
                                 className='border card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                             >
                                 <div className="relative">
-                                    <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
+                                    <GoHeart onClick={(e) => addWish(e, item)} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
                                     <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
                                     <span className='bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold'>
                                         {discount} %

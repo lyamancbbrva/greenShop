@@ -96,6 +96,10 @@ function Products() {
         toast.success('Məhsul gorbagor oldu!')
     }
 
+    function goNextPage() {
+        
+    }
+
     return (
         <section className="px-6">
             <h1 className="text-[1.25em] mt-16 mb-4 text-center font-semibold">Məhsulların idarə olunmasi formu:</h1>
@@ -146,7 +150,7 @@ function Products() {
                                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                     <div className="flex items-center">
                                                         <div className="h-10 w-10 flex-shrink-0">
-                                                            <img className="h-10 w-10 rounded-full" src={item.img[0]} alt={item.name} />
+                                                            <img className="h-10 w-10 rounded-full" src={item.img} alt={item.name} />
                                                         </div>
                                                         <div className="ml-4">
                                                             <div className="font-medium text-gray-900">{item.name}</div>

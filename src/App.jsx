@@ -19,7 +19,7 @@ import { Cookies } from "react-cookie";
 import { verifyToken } from "./api/api";
 import Register from "./admin/Register";
 import SliderPage from "./admin/SliderPage";
-
+import Wishlist from "./component/main/Wishlist";
 const cook = new Cookies()
 
 function App() {
@@ -64,6 +64,7 @@ function App() {
                     <Route path="/basket" element={<Basket />} />
                     <Route path="/haqqimizda" element={<Haqqimizda />} />
                     <Route path="/elaqe" element={<Elaqe />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
                 </Route>
                 <Route path="/login" element={<Login />} />
                 <Route path="register" element={<Register />} />

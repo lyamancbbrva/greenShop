@@ -225,7 +225,7 @@ function Header() {
                                 </ul>
                             </li>
                         </ul> */}
-                        <GoHeart className='text-[1.4em] cursor-pointer' />
+                        <Link to={'/wishlist'}><GoHeart className='text-[1.4em] cursor-pointer' /></Link>
                         <Link to={'/login'}><AiOutlineUser className='text-[1.4em] ml-2 cursor-pointer' /></Link>
                         <Link
                             to='/basket'

@@ -3,7 +3,7 @@ import { GiShoppingCart } from "react-icons/gi";
 import { FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
-import getAllProducts from "../../api/api";
+import getAllProducts, { getProductById } from "../../api/api";
 import Aside from "./Aside";
 
 function CardInfo() {
@@ -13,10 +13,8 @@ function CardInfo() {
     const [itemCount, setItemCount] = useState(1);
 
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp.products));
+        getProductById(id).then(resp => setData(resp));
     }, []);
-
-    const item = data && data.find(item => item.id == id);
 
     function addToBasket(e) {
         e.preventDefault();
@@ -24,7 +22,7 @@ function CardInfo() {
         setBasket(
             existingItem
                 ? [...basket.map(i => i.id === existingItem.id ? { ...i, count: i.count + itemCount } : i)]
-                : [...basket, { ...item, count: itemCount }]
+                : [...basket, { ...data, count: itemCount }]
         )
         setSebetSay(sebetSay + itemCount);
     }
@@ -37,7 +35,7 @@ function CardInfo() {
             <div className="absolute z-10 top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
             <div className='text-gray-600 py-8 px-3'>
                 <Link to='/'>Home /</Link>
-                <span> {item?.name}</span>
+                <span> {data?.name}</span>
             </div>
             {data.length === 0 ?
                 <div role="status" className="space-y-8 mx-3 my-10 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center">
@@ -62,12 +60,12 @@ function CardInfo() {
                 <div className='flex flex-col gap-[5vw] items-center bg-white 2md:flex-row md:max-w-5xl mb-5'>
                     <img
                         className='object-cover w-full md:w-[80%] px-3 rounded-[2rem] 2md:h-[55vh] 2md:w-[500px]'
-                        src={item?.img}
-                        alt={item?.name}
+                        src={data?.img}
+                        alt={data?.name}
                     />
                     <div className='flex flex-col justify-between p-4 leading-normal'>
                         <h5 className='mb-2 text-xl uppercase font-bold tracking-tight text-gray-900'>
-                            {item?.name}
+                            {data?.name}
                         </h5>
                         <div className="flex gap-1 text-yellow-500 mb-2">
                             <FaStar />
@@ -86,10 +84,10 @@ function CardInfo() {
                             Delivery: 🗹 Yes
                         </p>
                         <p className='mb-3 text-[.9em] text-gray-700'>
-                            Description: {item?.metadata}
+                            Description: yaxsi usaqdir
                         </p>
                         <p className='mb-3 text-[2em] font-bold text-[#43766C]'>
-                            {item?.price} ₼
+                            {data?.price} ₼
                         </p>
                         <div className='py-2 mb-3 border w-fit rounded-md'>
                             <button

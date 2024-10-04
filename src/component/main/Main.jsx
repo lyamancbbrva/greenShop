@@ -99,7 +99,7 @@ function Main() {
                 <section className="px-3 pt-5">
                     <div className='flex justify-between items-center py-2'>
                         <h3>Popular products</h3>
-                        <a href='#' className='text-[#43766C]'>See all</a>
+                        <Link to={'/meyvə-tərəvəz-quru-meyvə/meyvə'}  className='text-[#43766C]'>See all</Link>
                     </div>
                     <CardsSlider />
                 </section>
@@ -108,9 +108,8 @@ function Main() {
                     <Awards />
                 </div>
                 <section className="px-3">
-                    <div className='flex justify-between items-center py-2'>
+                    <div className='flex py-2'>
                         <h3>Discounted products</h3>
-                        <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
                     <Endirim />
                 </section>
@@ -127,7 +126,7 @@ function Main() {
                 <section className="px-3">
                     <div className='flex justify-between items-center py-2'>
                         <h3>Best sellers</h3>
-                        <a href='#' className='text-[#43766C]'>See all</a>
+                        <Link to={'/meyvə-tərəvəz-quru-meyvə/tərəvəz'} className='text-[#43766C]'>See all</Link>
                     </div>
                     <CardsSlider />
                 </section>
