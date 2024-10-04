@@ -49,21 +49,17 @@ function Category() {
         })
     }
 
-    // if (data.length === 0) {
-    //     return (
-    //         <div className='flex justify-center items-center'>
-    //             data yoxdur
-    //         </div>
-    //     );
-    // }
-
     return (
         <section className='px-6'>
             <h1 className='text-[1.25em] mt-16 mb-4 text-center font-semibold'>
                 Kataqoriyaların idarə olunmasi formu:
             </h1>
             <button
-                onClick={() => { setOpen(true) }}
+                onClick={() => { 
+                    setCategoryName(null)
+                    setProduct(null)
+                    setOpen(true) 
+                }}
                 className='bg-green-700 text-white p-3 rounded-md font-semibold'
             >
                 + Kataqoriya əlavə et
@@ -119,7 +115,7 @@ function Category() {
                                             </tr>
                                         ))
                                         : <tr>
-                                            <td colSpan={4} className="p-5">Hələki kataqoriya yoxdur</td>
+                                            <td colSpan={4} className="p-5">Hələki kataqoriya yoxdur, ya da yüklənir...</td>
                                         </tr>
                                     }
                                 </tbody>
@@ -150,7 +146,6 @@ function Category() {
                     >
                         <div className='fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity' />
                     </Transition.Child>
-
                     <div className='fixed inset-0 z-10 overflow-y-auto'>
                         <div className='flex min-h-full justify-center p-4 text-center items-center sm:p-0'>
                             <Transition.Child
@@ -184,26 +179,12 @@ function Category() {
                                         <input
                                             onInput={(e) => setCategoryName(e.target.value)}
                                             type='text'
-                                            // value={categoryName}
+                                            value={categoryName}
                                             className='block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'
                                             placeholder='Kateqoriyanın adı'
                                         />
                                     </div>
-                                    {/* <div className='my-4'>
-                                        <label
-                                            htmlFor=''
-                                            className='block text-[12px] pt-2 font-bold text-gray-700 uppercase'
-                                        >
-                                            Subkateqoriyanın adı
-                                        </label>
-                                        <input
-                                            onInput={(e) => setCategoryName(e.target.value)}
-                                            type='text'
-                                            className='block w-full text-sm rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm'
-                                            placeholder='Subkateqoriyanın adı'
-                                        />
-                                    </div> */}
-                                    {product && (
+                                    {/* {product && (
                                         <div className='my-4'>
                                             <label
                                                 htmlFor=''
@@ -221,13 +202,12 @@ function Category() {
                                                 placeholder='Subkateqoriyanın adı'
                                             />
                                         </div>
-                                    )}
+                                    )} */}
                                     <button
                                         onClick={() => {
                                             product ? updateCategory() : createNewCategory()
                                         }}
                                         className='bg-blue-700 w-full sm:w-24 text-white rounded-md p-2 mt-3 px-3 font-semibold'>
-
                                         {product ? "Düzəliş et" : "Əlavə et"}
                                     </button>
                                 </Dialog.Panel>

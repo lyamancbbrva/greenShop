@@ -19,10 +19,10 @@ import { Cookies } from "react-cookie";
 import { verifyToken } from "./api/api";
 import Register from "./admin/Register";
 import SliderPage from "./admin/SliderPage";
+
 const cook = new Cookies()
 
 function App() {
-    // const [catSt, setCatSt] = useState(false)
     const [auth, setAuth] = useState(false)
     const { pathname } = useLocation();
 

@@ -4,15 +4,19 @@ import { getCategories } from "../../api/api";
 import icon from "../../assets/leaf.webp"
 
 function Sidebar({ sideSt, setSideSt }) {
+    const [cat, setCat] = useState(() => {
+        const storedCats = localStorage.getItem('categories')
+        return storedCats ? JSON.parse(storedCats) : []
+    })
     const [accSt, setAccSt] = useState(null)
 
     useEffect(() => {
         getCategories().then((resp) => {
+            setCat(resp)
             localStorage.setItem('categories', JSON.stringify(resp))
+            console.log(resp)
         })
     }, [])
-
-    const cat = JSON.parse(localStorage.getItem('categories'))
 
     sideSt
         ? ((document.documentElement.style.overflow = "hidden"),
@@ -22,14 +26,13 @@ function Sidebar({ sideSt, setSideSt }) {
 
     return (
         <>
-            <div onClick={() => setSideSt(!sideSt)} className={`${sideSt ? 'block' : 'hidden'} absolute w-[100%] h-[100%] top-0`}></div>
+            <div onClick={() => setSideSt(false)} className={`${sideSt ? 'block' : 'hidden'} absolute w-[100%] h-[100%] top-0`}></div>
             <nav
                 id="scrollbar"
                 className={`${sideSt ? "translate-x-0" : "translate-x-[-120%]"
                     } p-[2vw] fixed bg-white z-[1000] shadow-2xl sm:h-[calc(100%-28vh)] md:h-[calc(100%-22vh)] h-[calc(100%-150px)] w-[70vw] lg:hidden bottom-0 transition duration-500 overflow-auto `}
             >
-                {cat &&
-                    cat.map((item, i) => {
+                {cat && cat.map((item, i) => {
                         const { categoryName, subcategory } = item;
                         return (
                             <div

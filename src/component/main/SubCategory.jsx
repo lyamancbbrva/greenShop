@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 
 function SubCategory() {
     const [page, setPage] = useState(1);
-    const { basket, setBasket, setSebetSay, sebetSay, catSt} = useContext(Cntx);
+    const { basket, setBasket, setSebetSay, sebetSay, catSt, setCatSt} = useContext(Cntx);
     const { category, subCategory } = useParams();
     const [pageCount, setPageCount] = useState(1);
     const [cat, setCat] = useState([]);
@@ -72,7 +72,7 @@ function SubCategory() {
     const filteredData = data?.filter(item => item.totalPrice <= priceRange)
 
     return (
-        <main className="bg-[#F2F2F2]">
+        <main onClick={()=> setCatSt(false)} className="bg-[#F2F2F2]">
             <div className="wrapper relative">
                 <div className="absolute z-10 top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
                 <div>
@@ -146,7 +146,7 @@ function SubCategory() {
                                             className='border xl:w-[210px] lg:w-[17vw] md:w-[25vw] sm:w-[35vw] w-[48%] card hover:shadow-md transition-all rounded-md p-3 bg-white relative inline-block'
                                         >
                                             <div className="relative">
-                                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-2 right-2 text-[1.3em] text-[#43766C]' />
+                                                <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
                                                 <img src={img} alt={name} className="w-full object-cover h-[25vh] rounded-md" />
                                                 <span className={`${discount != 0 ? 'block' : 'hidden'} bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold`}>
                                                     {discount} %

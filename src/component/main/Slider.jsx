@@ -3,18 +3,23 @@ import "swiper/css";
 import "swiper/css/effect-fade";
 import "swiper/css/pagination";
 import { EffectFade, Pagination, Autoplay } from "swiper/modules";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getSliders } from "../../api/api";
 import { Link } from "react-router-dom";
 
+
 function Slider() {
+    const [sliders, setSliders] = useState(() => {
+        const storedSliders = localStorage.getItem('sliders');
+        return storedSliders ? JSON.parse(storedSliders) : [];
+    });
+
     useEffect(() => {
         getSliders().then((res) => {
+            setSliders(res);
             localStorage.setItem('sliders', JSON.stringify(res))
         })
     }, [])
-
-    const sliders = JSON.parse(localStorage.getItem('sliders'))
 
     return (
         <>
@@ -28,7 +33,7 @@ function Slider() {
                     disableOnInteraction: false,
                 }}
             >
-                {sliders && sliders.map((item, i) =>
+                {sliders != null && sliders.map((item, i) =>
                     <SwiperSlide key={i} className='w-[100%]'>
                         <Link to={item.slug}>
                             <img

@@ -76,7 +76,7 @@ function CardsSlider() {
                                 className='border card hover:shadow-md transition-all rounded-md p-3 bg-white inline-block'
                             >
                                 <div className="relative">
-                                    <GoHeart onClick={(e) => e.preventDefault()} className='absolute bg-white rounded-full p-1 cursor-pointer top-2 right-2 text-[1.3em] text-[#43766C]' />
+                                    <GoHeart onClick={(e) => e.preventDefault()} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
                                     <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
                                     <span className={`${discount != 0 ? 'block' : 'hidden'} bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold`}>
                                         {discount} %
