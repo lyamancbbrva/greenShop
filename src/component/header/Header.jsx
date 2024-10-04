@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Cntx } from "../../context/DataContext";
-import getAllProducts, { searchProduct } from "../../api/api";
+import getAllProducts from "../../api/api";
 import Sidebar from "./Sidebar";
 import { FaBars } from "react-icons/fa6";
 import { FiBarChart } from "react-icons/fi";
-import { FaLock } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
 import { AiOutlineUser } from "react-icons/ai";
 import { GoHeart } from "react-icons/go";
@@ -18,7 +17,6 @@ function Header({ catSt, setCatSt }) {
     const [status, setStatus] = useState(false)
     const [sideSt, setSideSt] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
-    // const { category, subCategory } = useParams();
     const [inp, setInp] = useState("")
     const [data, setData] = useState([])
     const { sebetSay } = useContext(Cntx)
@@ -27,10 +25,17 @@ function Header({ catSt, setCatSt }) {
     function toggleAccordion(index) { setActiveAccordion(activeAccordion === index ? null : index) }
 
     useEffect(() => {
-        getAllProducts().then(res => { setData(res) })
+        getAllProducts().then(res => {
+            // console.log(res.products);
+            setData(res.products)
+        })
     }, [])
 
-    async function handleSearch(e) {
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "auto";
+    }, [isOpen]);
+
+    function handleSearch(e) {
         setInp(e.target.value)
         setStatus(true);
     }
@@ -40,7 +45,7 @@ function Header({ catSt, setCatSt }) {
             <Sidebar sideSt={sideSt} setSideSt={setSideSt} />
             <div className='wrapper'>
                 <div className='flex justify-between items-center gap-[3vw] px-[10px] py-[20px]'>
-                    <Link to='/' className='w-[40vw] md:w-[14vw] '>
+                    <Link to='/' className='w-[40vw] md:w-[13vw] '>
                         <img src={logo} alt="logo" />
                     </Link>
                     <div className='relative w-[45vw] lg:w-[30vw]'>
@@ -99,7 +104,6 @@ function Header({ catSt, setCatSt }) {
                                     <div className="p-4 bg-white italic cursor-not-allowed">No products available...</div>
                                 )
                             }
-
                         </div>
                     </div>
                     <button onClick={() => setIsOpen(!isOpen)} className='hidden md:block lg:hidden p-[10px] bg-[#43766C] text-white rounded-[5px] text-[1.4em] '>
@@ -123,7 +127,6 @@ function Header({ catSt, setCatSt }) {
                                 Categories
                             </span>
                         </div>
-
                         <ul className='xl:flex gap-[15px] w-[100%] hidden '>
                             <li className='text-[.8em] font-medium py-3'>
                                 <Link to='/'>Home</Link>
@@ -243,7 +246,7 @@ function Header({ catSt, setCatSt }) {
                 </div>
             </nav>
             <div className="sidebar" id="scrollbar">
-                <div onClick={() => setIsOpen(!isOpen)} className={`${isOpen ? 'block' : 'hidden'} bg-[#0000004b] z-10 absolute w-[100%] h-[100%] top-0`}></div>
+                <div onClick={() => setIsOpen(!isOpen)} className={`${isOpen ? 'block' : 'hidden'} bg-[#0000004b] z-10 absolute w-[100%] h-full top-0`}></div>
                 <div
                     id="drawer-navigation"
                     className={`fixed top-0 left-0 z-40 w-64 h-screen p-4 shadow-2xl overflow-y-auto transition-transform duration-300 bg-white ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}

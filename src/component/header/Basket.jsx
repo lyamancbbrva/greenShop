@@ -52,14 +52,14 @@ export const Basket = ({ catSt }) => {
                             basket.map((item) => (
                                 <tr key={item.id}>
                                     <td className="w-32 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-                                        <img src={item.img} alt={item.name} className="md:w-24 w-20 h-[10vh] object-cover" />
+                                        <img src={item.img} alt={item.name} className="md:w-24 w-20 h-[10vh] rounded-md object-cover" />
                                         <dl className="font-normal lg:hidden">
-                                            <dd className="mt-1 truncate text-gray-700">{item.name}</dd>
-                                            <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} ₼</dd>
+                                            <dd className="mt-1 text-gray-700">{item.name}</dd>
+                                            <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} $</dd>
                                         </dl>
                                     </td>
                                     <td className="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">{item.name}</td>
-                                    <td className="px-3 py-4 w-fit text-sm text-gray-500 sm:table-cell">
+                                    <td className="px-3 py-4 w-fit text-center text-sm text-gray-500 sm:table-cell">
                                         <div className="flex items-center">
                                             {item.count > 1 ? (
                                                 <AiFillMinusCircle
@@ -79,8 +79,8 @@ export const Basket = ({ catSt }) => {
                                             />
                                         </div>
                                     </td>
-                                    <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{item.price} ₼</td>
-                                    <td className="px-3 py-4 text-sm text-gray-500">{(item.price * item.count).toFixed(2)} ₼</td>
+                                    <td className="hidden px-3 py-4 text-sm text-gray-500 sm:table-cell">{item.price} $</td>
+                                    <td className="px-3 py-4 truncate font-semibold text-sm text-gray-500">{(item.price * item.count).toFixed(2)} $</td>
                                     <td className="py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                         <p className="hover:text-red-600 text-[1.2em] cursor-pointer">
                                             <FaTrashAlt onClick={() => { handleDelete(item.id) }} />
@@ -100,11 +100,11 @@ export const Basket = ({ catSt }) => {
                     <tbody>
                         <tr className="text-left text-sm font-semibold border">
                             <th className="p-2">Amount:</th>
-                            <td className="p-2">{totalAmount} ₼</td>
+                            <td className="p-2">{totalAmount} $</td>
                         </tr>
                         <tr className="text-left text-sm font-semibold border">
                             <th className="p-2">Total Amount:</th>
-                            <td className="p-2">{totalAmount} ₼</td>
+                            <td className="p-2">{totalAmount} $</td>
                         </tr>
                     </tbody>
                 </table>

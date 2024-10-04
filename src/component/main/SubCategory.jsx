@@ -19,7 +19,7 @@ function SubCategory({ catSt }) {
     const [cat, setCat] = useState([]);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [priceRange, setPriceRange] = useState(250);
+    const [priceRange, setPriceRange] = useState(150);
 
     const catName = category.includes("-") ? category.split("-").join("") : category;
     const subcatName = subCategory.includes("-") ? subCategory.split("-").join("") : subCategory;
@@ -37,11 +37,14 @@ function SubCategory({ catSt }) {
     useEffect(() => {
         if (id) {
             getProductBySubcategory(id).then(resp => {
-                setData(resp)
+                setData(resp.products)
                 setLoading(false);
             })
         }
     }, [id])
+
+    console.log(data);
+    
 
     function addToBasket(e, item) {
         e.preventDefault();
@@ -61,7 +64,7 @@ function SubCategory({ catSt }) {
         toast.success(`${item.name} added to cart!`)
     }
 
-    const filteredData = data.filter(item => item.price <= priceRange)
+    const filteredData = data?.filter(item => item.totalPrice <= priceRange)
 
     return (
         <main className="bg-[#F2F2F2]">

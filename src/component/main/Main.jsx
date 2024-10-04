@@ -4,7 +4,7 @@ import Endirim from "./Endirim";
 import Slider from "./Slider";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { MdCall } from "react-icons/md";
-import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
+import { HiOutlineDevicePhoneMobile, HiChevronDoubleUp } from "react-icons/hi2";
 import { BsEnvelope } from "react-icons/bs";
 import reklam1 from '../../assets/reklam1.png';
 import reklam2 from '../../assets/reklam2.png';
@@ -12,17 +12,31 @@ import reklam3 from '../../assets/reklam3.png';
 import Awards from "./Awards";
 
 function Main() {
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('scroll', function () {
+        const button = document.querySelector('.scroll-to-top');
+        const scrollPos = window.scrollY;
+        const vwHeight = window.innerHeight;
+        button.style.display = (scrollPos > (vwHeight * 0.5)) ? 'block' : 'none';
+    });
+
     return (
         <main className='bg-slate-50'>
-            <a href="https://wa.me/994709233313" target="_blank" className="bg-[#31564e] z-20 right-5 bottom-5 fixed flex justify-center items-center w-[60px] h-[60px] hover:scale-105 transition-all duration-200 shadow-xl rounded-full">
+            <a href="https://wa.me/994709233313" target="_blank" className="bg-[#31564e] hover:bg-black z-20 right-5 bottom-5 fixed flex justify-center items-center w-[60px] h-[60px] transition-all duration-300 shadow-xl rounded-full">
                 <MdCall className="text-[2em] text-[#fff]" />
             </a>
+            <div onClick={scrollToTop} className="scroll-to-top bg-[#eedfd7] p-4 hover:text-white rounded-full cursor-pointer shadow-md hidden hover:bg-black transition-all duration-300 fixed right-6 bottom-24 z-20">
+                <HiChevronDoubleUp className="text-xl" />
+            </div>
             <div className='wrapper-md'>
                 <div className='flex gap-1 justify-between'>
                     <Aside />
-                    <div className='lg:w-[70%] xl:w-[78%] mt-0 lg:ml-0 lg:flex flex-col items-end px-2'>
+                    <div className='lg:w-[70%] xl:w-[78%] mt-0 lg:ml-0 lg:flex flex-col items-end px-2 mx-0 xl:mx-[-8px]'>
                         <Slider />
-                        <div className='flex gap-3 justify-between py-3 w-[100%] '>
+                        <div className='flex gap-3 justify-between py-3 w-[100%]'>
                             <div className='w-[100%] border xl:w-[20vw]'>
                                 <div className='lg:w-[100%]'>
                                     <a href=''>
@@ -90,7 +104,7 @@ function Main() {
                 </div>
                 <section className="px-2">
                     <div className='flex justify-between items-center py-2'>
-                        <h3>Discount products</h3>
+                        <h3>Discounted products</h3>
                         <a href='#' className='text-[#43766C]'>See all</a>
                     </div>
                     <Endirim />

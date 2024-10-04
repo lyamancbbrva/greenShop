@@ -88,17 +88,12 @@ footer svg{fill: #fff !important;}
     --swiper-theme-color: #e4e0e0 !important;
     --swiper-navigation-size: 20px !important;
 }
-#amiroff-img {   filter: brightness(0) invert(1)}
 .swiper-button-prev,
 .swiper-button-next,
 .swiper-button-disabled {
     background-color: #8080801a;
     border-radius: 50%;
     padding: 20px;
-}
-:root {
-    --swiper-theme-color: #e4e0e0 !important;
-    --swiper-navigation-size: 20px !important;
 }
 @media only screen and (min-width: 768px) {
     .wrapper-md {
@@ -111,8 +106,4 @@ footer svg{fill: #fff !important;}
         width: 80%;
         margin: auto;
     }
-    #footer-logo {   transition: .5s;}
-    footer:hover #footer-logo {left: 81%;}
-    .footer-list ul {list-style: ">"}
-    .footer-list ul li {padding: 0 5px;}
 }

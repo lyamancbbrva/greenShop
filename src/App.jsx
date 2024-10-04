@@ -23,19 +23,8 @@ const cook = new Cookies()
 
 function App() {
     const [catSt, setCatSt] = useState(false)
-    const [product, setProduct] = useState([]);
     const [auth, setAuth] = useState(false)
     const { pathname } = useLocation();
-
-    function updateCount(id, increment) {
-        const updatedProducts = product.map(item => {
-            if (item.id === id) {
-                return { ...item, count: item.count + increment > 0 ? item.count + increment : 1 };
-            }
-            return item;
-        });
-        setProduct(updatedProducts);
-    }
 
     useEffect(() => {
         window.scroll(0, 0);
@@ -70,8 +59,8 @@ function App() {
                 }
                 <Route path='/' element={<Layout catSt={catSt} setCatSt={setCatSt} />}>
                     <Route path='/' element={<Main />} />
-                    <Route path='/:category/:subCategory' element={<SubCategory updateCount={updateCount} catSt={catSt} />} />
-                    <Route path='/product/:id' element={<CardInfo updateCount={updateCount} catSt={catSt}/>} />
+                    <Route path='/:category/:subCategory' element={<SubCategory catSt={catSt} />} />
+                    <Route path='/product/:id' element={<CardInfo catSt={catSt}/>} />
                     <Route path="/basket" element={<Basket catSt={catSt}/>} />
                     <Route path="/haqqimizda" element={<Haqqimizda catSt={catSt}/>} />
                     <Route path="/elaqe" element={<Elaqe catSt={catSt}/>} />

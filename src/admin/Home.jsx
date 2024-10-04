@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom"
+import photo from "../assets/adminphoto.webp"
 
 function Home() {
     return (
         <section>
             <div className="container mx-auto flex flex-col items-center py-10 text-center md:py-20 xl:max-w-3xl">
                 <h1 className="text-4xl font-bold leading-none sm:text-5xl">Salammm!!!</h1>
-                <p className="mt-8 mb-12 text-xl">Xoş gəldin Admin, <br />
-                    Zəhmət olmasa, aşağıdakı məqamları yadda saxlayın:  <br />
-                    Şifrənizi heç kimlə paylaşmayın. <br />
-                    İşinizi bitirdikdən sonra admin paneldən çıxış edin.<br />
-                    Əks halda, sayta uyğunsuz məzmunlar yüklənə bilər və təhlükəsizlik riski yaranar. <br />
-                    Sizin təhlükəsizliyiniz və saytın bütövlüyü üçün bu qaydalara riayət etməyiniz vacibdir. <br />
-                    Anlayışınız üçün təşəkkür edirik.</p>
+                <img src={photo} className="w-[60%]" alt="photo" />
+                <p className="my-6 text-xl">
+                    Bura Admin hissəsidir. Burada ağıllı olmaq və bəzi şeyləri qurcalamamaq lazımdır!
+                </p>
                 <div className="flex flex-wrap justify-center">
                     <Link to='products' className="px-8 py-3 m-2 text-md font-semibold rounded text-white bg-[#43766C]">Məhsul əlavə et</Link>
                     <Link to='categories' className="px-6 py-3 m-2 text-md bg-slate-800 text-white rounded">Kataqoriya əlavə et</Link>

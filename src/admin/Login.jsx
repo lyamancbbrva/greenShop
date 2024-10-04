@@ -5,17 +5,14 @@ import { Cookies } from 'react-cookie';
 import { postLogin } from '../api/api';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
-
 const cook = new Cookies();
 
 function Login() {
-
     const [pass, setPass] = useState("");
     const [login, setLogin] = useState("");
     const [type, setType] = useState('password');
 
     async function handleSubmit(e) {
-
         e.preventDefault();
         if (!pass || pass.length < 8) {
             toast.error("Şifrəni düz yaz ə!!!");
@@ -30,8 +27,7 @@ function Login() {
             cook.set("refresh", user.refresh);
             toast.success("Giriş olundu")
             window.location.href = "/admin";
-        } else  toast.error("Sən Zəzər əmi döylüsən!😔");
-        
+        } else toast.error("Password ya da Username səhvdi!😔");
     }
 
     return (

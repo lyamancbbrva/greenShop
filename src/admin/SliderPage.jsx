@@ -23,16 +23,16 @@ function SliderPage() {
     }, [])
 
     function addSlider() {
-        const obj = { 
-            categoryId: id, 
+        const obj = {
+            categoryId: id,
             subcategoryId: Number(subCatId),
-            img: imgSrc, 
+            img: imgSrc,
         }
         createSlider(obj).then(resp => {
             setData([...data, resp])
             setImg([])
         })
-        setOpen(!open); 
+        setOpen(!open);
         setImgSrc(null);
         toast.success('Şəkil əlavə olunduuu');
     }
@@ -42,7 +42,7 @@ function SliderPage() {
         setData(data.filter(item => item.id !== id))
         toast.success('Şəkil silindi');
     }
-    
+
     const onDrop = async (acceptedFiles) => {
         formdata.append('img', acceptedFiles[0])
         const newImg = await createImg(formdata)
@@ -50,7 +50,7 @@ function SliderPage() {
         setImgSrc(newImg.img_url)
     };
 
-    const { getRootProps, getInputProps } = useDropzone({onDrop, maxFiles: 5});
+    const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles: 5 });
 
     return (
         <section className="px-6">
@@ -82,8 +82,8 @@ function SliderPage() {
                                     </tr>
                                 </thead>
                                 <tbody className='divide-y divide-gray-200 bg-slate-800 text-white'>
-                                    {data &&
-                                        data?.map((item, i) => (
+                                    {data.length > 0 ?
+                                        data.map((item, i) => (
                                             <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
                                                     {/* <a href={item.img}>{item.img}</a> */}
@@ -99,7 +99,10 @@ function SliderPage() {
                                                     />
                                                 </td>
                                             </tr>
-                                        ))}
+                                        )) : <tr>
+                                            <td colSpan={4} className="p-5">Slider yaratmamısan ay zay</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
@@ -110,7 +113,7 @@ function SliderPage() {
 
             {/*    C R E A T E    C O M P O N E N T     */}
             <Transition.Root show={open} as={Fragment}>
-                <Dialog as="div" className="relative z-10" onClose={() => {setOpen(!open)}}>
+                <Dialog as="div" className="relative z-10" onClose={() => { setOpen(!open) }}>
                     <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -188,9 +191,9 @@ function SliderPage() {
                                             {img?.map((item, i) => <img key={i} onClick={() => { setImgSrc(item); setDelOpen(true) }} className="w-[100px] object-cover" src={item} />)}
                                         </div>
                                     </div>
-                                    <button 
-                                    onClick={()=> addSlider()}
-                                    className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
+                                    <button
+                                        onClick={() => addSlider()}
+                                        className='bg-blue-700 w-full sm:w-32 text-white rounded-md p-2 px-3 font-semibold'>
                                         Əlavə et
                                     </button>
                                 </Dialog.Panel>

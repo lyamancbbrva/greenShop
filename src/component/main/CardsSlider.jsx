@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { GiShoppingCart } from "react-icons/gi";
-import { FreeMode, Navigation } from "swiper/modules";
+import { FreeMode, Navigation , Autoplay} from "swiper/modules";
 import { GoHeart } from "react-icons/go";
 import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
 import getAllProducts, { getDiscountedProduct } from "../../api/api";
 import toast from "react-hot-toast";
-
 spiral.register();
 
 function CardsSlider() {
@@ -20,8 +19,8 @@ function CardsSlider() {
     const [discountedPro, setDiscountedPro] = useState([]);
 
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp));
-        getDiscountedProduct().then(resp => setDiscountedPro(resp));
+        getAllProducts().then(resp => setData(resp.products));
+        getDiscountedProduct().then(resp => setDiscountedPro(resp.products));
     }, []);
 
     function addToBasket(e, item) {
@@ -50,8 +49,14 @@ function CardsSlider() {
                 slidesPerView={1}
                 spaceBetween={10}
                 freeMode={true}
-                navigation={true}
-                modules={[FreeMode, Navigation]}
+                speed={3000}
+                loop={true}
+                // navigation={true}
+                modules={[FreeMode, Navigation, Autoplay]}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                }}
                 className='mySwiper m-auto my-4 lg:mx-0 w-[100%]'
                 breakpoints={{
                     320: { slidesPerView: 2, spaceBetween: 0 },

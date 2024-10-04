@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { GiShoppingCart } from "react-icons/gi";
-import { FreeMode, Navigation } from "swiper/modules";
+import { FreeMode, Navigation, Autoplay } from "swiper/modules";
 import { GoHeart } from "react-icons/go";
 import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
@@ -19,8 +19,8 @@ function Endirim() {
     const [discountedPro, setDiscountedPro] = useState([]);
 
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp));
-        getDiscountedProduct().then(resp => setDiscountedPro(resp));
+        getAllProducts().then(resp => setData(resp.products));
+        getDiscountedProduct().then(resp => setDiscountedPro(resp.products));
     }, []);
 
     function addToBasket(e, item) {
@@ -49,8 +49,13 @@ function Endirim() {
                 slidesPerView={1}
                 spaceBetween={10}
                 freeMode={true}
-                navigation={true}
-                modules={[FreeMode, Navigation]}
+                // navigation={true}
+                speed={3000}
+                autoplay={{
+                    delay: 4000,
+                    disableOnInteraction: false,
+                }}
+                modules={[FreeMode, Navigation, Autoplay]}
                 className='mySwiper m-auto my-4 lg:mx-0 w-[100%]'
                 breakpoints={{
                     320: { slidesPerView: 2, spaceBetween: 0 },
@@ -61,7 +66,7 @@ function Endirim() {
                     1280: { slidesPerView: 6, spaceBetween: 10 },
                 }}
             >
-                {discountedPro.map((item) => {
+                {discountedPro?.map((item) => {
                     const { img, name, price, id, discount, totalPrice } = item;
                     return (
                         <SwiperSlide key={id}>

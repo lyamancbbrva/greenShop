@@ -9,8 +9,6 @@ import { IoChevronDown } from "react-icons/io5";
 import { Cookies } from 'react-cookie';
 import toast from 'react-hot-toast';
 import { FaAddressBook } from "react-icons/fa";
-
-
 const cook = new Cookies()
 
 function LayoutAdmin() {
@@ -48,7 +46,6 @@ function LayoutAdmin() {
                         >
                             <div className="fixed inset-0 bg-gray-600 bg-opacity-75" />
                         </Transition.Child>
-
                         <div className="fixed inset-0 z-40 flex">
                             <Transition.Child
                                 as={Fragment}
@@ -113,7 +110,6 @@ function LayoutAdmin() {
                         </div>
                     </Dialog>
                 </Transition.Root>
-
                 <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
                     <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                         <div className="flex flex-shrink-0 items-center px-4">
@@ -157,7 +153,6 @@ function LayoutAdmin() {
                         </div>
                     </div>
                 </div>
-
                 <div className="flex flex-1 flex-col md:pl-64">
                     <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
                         <button
@@ -245,6 +240,5 @@ function LayoutAdmin() {
         </>
     );
 }
-
 
 export default LayoutAdmin

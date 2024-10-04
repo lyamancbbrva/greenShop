@@ -23,6 +23,7 @@ function Subcategory() {
         const obj = { categoryName: inpValue, categoryId: catId };
         createSubcategory(obj)
         setSubcategory([...subcategory, obj]);
+        toast.success('Subkateqoriya yaratdın, afərin!')
     }
 
     async function delSubcat(id) {
@@ -42,6 +43,7 @@ function Subcategory() {
         const obj = { categoryName: inpValue };
         updateSubcategory(catId, obj).then((res) => setSubcategory(subcategory.map(item => item.id == catId ? { ...item, categoryName: res.subcategory.categoryName } : item)));
         setCatId(null)
+        toast.success("Gençleştim resmen bu kamar mı fark eder?!")
     }
 
     return (
@@ -56,7 +58,7 @@ function Subcategory() {
                     defaultValue={cats[0]?.categoryName}
                     className="bg-gray-100 border h-12 w-full border-gray-500 text-gray-900 text-md rounded-lg p-2"
                 >
-                    <option  >
+                    <option>
                         Kataqoriya seçin
                     </option>
                     {cats?.map((item) => (
@@ -103,8 +105,8 @@ function Subcategory() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {subcategory ? (
-                                        subcategory?.map((item, i) => (
+                                    {subcategory.length > 0 ? (
+                                        subcategory.map((item, i) => (
                                             <tr key={i} className="hover:bg-gray-200">
                                                 <td className="whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                     {item.categoryName}
@@ -130,19 +132,9 @@ function Subcategory() {
                                             </tr>
                                         ))
                                     ) : (
-                                        <tr className="hover:bg-gray-200">
+                                        <tr>
                                             <td className="whitespace-nowrap font-bold py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                 Subkateqoriya mövcud deyil
-                                            </td>
-                                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                                <div className="flex gap-2">
-                                                    <FiEdit
-                                                        className="text-[1.1em] text-[blue] cursor-pointer"
-                                                    />
-                                                    <FaTrashAlt
-                                                        className="text-[1.1em] text-[red] cursor-pointer"
-                                                    />
-                                                </div>
                                             </td>
                                         </tr>
                                     )}

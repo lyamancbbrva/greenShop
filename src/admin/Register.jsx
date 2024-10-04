@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import { postLogin, registerUser } from "../api/api";
+import { registerUser } from "../api/api";
 import { Cookies } from "react-cookie";
 import toast from "react-hot-toast";
-
 const cook = new Cookies()
 
 function Register() {
-
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
-
     const [type, setType] = useState("password");
 
     async function signUp() {
-
         const obj = { login, password }
         const user = await registerUser(obj)
         toast.success('DAY SƏN DƏ ADMİNSƏN!')
         window.location.href = '/admin'
-        
-
     }
 
     return (
@@ -30,7 +24,7 @@ function Register() {
                 <h1 className='my-3 text-4xl font-bold'>Kasıb</h1>
                 <p className='text-sm dark:text-gray-600'>Qeydiyyatdan keş</p>
             </div>
-            <form noValidate='' action='' className='space-y-12'>
+            <form className='space-y-12'>
                 <div className='space-y-4'>
                     <div>
                         <label htmlFor='email' className='block mb-2 text-sm'>

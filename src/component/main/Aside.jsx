@@ -1,31 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { GoChevronRight } from "react-icons/go";
 import { Link } from "react-router-dom";
 import { getCategories } from "../../api/api";
 import icon from "../../assets/leaf.webp"
-import { dotPulse } from 'ldrs'
-dotPulse.register()
 
 function Aside() {
-    const [cat, setCat] = useState([])
-
     useEffect(() => {
-        getCategories().then((resp) => setCat(resp));
+        getCategories().then((resp) => {
+            localStorage.setItem('categories', JSON.stringify(resp))
+        })
     }, [])
+
+    const data = JSON.parse(localStorage.getItem('categories'))
 
     return (
         <aside className='pt-6 mb-3 bg-white shadow-lg lg:inline-block w-[245.5px] hidden'>
             <nav>
                 <ul className='flex flex-col '>
-                    {cat &&
-                        cat.map((item, i) => {
+                    {data &&
+                        data.map((item, i) => {
                             return (
                                 <li
                                     key={i}
                                     className={`flex px-3 gap-3 items-center border-b py-2 hover:bg-[#43766c2c] relative dropdown`}
                                 >
                                     <img src={icon} className="w-6" />
-                                    <div className='flex justify-between items-center w-full relative'>
+                                    <div className='flex justify-between capitalize items-center w-full relative'>
                                         <p className='font-bold text-[10px] lg:text-[.7em]'>
                                             {item.categoryName}
                                         </p>

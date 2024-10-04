@@ -6,15 +6,11 @@ export default {
     theme: {
         screens: {
             sm: "500px",
-            // => @media (min-width: 640px) { ... }
             md: "768px",
-            // => @media (min-width: 768px) { ... }
+            "2md": "870px",
             lg: "1000px",
-            // => @media (min-width: 1024px) { ... }
             xl: "1280px",
-            // => @media (min-width: 1280px) { ... }
             "2xl": "1400px",
-            // => @media (min-width: 1536px) { ... }
         },
     },
     plugins: []

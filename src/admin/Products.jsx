@@ -42,7 +42,7 @@ function Products() {
 
     useEffect(() => {
         getCategories().then(resp => setCategory(resp))
-        getAllProducts().then(resp => setProduct(resp))
+        getAllProducts().then(resp => setProduct(resp.products))
     }, [])
 
     async function deleteImage() {
@@ -81,6 +81,7 @@ function Products() {
                 setObj(initialObj);
                 toast.success('Məhsul uğurla yeniləndi!');
             })
+            console.log(productObj);
     }
 
     function handleCategory(item) {
@@ -139,7 +140,7 @@ function Products() {
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
                                     {product
-                                        .filter(item => item.name.toLowerCase().startsWith(inp.toLowerCase()))
+                                        ?.filter(item => item.name.toLowerCase().startsWith(inp?.toLowerCase()))
                                         .map((item, i) => (
                                             <tr key={i} className="hover:bg-gray-200">
                                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">

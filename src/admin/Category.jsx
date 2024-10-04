@@ -28,6 +28,7 @@ function Category() {
         const obj = { categoryName }
         createCategory(obj).then(resp => setData([...data, resp]))
         setOpen(false)
+        toast.success("Kataqoriya əlavə olundu!")
     }
 
     async function delCategory(id) {
@@ -47,6 +48,14 @@ function Category() {
             toast.success('Oldu çiçək kimii');
         })
     }
+
+    // if (data.length === 0) {
+    //     return (
+    //         <div className='flex justify-center items-center'>
+    //             data yoxdur
+    //         </div>
+    //     );
+    // }
 
     return (
         <section className='px-6'>
@@ -81,8 +90,8 @@ function Category() {
                                     </tr>
                                 </thead>
                                 <tbody className='divide-y divide-gray-200 bg-slate-800 text-white'>
-                                    {data &&
-                                        data?.map((item, i) => (
+                                    {data.length > 0 ?
+                                        data.map((item, i) => (
                                             <tr key={i} className='hover:bg-slate-700'>
                                                 <td className='whitespace-nowrap font-semibold py-4 pl-4 pr-3 text-sm sm:pl-6'>
                                                     {item.categoryName}
@@ -108,7 +117,11 @@ function Category() {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        ))}
+                                        ))
+                                        : <tr>
+                                            <td colSpan={4} className="p-5">Hələki kataqoriya yoxdur</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
