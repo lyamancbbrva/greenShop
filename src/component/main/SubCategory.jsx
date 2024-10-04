@@ -13,7 +13,7 @@ import toast from "react-hot-toast";
 
 function SubCategory() {
     const [page, setPage] = useState(1);
-    const { basket, setBasket, setSebetSay, sebetSay, catSt, setCatSt} = useContext(Cntx);
+    const { basket, setBasket, setSebetSay, sebetSay, catSt, setCatSt } = useContext(Cntx);
     const { category, subCategory } = useParams();
     const [pageCount, setPageCount] = useState(1);
     const [cat, setCat] = useState([]);
@@ -21,13 +21,18 @@ function SubCategory() {
     const [loading, setLoading] = useState(true);
     const [priceRange, setPriceRange] = useState(150);
 
-    const catName = category.includes("-") ? category.split("-").join("") : category;
-    const subcatName = subCategory.includes("-") ? subCategory.split("-").join("") : subCategory;
+    const catName = category.includes("-")
+        ? category.split("-").join("").replace(/[\s,]/g, "")
+        : category.replace(/[\s,]/g, "");
+
+    const subcatName = subCategory.includes("-")
+        ? subCategory.split("-").join("").replace(/[\s,]/g, "")
+        : subCategory.replace(/[\s,]/g, "");
 
     const id = cat.find(item =>
-        item.categoryName.replace(/\s+/g, "").toLowerCase() === catName.toLowerCase()
+        item.categoryName.replace(/[\s,]/g, "").toLowerCase() === catName.toLowerCase()
     )?.subcategory.find(item =>
-        item.categoryName.replace(/\s+/g, "") === subcatName
+        item.categoryName.replace(/[\s,]/g, "") === subcatName
     )?.id;
 
     useEffect(() => {
@@ -63,8 +68,8 @@ function SubCategory() {
                         ? { ...basketItem, count: basketItem.count + 1 }
                         : basketItem
                 )
-            ) 
-        : setBasket([...basket, { ...item, count: 1 }]);
+            )
+            : setBasket([...basket, { ...item, count: 1 }]);
         setSebetSay(sebetSay + 1);
         toast.success(`${item.name} added to cart!`)
     }
@@ -72,7 +77,7 @@ function SubCategory() {
     const filteredData = data?.filter(item => item.totalPrice <= priceRange)
 
     return (
-        <main onClick={()=> setCatSt(false)} className="bg-[#F2F2F2]">
+        <main onClick={() => setCatSt(false)} className="bg-[#F2F2F2]">
             <div className="wrapper relative">
                 <div className="absolute z-10 top-[-5px] left-0">{catSt && <Aside catSt={catSt} />}</div>
                 <div>
