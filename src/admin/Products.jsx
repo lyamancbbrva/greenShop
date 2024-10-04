@@ -9,6 +9,7 @@ import configObj from '../config/config';
 import { useDropzone } from 'react-dropzone';
 import getAllProducts, { createImg, createProduct, deleteImg, deleteProduct, editProduct, getCategories } from "../api/api";
 import toast from "react-hot-toast";
+import axios from "axios";
 
 function Products() {
     const formdata = new FormData()
@@ -25,6 +26,7 @@ function Products() {
     const [img, setImg] = useState([])
     const [imgSrc, setImgSrc] = useState('')
     const [catId, setCatId] = useState(0)
+    const [page, setPage] = useState(1)
 
     const initialObj = {
         name: "",
@@ -39,11 +41,16 @@ function Products() {
     }
 
     const [obj, setObj] = useState(initialObj)
+    const url = `https://neptunbk.vercel.app/products?limit=100&page=${page}`
 
     useEffect(() => {
+        axios.get(url).then(resp => setProduct(resp.data))
         getCategories().then(resp => setCategory(resp))
-        getAllProducts().then(resp => setProduct(resp.products))
-    }, [])
+    }, [page])
+    console.log(page);
+    console.log(url);
+    
+    
 
     async function deleteImage() {
         const fileName = imgSrc.split('/').at(-1)
@@ -57,6 +64,7 @@ function Products() {
         setImg([...img, newImg.img_url])
         setObj({ ...obj, img: [newImg.img_url] })
     };
+    
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles: 5 });
 
@@ -75,7 +83,7 @@ function Products() {
         const productObj = { ...obj, description: editorRef.current.getContent() }
         editProduct(id, productObj)
             .then((resp) => {
-                setProduct(product.map((prod) => (prod.id === id ? resp : prod)));
+                setProduct(product.products.map((prod) => (prod.id === id ? resp : prod)));
                 setOpen(false);
                 setEditOpen(false);
                 setObj(initialObj);
@@ -92,12 +100,8 @@ function Products() {
 
     async function delProduct(id) {
         await deleteProduct(id)
-        setProduct(product.filter(item => item.id !== id))
+        setProduct(product.products.filter(item => item.id !== id))
         toast.success('Məhsul gorbagor oldu!')
-    }
-
-    function goNextPage() {
-        
     }
 
     return (
@@ -143,7 +147,7 @@ function Products() {
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y divide-gray-200 bg-white">
-                                    {product
+                                    {product.products
                                         ?.filter(item => item.name?.toLowerCase().startsWith(inp?.toLowerCase()))
                                         .map((item, i) => (
                                             <tr key={i} className="hover:bg-gray-200">
@@ -180,7 +184,15 @@ function Products() {
                                 </tbody>
                             </table>
                         </div>
+                        
                     </div>
+                    <div className="flex justify-center py-5 space-x-1 dark:text-gray-800">
+                        {
+                         new Array(product.totalPages).fill(null).map((_,index) => <button key={index} onClick={(e) =>{window.scroll(0,0); setPage(e.target.innerText)}
+                         } type="button"  title="Page 1" className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-50 dark:text-[#43766C] dark:border-[#43766C]">{index + 1}</button> )
+                        }
+                        
+                </div>
                 </div>
             </div>
 

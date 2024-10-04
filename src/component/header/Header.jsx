@@ -12,6 +12,7 @@ import { SlBasket } from "react-icons/sl";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiMiniBars4 } from "react-icons/hi2";
 import logo from '../../assets/greenLogo.png';
+import axios from "axios";
 
 function Header() {
     const [status, setStatus] = useState(false)
@@ -25,7 +26,8 @@ function Header() {
     function toggleAccordion(index) { setActiveAccordion(activeAccordion === index ? null : index) }
 
     useEffect(() => {
-        getAllProducts().then(res => setData(res.products))
+        axios.get(`https://neptunbk.vercel.app/products?limit=2000&page=1`).then(resp => setData(resp.data.products))
+
     }, [])
 
     useEffect(() => {

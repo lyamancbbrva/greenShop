@@ -43,11 +43,12 @@ function Wishlist() {
                 <h1 className="text-[1.2em] italic">My Wishlist: </h1>
                 {list && list.length > 0 ?
                     <div className='flex items-center gap-[30px] flex-wrap py-[30px]'>
-                        {list && list.map((item) => {
+                        {list && list.map((item, i) => {
                             const { img, name, price, id, discount, totalPrice } = item;
                             return (
                                 <>
                                     <div
+                                    key={i}
                                         className='border card hover:shadow-md transition-all rounded-md p-3 bg-white inline-block'
                                     >
                                         <div className="relative">

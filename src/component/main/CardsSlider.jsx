@@ -11,16 +11,16 @@ import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
 import getAllProducts, { getDiscountedProduct } from "../../api/api";
 import toast from "react-hot-toast";
+import axios from "axios";
 spiral.register();
 
 function CardsSlider() {
+
     const { setSebetSay, sebetSay, basket, setBasket } = useContext(Cntx);
     const [data, setData] = useState([]);
-    const [discountedPro, setDiscountedPro] = useState([]);
-
+    
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp.products));
-        getDiscountedProduct().then(resp => setDiscountedPro(resp.products));
+        axios.get(`https://neptunbk.vercel.app/products?limit=30&page=22`).then(resp => setData(resp.data.products));
     }, []);
 
     function addToBasket(e, item) {

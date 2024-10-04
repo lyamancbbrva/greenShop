@@ -11,16 +11,17 @@ import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
 import getAllProducts, { getDiscountedProduct } from "../../api/api";
 import toast from "react-hot-toast";
+import axios from "axios";
 spiral.register();
 
 function Endirim() {
     const { setSebetSay, sebetSay, basket, setBasket } = useContext(Cntx);
-    const [data, setData] = useState([]);
     const [discountedPro, setDiscountedPro] = useState([]);
 
     useEffect(() => {
-        getAllProducts().then(resp => setData(resp.products));
-        getDiscountedProduct().then(resp => setDiscountedPro(resp.products));
+        
+        axios.get(`https://neptunbk.vercel.app/products?limit=30&page=40`).then(resp => setDiscountedPro(resp.data))
+
     }, []);
 
     function addToBasket(e, item) {
@@ -49,7 +50,7 @@ function Endirim() {
         }
     }
 
-    if (data.length === 0) {
+    if (discountedPro?.products?.length === 0) {
         return (
             <div className='flex justify-center items-center'>
                 <l-spiral size='50' speed='0.9' color='#43766C'></l-spiral>
@@ -80,7 +81,7 @@ function Endirim() {
                     1280: { slidesPerView: 6, spaceBetween: 10 },
                 }}
             >
-                {discountedPro?.map((item) => {
+                { discountedPro && discountedPro?.products?.map((item) => {
                     const { img, name, price, id, discount, totalPrice } = item;
                     return (
                         <SwiperSlide key={id}>
