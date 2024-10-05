@@ -38,7 +38,7 @@ function Slider() {
                         <Link to={item.slug}>
                             <img
                                 className='object-cover h-full w-full'
-                                src={item.img}
+                                src={item.img.includes("cache/logo-270x270.png") ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : item.img}
                                 alt='banner'
                             />
                         </Link>

@@ -18,7 +18,7 @@ function CardsSlider() {
 
     const { setSebetSay, sebetSay, basket, setBasket } = useContext(Cntx);
     const [data, setData] = useState([]);
-    
+
     useEffect(() => {
         axios.get(`https://neptunbk.vercel.app/products?limit=30&page=22`).then(resp => setData(resp.data.products));
     }, []);
@@ -81,7 +81,9 @@ function CardsSlider() {
                 }}
             >
                 {data.map((item) => {
-                    const { img, name, price, id, discount, totalPrice } = item;
+                    const { name, price, id, discount, totalPrice } = item;
+                    const img = item.img[0] == "https://neptun.az/image/cache/logo-270x270.png?v=9" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0E7_jTgtSApXn2SgGAJlFjZimO3iiH6X8hLrht5zcY8c-TBhyWowKgL6PlVTfVCoBf6g&usqp=CAU" : item.img[0]
+
                     return (
                         <SwiperSlide key={id}>
                             <Link

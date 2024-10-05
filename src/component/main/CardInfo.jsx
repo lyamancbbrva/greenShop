@@ -27,8 +27,8 @@ function CardInfo() {
         setSebetSay(sebetSay + itemCount);
     }
 
-    function handleIncrement() { setItemCount(prevCount => prevCount + 1)}
-    function handleDecrement() { setItemCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1))}
+    function handleIncrement() { setItemCount(prevCount => prevCount + 1) }
+    function handleDecrement() { setItemCount(prevCount => (prevCount > 1 ? prevCount - 1 : 1)) }
 
     return (
         <section className='wrapper relative'>
@@ -60,7 +60,7 @@ function CardInfo() {
                 <div className='flex flex-col gap-[5vw] items-center bg-white 2md:flex-row md:max-w-5xl mb-5'>
                     <img
                         className='object-cover w-full md:w-[80%] px-3 rounded-[2rem] 2md:h-[55vh] 2md:w-[500px]'
-                        src={data?.img}
+                        src={data?.img == "https://neptun.az/image/cache/logo-270x270.png?v=9" ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : data?.img}
                         alt={data?.name}
                     />
                     <div className='flex flex-col justify-between p-4 leading-normal'>

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Cntx } from "../../context/DataContext";
-import getAllProducts from "../../api/api";
+import getAllProducts, { searchProduct } from "../../api/api";
 import Sidebar from "./Sidebar";
 import { FaBars } from "react-icons/fa6";
 import { FiBarChart } from "react-icons/fi";
@@ -19,16 +19,17 @@ function Header() {
     const [sideSt, setSideSt] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const [inp, setInp] = useState("")
-    const [data, setData] = useState([])
+    const [data, setData] = useState(null)
     const { sebetSay, basket, catSt, setCatSt } = useContext(Cntx)
     const [activeAccordion, setActiveAccordion] = useState(null)
 
     function toggleAccordion(index) { setActiveAccordion(activeAccordion === index ? null : index) }
 
     useEffect(() => {
-        axios.get(`https://neptunbk.vercel.app/products?limit=2000&page=1`).then(resp => setData(resp.data.products))
-
-    }, [])
+        if (inp.trim().length >= 2) {
+            searchProduct(inp.toLowerCase()).then(resp => setData(resp.products))
+        }
+    }, [inp])
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -75,11 +76,8 @@ function Header() {
                         </button>
                         <div id="scrollbar" className={`${status ? 'block' : 'hidden'} max-h-[250px] sm:max-h-[350px] overflow-y-auto absolute z-20 rounded-md shadow-md m-auto w-[47vw] lg:w-[30vw] md:w-[45vw]`}>
                             {
-                                data
-                                    .filter(item => item?.name.toLowerCase().startsWith(inp.toLowerCase()))
-                                    .length > 0 ? (
+                                data ? (
                                     data
-                                        .filter(item => item?.name.toLowerCase().startsWith(inp.toLowerCase()))
                                         .map((item, i) => (
                                             <Link
                                                 to={`/product/${item?.id}`}

@@ -49,8 +49,8 @@ function Products() {
     }, [page])
     console.log(page);
     console.log(url);
-    
-    
+
+
 
     async function deleteImage() {
         const fileName = imgSrc.split('/').at(-1)
@@ -64,7 +64,7 @@ function Products() {
         setImg([...img, newImg.img_url])
         setObj({ ...obj, img: [newImg.img_url] })
     };
-    
+
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles: 5 });
 
@@ -89,7 +89,7 @@ function Products() {
                 setObj(initialObj);
                 toast.success('Məhsul uğurla yeniləndi!');
             })
-            console.log(productObj);
+        console.log(productObj);
     }
 
     function handleCategory(item) {
@@ -154,7 +154,8 @@ function Products() {
                                                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                                                     <div className="flex items-center">
                                                         <div className="h-10 w-10 flex-shrink-0">
-                                                            <img className="h-10 w-10 rounded-full" src={item.img} alt={item.name} />
+                                                            <img className="h-10 w-10 rounded-full" 
+                                                            src={item.img == "https://neptun.az/image/cache/logo-270x270.png?v=9" ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : item.img} alt={item.name} />
                                                         </div>
                                                         <div className="ml-4">
                                                             <div className="font-medium text-gray-900">{item.name}</div>
@@ -184,15 +185,15 @@ function Products() {
                                 </tbody>
                             </table>
                         </div>
-                        
+
                     </div>
                     <div className="flex justify-center py-5 space-x-1 dark:text-gray-800">
                         {
-                         new Array(product.totalPages).fill(null).map((_,index) => <button key={index} onClick={(e) =>{window.scroll(0,0); setPage(e.target.innerText)}
-                         } type="button"  title="Page 1" className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-50 dark:text-[#43766C] dark:border-[#43766C]">{index + 1}</button> )
+                            new Array(product.totalPages).fill(null).map((_, index) => <button key={index} onClick={(e) => { window.scroll(0, 0); setPage(e.target.innerText) }
+                            } type="button" title="Page 1" className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-50 dark:text-[#43766C] dark:border-[#43766C]">{index + 1}</button>)
                         }
-                        
-                </div>
+
+                    </div>
                 </div>
             </div>
 
@@ -241,7 +242,7 @@ function Products() {
                                     <div className='my-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Kateqoriya seçin:</label>
                                         <select
-                                            onChange={(e) => {setCatId(e.target.value); setObj({ ...obj, categoryId: e.target.value })}}
+                                            onChange={(e) => { setCatId(e.target.value); setObj({ ...obj, categoryId: e.target.value }) }}
                                             // value={editOpen ? (obj.categoryId || product.find(item => item.id == id).categoryId) : obj.categoryId}
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm">
                                             <option>Kateqoriya seçin:</option>
@@ -343,7 +344,7 @@ function Products() {
                                     <div className='mb-3 border-b border-gray-400 py-3'>
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">Meta məlumat</label>
                                         <textarea
-                                            onInput={(e) => setObj({...obj, metadata: e.target.value})}
+                                            onInput={(e) => setObj({ ...obj, metadata: e.target.value })}
                                             // value={editOpen ? (obj.metadata || product.find(item => item.id == id).metadata ) : obj.metadata}
                                             className='text-sm block w-full rounded-md h-24 border-gray-400 p-2 border outline-indigo-600 shadow-sm'
                                             placeholder='Meta məlumatları daxil edin...'></textarea>

@@ -19,7 +19,7 @@ function Endirim() {
     const [discountedPro, setDiscountedPro] = useState([]);
 
     useEffect(() => {
-        
+
         axios.get(`https://neptunbk.vercel.app/products?limit=30&page=40`).then(resp => setDiscountedPro(resp.data))
 
     }, []);
@@ -36,7 +36,7 @@ function Endirim() {
         toast.success(`${item.name} added to cart!`)
     }
 
-    function addWish(e,item) {
+    function addWish(e, item) {
         e.preventDefault()
         const wishList = JSON.parse(localStorage.getItem('wishlist')) || [];
         const status = wishList.find(i => i.id === item.id);
@@ -81,8 +81,9 @@ function Endirim() {
                     1280: { slidesPerView: 6, spaceBetween: 10 },
                 }}
             >
-                { discountedPro && discountedPro?.products?.map((item) => {
-                    const { img, name, price, id, discount, totalPrice } = item;
+                {discountedPro && discountedPro?.products?.map((item) => {
+                    const { name, price, id, discount, totalPrice } = item;
+                    const img = item.img[0] == "https://neptun.az/image/cache/logo-270x270.png?v=9" ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0E7_jTgtSApXn2SgGAJlFjZimO3iiH6X8hLrht5zcY8c-TBhyWowKgL6PlVTfVCoBf6g&usqp=CAU" : item.img[0]
                     return (
                         <SwiperSlide key={id}>
                             <Link
@@ -91,7 +92,9 @@ function Endirim() {
                             >
                                 <div className="relative">
                                     <GoHeart onClick={(e) => addWish(e, item)} className='absolute cursor-pointer top-1 right-1 text-[1.3em] text-[#43766C]' />
-                                    <img src={img} alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
+                                    <img
+                                        src={img}
+                                        alt={name} className="w-[150px] object-cover h-[25vh] rounded-md" />
                                     <span className='bg-[#43766ca6] text-white absolute bottom-1 right-1 endirim rounded-md w-[50px] h-[30px] flex justify-center items-center text-[.85em] font-bold'>
                                         {discount} %
                                     </span>

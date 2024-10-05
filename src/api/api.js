@@ -110,7 +110,7 @@ async function deleteSlider(id) {
 
 async function createImg(formData) {
     try {
-        const res = await axiosInstance.post(`/img`, formData ,{headers: {"Content-Type" :'multipart/formdata'}});
+        const res = await axiosInstance.post(`/img`, formData, { headers: { "Content-Type": 'multipart/formdata' } });
         return res.data;
     } catch (error) {
         return error;
@@ -227,9 +227,7 @@ async function verifyToken() {
 
 async function searchProduct(query) {
     try {
-        const res = await axiosInstance.get(`/products/search`, {
-            params: { q: query },
-        });
+        const res = await axiosInstance.get(`/products/search?name=${query}`);
         return res.data;
     } catch (error) {
         return false;
