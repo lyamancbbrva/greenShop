@@ -40,7 +40,8 @@ function Wishlist() {
     return (
         <>
             <section className='wrapper py-5 px-3 relative'>
-                <h1 className="text-[1.2em] italic">My Wishlist: </h1>
+                <h1 className="text-[1.2em] italic">My Wishlist: <span className="text-sm">( Pulun olanda gəlib alarsan 😔)</span></h1>
+                
                 {list && list.length > 0 ?
                     <div className='flex items-center gap-[30px] flex-wrap py-[30px]'>
                         {list && list.map((item, i) => {

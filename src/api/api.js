@@ -65,7 +65,7 @@ async function deleteProduct(id) {
 
 async function getProductByCategory(id) {
     try {
-        const res = await axiosInstance.get(`/products/category/${id}`);
+        const res = await axiosInstance.get(`/products/category/${id}?limit=50`);
         return res.data;
     } catch (error) {
         return error;
@@ -73,8 +73,9 @@ async function getProductByCategory(id) {
 }
 
 async function getProductBySubcategory(id) {
+
     try {
-        const res = await axiosInstance.get(`/products/subcategory/${id}`);
+        const res = await axiosInstance.get(`/products/subcategory/${id}?limit=50`);
         return res.data;
     } catch (error) {
         return error;

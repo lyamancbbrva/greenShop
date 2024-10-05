@@ -12,7 +12,6 @@ import { SlBasket } from "react-icons/sl";
 import { TiArrowSortedDown } from "react-icons/ti";
 import { HiMiniBars4 } from "react-icons/hi2";
 import logo from '../../assets/greenLogo.png';
-import axios from "axios";
 
 function Header() {
     const [status, setStatus] = useState(false)
@@ -45,7 +44,7 @@ function Header() {
             <Sidebar sideSt={sideSt} setSideSt={setSideSt} />
             <div className='wrapper'>
                 <div className='flex justify-between items-center gap-[3vw] px-[10px] py-[20px]'>
-                    <Link to='/' className='w-[40vw] md:w-[13vw] '>
+                    <Link to='/' className='w-[40vw] md:w-[14vw] '>
                         <img src={logo} alt="logo" />
                     </Link>
                     <div className='relative w-[45vw] lg:w-[30vw]'>

@@ -9,9 +9,8 @@ import { useContext, useEffect, useState } from "react";
 import { Cntx } from "../../context/DataContext";
 import { Link } from "react-router-dom";
 import { spiral } from "ldrs";
-import getAllProducts, { getDiscountedProduct } from "../../api/api";
+import { getDiscountedProduct } from "../../api/api";
 import toast from "react-hot-toast";
-import axios from "axios";
 spiral.register();
 
 function Endirim() {
@@ -19,10 +18,10 @@ function Endirim() {
     const [discountedPro, setDiscountedPro] = useState([]);
 
     useEffect(() => {
-
-        axios.get(`https://neptunbk.vercel.app/products?limit=30&page=40`).then(resp => setDiscountedPro(resp.data))
-
+        getDiscountedProduct()
+            .then(resp => setDiscountedPro(resp))
     }, []);
+    
 
     function addToBasket(e, item) {
         e.preventDefault();
@@ -73,11 +72,12 @@ function Endirim() {
                 modules={[FreeMode, Navigation, Autoplay]}
                 className='mySwiper m-auto my-4 lg:mx-0 w-[100%]'
                 breakpoints={{
-                    320: { slidesPerView: 2, spaceBetween: 0 },
-                    568: { slidesPerView: 3, spaceBetween: 0 },
+                    320: { slidesPerView: 2, spaceBetween: 10 },
+                    568: { slidesPerView: 3, spaceBetween: 10 },
                     715: { slidesPerView: 3.5, spaceBetween: 20 },
                     910: { slidesPerView: 4, spaceBetween: 10 },
                     1125: { slidesPerView: 5, spaceBetween: 10 },
+                    1285: { slidesPerView: 5.5, spaceBetween: 10 },
                     1280: { slidesPerView: 6, spaceBetween: 10 },
                 }}
             >

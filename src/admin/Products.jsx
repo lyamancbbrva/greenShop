@@ -47,10 +47,6 @@ function Products() {
         axios.get(url).then(resp => setProduct(resp.data))
         getCategories().then(resp => setCategory(resp))
     }, [page])
-    console.log(page);
-    console.log(url);
-
-
 
     async function deleteImage() {
         const fileName = imgSrc.split('/').at(-1)
@@ -64,7 +60,6 @@ function Products() {
         setImg([...img, newImg.img_url])
         setObj({ ...obj, img: [newImg.img_url] })
     };
-
 
     const { getRootProps, getInputProps } = useDropzone({ onDrop, maxFiles: 5 });
 
@@ -185,14 +180,12 @@ function Products() {
                                 </tbody>
                             </table>
                         </div>
-
                     </div>
                     <div className="flex justify-center py-5 space-x-1 dark:text-gray-800">
                         {
-                            new Array(product.totalPages).fill(null).map((_, index) => <button key={index} onClick={(e) => { window.scroll(0, 0); setPage(e.target.innerText) }
+                            new Array(product.totalPages).fill(null).map((_, index) => <button key={index} onClick={(e) => { window.scrollTo({ top: 0, behavior: "smooth" }); setPage(e.target.innerText) }
                             } type="button" title="Page 1" className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-50 dark:text-[#43766C] dark:border-[#43766C]">{index + 1}</button>)
                         }
-
                     </div>
                 </div>
             </div>
@@ -233,7 +226,7 @@ function Products() {
                                         <label htmlFor="" className="block text-[12px] py-2 font-bold text-gray-700 uppercase">məhsulun adı</label>
                                         <input
                                             onInput={(e) => setObj({ ...obj, name: e.target.value })}
-                                            // value={editOpen ? (product.name || product.find(item => item.id == id).name) : product.name}
+                                            // value={editOpen ? (product.products.name || product.products.find(item => item.id == id).name) : product.products.name}
                                             type="text"
                                             className="block w-full rounded-md border-gray-300 bg-gray-50 p-2 border outline-indigo-600 shadow-sm"
                                             placeholder="Məhsulun adı"

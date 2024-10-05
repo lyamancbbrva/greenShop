@@ -7,7 +7,6 @@ import Aside from "./Aside";
 import { Cntx } from "../../context/DataContext";
 import getAllProducts, { getCategories, getProductBySubcategory } from "../../api/api";
 import { spiral } from "ldrs";
-import { filter } from "list";
 spiral.register();
 import toast from "react-hot-toast";
 
@@ -15,7 +14,6 @@ function SubCategory() {
     const [page, setPage] = useState(1);
     const { basket, setBasket, setSebetSay, sebetSay, catSt, setCatSt } = useContext(Cntx);
     const { category, subCategory } = useParams();
-    const [pageCount, setPageCount] = useState(1);
     const [cat, setCat] = useState([]);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -42,7 +40,7 @@ function SubCategory() {
     useEffect(() => {
         if (id) {
             getProductBySubcategory(id).then(resp => {
-                setData(resp.products)
+                setData(resp)
                 setLoading(false);
             })
         }
@@ -78,7 +76,7 @@ function SubCategory() {
         }
     }
 
-    const filteredData = data?.filter(item => item.totalPrice <= priceRange)
+    const filteredData =  data.products?.filter(item => item.totalPrice <= priceRange)
 
     return (
         <main onClick={() => setCatSt(false)} className="bg-[#F2F2F2]">
@@ -146,7 +144,7 @@ function SubCategory() {
                                     </div>
                                 ))
                             ) : filteredData && filteredData.length > 0 ? (
-                                filteredData.map((item, i) => {
+                                filteredData?.map((item, i) => {
                                     const { img, name, price, id, discount, totalPrice } = item;
                                     return (
                                         <Link
@@ -189,23 +187,6 @@ function SubCategory() {
                     </div>
                 </div>
             </div>
-            {/* <div className="flex justify-center space-x-1 dark:text-gray-800 py-[20px]">
-                {page?.pages &&
-                    new Array(page.pages).fill("").map((_, i) => (
-                        <button
-                            onClick={(e) => {
-                                window.scrollTo({ top: 0, behavior: "smooth" });
-                                setPageCount(Number(e.target.innerText));
-                            }}
-                            key={i}
-                            type="button"
-                            className={`${pageCount == i + 1 ? "bg-[red]" : ""
-                                } inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-50 focus:bg-[#f1cba2] focus:border-1 focus:border-[#f69733]`}
-                        >
-                            {i + 1}
-                        </button>
-                    ))}
-            </div> */}
         </main>
     );
 }

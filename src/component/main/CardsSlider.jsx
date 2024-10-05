@@ -77,6 +77,7 @@ function CardsSlider() {
                     715: { slidesPerView: 3.5, spaceBetween: 20 },
                     910: { slidesPerView: 4, spaceBetween: 10 },
                     1125: { slidesPerView: 5, spaceBetween: 10 },
+                    1285: { slidesPerView: 5.5, spaceBetween: 10 },
                     1280: { slidesPerView: 6, spaceBetween: 10 },
                 }}
             >
