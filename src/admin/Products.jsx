@@ -7,7 +7,7 @@ import { useRef } from 'react';
 import { Editor } from '@tinymce/tinymce-react';
 import configObj from '../config/config';
 import { useDropzone } from 'react-dropzone';
-import getAllProducts, { createImg, createProduct, deleteImg, deleteProduct, editProduct, getCategories } from "../api/api";
+import { createImg, createProduct, deleteImg, deleteProduct, editProduct, getCategories } from "../api/api";
 import toast from "react-hot-toast";
 import axios from "axios";
 

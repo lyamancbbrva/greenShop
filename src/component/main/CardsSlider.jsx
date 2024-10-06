@@ -15,7 +15,6 @@ import axios from "axios";
 spiral.register();
 
 function CardsSlider() {
-
     const { setSebetSay, sebetSay, basket, setBasket } = useContext(Cntx);
     const [data, setData] = useState([]);
 

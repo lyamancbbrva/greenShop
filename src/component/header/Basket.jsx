@@ -52,7 +52,7 @@ export const Basket = () => {
                             basket.map((item) => (
                                 <tr key={item.id}>
                                     <td className="w-32 py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:w-auto sm:max-w-none sm:pl-6">
-                                        <img src={item.img == "https://neptun.az/image/cache/logo-270x270.png?v=9" ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : item.img} alt={item.name} className="md:w-24 w-20 h-[10vh] rounded-md object-cover" />
+                                        <Link to={`/product/${item.id}`}><img src={item.img == "https://neptun.az/image/cache/logo-270x270.png?v=9" ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : item.img} alt={item.name} className="md:w-24 w-20 h-[10vh] rounded-md object-cover" /></Link>
                                         <dl className="font-normal lg:hidden">
                                             <dd className="mt-1 text-gray-700">{item.name}</dd>
                                             <dd className="mt-1 truncate text-gray-500 sm:hidden">{item.price} $</dd>
