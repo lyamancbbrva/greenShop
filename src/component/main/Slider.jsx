@@ -6,6 +6,7 @@ import { EffectFade, Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { getSliders } from "../../api/api";
 import { Link } from "react-router-dom";
+import slider1 from '../../assets/bannerslider.png';
 
 
 function Slider() {
@@ -38,7 +39,9 @@ function Slider() {
                         <Link to={item.slug}>
                             <img
                                 className='object-cover h-full w-full'
-                                src={item.img.includes("cache/logo-270x270.png") ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : item.img}
+                                // src={item.img}
+                                src={slider1}
+                                // src={item.img.includes("cache/logo-270x270.png") ? "https://www.greenpeople.co.uk/cdn/shop/files/Natural-water-drop.jpg?height=379&v=1706272861&width=710" : item.img}
                                 alt='banner'
                             />
                         </Link>
